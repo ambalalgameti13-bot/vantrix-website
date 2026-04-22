@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDA & Security | Vantrix Global - BPO & IT Outsourcing</title>
+  <meta name="description" content="Non-Disclosure Agreement and Security Practices at Vantrix Global. Learn about our enterprise-grade security measures and confidentiality commitments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+  
+  <style>
+    :root {
+      --navy: #071526;
+      --navy-mid: #0A2040;
+      --navy-light: #122A52;
+      --accent-blue: #1E5FCB;
+      --purple: #5A52C5;
+      --gold: #C9A84C;
+      --white: #FFFFFF;
+      --off-white: #F4F6FB;
+      --silver: #8899BB;
+      --text-muted: #5E7090;
+      --border: rgba(7,21,38,0.08);
+      --r-md: 18px;
+      --r-lg: 28px;
+      --success: #1A6A4A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--navy-mid);
+      line-height: 1.7;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: var(--white);
+      padding: 80px 20px 50px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .header p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 50px 24px;
+    }
+
+    .content-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 50px;
+      box-shadow: 0 4px 24px rgba(5,15,40,0.08);
+      margin-bottom: 24px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid var(--success);
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 32px;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy-light);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: var(--navy-mid);
+      font-size: 1.02rem;
+    }
+
+    ul, ol {
+      margin-left: 28px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      color: var(--navy-mid);
+      font-size: 1.02rem;
+    }
+
+    .highlight {
+      background: rgba(26,106,74,0.06);
+      padding: 24px 28px;
+      border-radius: var(--r-md);
+      border-left: 5px solid var(--success);
+      margin: 28px 0;
+    }
+
+    .highlight strong {
+      color: var(--success);
+    }
+
+    .warning-box {
+      background: rgba(201,168,76,0.08);
+      padding: 24px 28px;
+      border-radius: var(--r-md);
+      border-left: 5px solid var(--gold);
+      margin: 28px 0;
+    }
+
+    .security-feature {
+      background: linear-gradient(135deg, rgba(30,95,203,0.03), rgba(90,82,197,0.03));
+      padding: 28px 32px;
+      border-radius: var(--r-lg);
+      border: 2px solid var(--border);
+      margin: 24px 0;
+    }
+
+    .security-feature h4 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--accent-blue);
+    }
+
+    .security-feature i {
+      font-size: 28px;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .security-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .security-card:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 8px 24px rgba(30,95,203,0.12);
+      transform: translateY(-2px);
+    }
+
+    .security-card i {
+      color: var(--success);
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .security-card h4 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+
+    .security-card p {
+      margin-bottom: 0;
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(26,106,74,0.05), rgba(30,95,203,0.05));
+      padding: 36px;
+      border-radius: var(--r-lg);
+      border: 2px solid var(--border);
+      margin: 36px 0;
+    }
+
+    .contact-box h3 {
+      margin-top: 0;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-info div {
+      display: flex;
+      align-items: start;
+      gap: 14px;
+    }
+
+    .contact-info i {
+      color: var(--success);
+      margin-top: 2px;
+    }
+
+    .contact-info strong {
+      min-width: 90px;
+      color: var(--navy);
+    }
+
+    .contact-info a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: rgba(26,106,74,0.06);
+      font-weight: 600;
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .certification-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26,106,74,0.08);
+      color: var(--success);
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin: 6px 6px 6px 0;
+    }
+
+    .certification-badge i {
+      font-size: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--text-muted);
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      margin-top: 50px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .footer-links a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 28px;
+      padding: 10px 18px;
+      background: var(--white);
+      border-radius: 999px;
+      box-shadow: 0 2px 12px rgba(5,15,40,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(5,15,40,0.12);
+    }
+
+    .effective-date {
+      background: linear-gradient(135deg, var(--success), #1A8A5A);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .content-card {
+        padding: 32px 24px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .contact-box, .security-feature {
+        padding: 24px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .security-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>NDA & Security</h1>
+    <p>Enterprise-Grade Security & Ironclad Confidentiality Commitments</p>
+  </div>
+
+  <div class="container">
+    <a href="index.html" class="back-link">
+      <i class="ph ph-arrow-left"></i> Back to Home
+    </a>
+    
+    <div class="content-card">
+      <div class="effective-date">Effective Date: April 20, 2026</div>
+
+      <div class="section">
+        <p>At <strong>Vantrix Global</strong>, we understand that when you outsource business processes, you're entrusting us with your most sensitive information — customer data, financial records, intellectual property, and trade secrets. We take this responsibility with the utmost seriousness.</p>
+        
+        <p>This document outlines our <strong>Non-Disclosure Agreement (NDA)</strong> terms and comprehensive <strong>Security Framework</strong> designed to protect your data with military-grade safeguards.</p>
+      </div>
+
+      <div class="highlight">
+        <strong>Our Commitment:</strong> Your confidential information is protected by contractual, technical, and organizational measures that exceed industry standards. We treat your data as if it were our own — because your success is our success.
+      </div>
+
+      <div class="section">
+        <h2>1. Non-Disclosure Agreement (NDA)</h2>
+        
+        <h3>1.1 Mutual Confidentiality Obligation</h3>
+        <p>Both Vantrix Global and Client agree to:</p>
+        <ul>
+          <li>Keep all confidential information strictly confidential</li>
+          <li>Use confidential information only for the purpose of service delivery</li>
+          <li>Not disclose to any third party without prior written consent</li>
+          <li>Protect confidential information with the same degree of care as own proprietary information (minimum: reasonable care)</li>
+        </ul>
+
+        <h3>1.2 Definition of Confidential Information</h3>
+        <p>Confidential Information includes, but is not limited to:</p>
+        <ul>
+          <li><strong>Business Information:</strong> Business plans, strategies, financial data, customer lists, pricing, vendor agreements</li>
+          <li><strong>Technical Information:</strong> Software, algorithms, source code, technical specifications, system architecture</li>
+          <li><strong>Operational Data:</strong> Processes, workflows, SOPs, training materials, performance metrics</li>
+          <li><strong>Customer/Employee Data:</strong> Names, contact details, transaction history, employment records</li>
+          <li><strong>Intellectual Property:</strong> Trademarks, patents, copyrights, trade secrets, know-how</li>
+          <li><strong>Marketing Information:</strong> Campaign strategies, market research, promotional plans</li>
+        </ul>
+
+        <h3>1.3 Exclusions from Confidentiality</h3>
+        <p>Information is NOT confidential if it:</p>
+        <ul>
+          <li>Was publicly available at the time of disclosure or becomes publicly available through no fault of receiving party</li>
+          <li>Was already known to receiving party without confidentiality restriction</li>
+          <li>Is independently developed by receiving party without reference to confidential information</li>
+          <li>Is lawfully obtained from a third party without confidentiality obligations</li>
+          <li>Must be disclosed by law, court order, or government authority (with prior notice to disclosing party)</li>
+        </ul>
+
+        <h3>1.4 Employee & Contractor NDAs</h3>
+        <p>Vantrix Global ensures:</p>
+        <ul>
+          <li>All employees sign individual NDAs before accessing Client data</li>
+          <li>Contractors and temporary staff sign equivalent confidentiality agreements</li>
+          <li>NDAs remain in effect during and after employment</li>
+          <li>Violation of NDA is grounds for immediate termination and legal action</li>
+        </ul>
+
+        <h3>1.5 Duration of Confidentiality</h3>
+        <ul>
+          <li><strong>During Service Period:</strong> Full confidentiality in effect</li>
+          <li><strong>Post-Termination:</strong> Confidentiality obligations continue for <strong>5 years</strong> after termination</li>
+          <li><strong>Trade Secrets:</strong> Protected indefinitely for as long as information remains a trade secret</li>
+        </ul>
+
+        <h3>1.6 Remedies for Breach</h3>
+        <p>In the event of NDA breach:</p>
+        <ul>
+          <li><strong>Immediate Injunction:</strong> Client may seek immediate injunctive relief</li>
+          <li><strong>Damages:</strong> Breaching party liable for all direct and consequential damages</li>
+          <li><strong>Legal Costs:</strong> Breaching party pays prevailing party's legal fees</li>
+          <li><strong>Termination:</strong> Client may terminate service agreement immediately without penalty</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>2. Data Security Framework</h2>
+        
+        <p>Vantrix Global implements a multi-layered security approach aligned with ISO 27001:2013 standards:</p>
+
+        <div class="security-grid">
+          <div class="security-card">
+            <i class="ph ph-shield-check"></i>
+            <h4>Physical Security</h4>
+            <p>24/7 monitored facilities, biometric access, CCTV surveillance, secure server rooms</p>
+          </div>
+
+          <div class="security-card">
+            <i class="ph ph-lock"></i>
+            <h4>Access Control</h4>
+            <p>Role-based access (RBAC), multi-factor authentication, least privilege principle</p>
+          </div>
+
+          <div class="security-card">
+            <i class="ph ph-key"></i>
+            <h4>Encryption</h4>
+            <p>AES-256 at rest, TLS 1.3 in transit, encrypted backups, secure key management</p>
+          </div>
+
+          <div class="security-card">
+            <i class="ph ph-broadcast"></i>
+            <h4>Network Security</h4>
+            <p>Firewalls, IDS/IPS, DDoS protection, network segmentation, VPN access</p>
+          </div>
+
+          <div class="security-card">
+            <i class="ph ph-eye"></i>
+            <h4>Monitoring</h4>
+            <p>24/7 SOC, real-time alerts, anomaly detection, security incident response</p>
+          </div>
+
+          <div class="security-card">
+            <i class="ph ph-database"></i>
+            <h4>Data Backup</h4>
+            <p>Daily encrypted backups, 99.9% recovery SLA, geo-redundant storage</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>3. Technical Security Measures</h2>
+        
+        <h3>3.1 Infrastructure Security</h3>
+        <div class="security-feature">
+          <h4><i class="ph ph-hard-drives"></i> Data Centers</h4>
+          <ul>
+            <li>Tier III or higher certified data centers in India</li>
+            <li>ISO 27001, SOC 2 certified facilities</li>
+            <li>99.95% uptime SLA</li>
+            <li>Redundant power, cooling, and network connectivity</li>
+            <li>Disaster recovery sites for business continuity</li>
+          </ul>
+        </div>
+
+        <h3>3.2 Application Security</h3>
+        <div class="security-feature">
+          <h4><i class="ph ph-code"></i> Secure Development</h4>
+          <ul>
+            <li>OWASP Top 10 vulnerability testing</li>
+            <li>Secure coding practices and code reviews</li>
+            <li>Regular penetration testing (quarterly)</li>
+            <li>Vulnerability scanning and patch management</li>
+            <li>Web Application Firewall (WAF) protection</li>
+          </ul>
+        </div>
+
+        <h3>3.3 Data Encryption</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Data State</th>
+              <th>Encryption Method</th>
+              <th>Key Management</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data at Rest</td>
+              <td>AES-256</td>
+              <td>AWS KMS / Azure Key Vault</td>
+            </tr>
+            <tr>
+              <td>Data in Transit</td>
+              <td>TLS 1.3</td>
+              <td>Certificate-based (SHA-256)</td>
+            </tr>
+            <tr>
+              <td>Database</td>
+              <td>Transparent Data Encryption (TDE)</td>
+              <td>HSM-protected keys</td>
+            </tr>
+            <tr>
+              <td>Backups</td>
+              <td>AES-256</td>
+              <td>Separate encryption keys</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>S/MIME or PGP</td>
+              <td>Public key infrastructure</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3.4 Access Management</h3>
+        <div class="security-feature">
+          <h4><i class="ph ph-users-three"></i> Identity & Access Control</h4>
+          <ul>
+            <li><strong>Multi-Factor Authentication (MFA):</strong> Mandatory for all system access</li>
+            <li><strong>Role-Based Access Control (RBAC):</strong> Access based on job function</li>
+            <li><strong>Least Privilege:</strong> Minimum necessary permissions granted</li>
+            <li><strong>Access Reviews:</strong> Quarterly access audits and revocation</li>
+            <li><strong>Session Management:</strong> Auto-logout after 15 minutes of inactivity</li>
+            <li><strong>IP Whitelisting:</strong> Restricted access from approved IP ranges</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>4. Organizational Security</h2>
+        
+        <h3>4.1 Employee Security Program</h3>
+        <div class="security-feature">
+          <h4><i class="ph ph-user-check"></i> Pre-Employment Screening</h4>
+          <ul>
+            <li>Background verification (criminal, educational, employment)</li>
+            <li>Reference checks from previous employers</li>
+            <li>Drug testing (where legally permitted)</li>
+            <li>Social media screening</li>
+            <li>Credit checks for finance-related roles</li>
+          </ul>
+        </div>
+
+        <h3>4.2 Security Training</h3>
+        <ul>
+          <li><strong>Onboarding Training:</strong> Mandatory 8-hour security awareness course</li>
+          <li><strong>Annual Refresher:</strong> Yearly security policy updates</li>
+          <li><strong>Role-Specific Training:</strong> Specialized training for IT, finance, HR teams</li>
+          <li><strong>Phishing Simulations:</strong> Quarterly phishing tests and remediation training</li>
+          <li><strong>Incident Response:</strong> Training on reporting security incidents</li>
+        </ul>
+
+        <h3>4.3 Code of Conduct</h3>
+        <p>All employees agree to:</p>
+        <ul>
+          <li>Not share login credentials or passwords</li>
+          <li>Not access data beyond job requirements</li>
+          <li>Not copy, download, or transfer data to personal devices</li>
+          <li>Not discuss Client information outside work environment</li>
+          <li>Report any suspected security incidents immediately</li>
+          <li>Return all company assets upon termination</li>
+        </ul>
+
+        <h3>4.4 Exit Procedures</h3>
+        <p>When employees leave:</p>
+        <ul>
+          <li>System access revoked within 1 hour of termination</li>
+          <li>All devices, documents, and materials returned</li>
+          <li>Exit interview covering confidentiality obligations</li>
+          <li>Final NDA reminder and acknowledgment signed</li>
+          <li>Email and communication monitoring for 30 days post-exit</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>5. Physical Security</h2>
+        
+        <h3>5.1 Facility Access Control</h3>
+        <ul>
+          <li><strong>Perimeter Security:</strong> Gated premises with security guards</li>
+          <li><strong>Biometric Entry:</strong> Fingerprint/facial recognition for building access</li>
+          <li><strong>Smart Cards:</strong> RFID badges for zone-based access</li>
+          <li><strong>Visitor Management:</strong> Pre-registration, escort required, badge tracking</li>
+          <li><strong>Server Room Access:</strong> Dual authentication (biometric + PIN), logging of all entry</li>
+        </ul>
+
+        <h3>5.2 Surveillance & Monitoring</h3>
+        <ul>
+          <li>CCTV coverage of all entry/exit points and work areas</li>
+          <li>24/7 security operations center (SOC) monitoring</li>
+          <li>Video retention for 90 days (sensitive areas: 180 days)</li>
+          <li>Motion detection and intrusion alarms</li>
+          <li>Security patrols every 2 hours</li>
+        </ul>
+
+        <h3>5.3 Workspace Security</h3>
+        <ul>
+          <li><strong>Clean Desk Policy:</strong> No confidential documents left on desks</li>
+          <li><strong>Locked Cabinets:</strong> Secure storage for physical files</li>
+          <li><strong>Screen Privacy Filters:</strong> Anti-glare filters on sensitive workstations</li>
+          <li><strong>Visitor Restrictions:</strong> No access to production floor without escort</li>
+          <li><strong>Mobile Device Policy:</strong> Personal phones locked in designated areas</li>
+        </ul>
+
+        <h3>5.4 Data Destruction</h3>
+        <p>Secure disposal procedures:</p>
+        <ul>
+          <li><strong>Paper Documents:</strong> Cross-cut shredding (DIN P-4 standard)</li>
+          <li><strong>Hard Drives:</strong> DoD 5220.22-M wiping + physical destruction</li>
+          <li><strong>Digital Media:</strong> Degaussing and physical shredding</li>
+          <li><strong>Certificate of Destruction:</strong> Provided for all data disposal</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6. Incident Response & Business Continuity</h2>
+        
+        <h3>6.1 Security Incident Response Plan</h3>
+        <p><strong>4-Phase Response:</strong></p>
+        <ol>
+          <li><strong>Detection & Analysis:</strong> 24/7 monitoring, automated alerts, security team triage</li>
+          <li><strong>Containment:</strong> Isolate affected systems, prevent spread, preserve evidence</li>
+          <li><strong>Eradication & Recovery:</strong> Remove threat, restore systems, validate integrity</li>
+          <li><strong>Post-Incident:</strong> Root cause analysis, remediation, lessons learned</li>
+        </ol>
+
+        <h3>6.2 Data Breach Notification</h3>
+        <p>If a data breach occurs:</p>
+        <ul>
+          <li><strong>Client Notification:</strong> Within 72 hours of discovery</li>
+          <li><strong>Regulatory Notification:</strong> As required by DPDP Act, GDPR, etc.</li>
+          <li><strong>Affected Individuals:</strong> Direct notification if high risk to rights/freedoms</li>
+          <li><strong>Breach Report:</strong> Detailed incident report including timeline, impact, remediation</li>
+        </ul>
+
+        <h3>6.3 Business Continuity Plan (BCP)</h3>
+        <div class="security-feature">
+          <h4><i class="ph ph-first-aid"></i> Disaster Recovery</h4>
+          <ul>
+            <li><strong>Recovery Time Objective (RTO):</strong> 4 hours for critical systems</li>
+            <li><strong>Recovery Point Objective (RPO):</strong> 1 hour (maximum data loss)</li>
+            <li><strong>Backup Locations:</strong> Geo-redundant secondary site in different Indian state</li>
+            <li><strong>Annual Testing:</strong> Full DR drill with documented results</li>
+            <li><strong>Hot Standby:</strong> Real-time replication for mission-critical applications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>7. Compliance & Certifications</h2>
+        
+        <h3>7.1 Regulatory Compliance</h3>
+        <p>Vantrix Global complies with:</p>
+        <ul>
+          <li><strong>Information Technology Act, 2000</strong> (India)</li>
+          <li><strong>Digital Personal Data Protection Act, 2023</strong> (DPDP Act)</li>
+          <li><strong>ISO/IEC 27001:2013</strong> (Information Security Management)</li>
+          <li><strong>ISO/IEC 27701:2019</strong> (Privacy Information Management)</li>
+          <li><strong>GDPR</strong> (for EU client data)</li>
+          <li><strong>CCPA</strong> (for California client data)</li>
+          <li><strong>PCI DSS</strong> (for payment card data processing)</li>
+          <li><strong>SOC 2 Type II</strong> (Service Organization Control)</li>
+        </ul>
+
+        <h3>7.2 Current & Target Certifications</h3>
+        <div style="margin: 24px 0;">
+          <span class="certification-badge">
+            <i class="ph ph-certificate"></i> ISO 27001:2013 (In Progress)
+          </span>
+          <span class="certification-badge">
+            <i class="ph ph-certificate"></i> ISO 27701:2019 (Planned)
+          </span>
+          <span class="certification-badge">
+            <i class="ph ph-certificate"></i> SOC 2 Type II (Planned)
+          </span>
+          <span class="certification-badge">
+            <i class="ph ph-certificate"></i> PCI DSS v4.0 (For Payment Services)
+          </span>
+        </div>
+
+        <h3>7.3 Third-Party Audits</h3>
+        <ul>
+          <li>Annual external security audit by certified firms</li>
+          <li>Quarterly vulnerability assessments and penetration testing</li>
+          <li>Client-requested audits accommodated (reasonable advance notice)</li>
+          <li>Audit reports available to Clients under NDA</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>8. Client-Specific Security</h2>
+        
+        <h3>8.1 Dedicated Infrastructure Options</h3>
+        <p>For high-security requirements:</p>
+        <ul>
+          <li><strong>Private Cloud:</strong> Isolated virtual infrastructure</li>
+          <li><strong>Dedicated Servers:</strong> Physical hardware solely for your data</li>
+          <li><strong>Client-Managed Keys:</strong> You control encryption keys</li>
+          <li><strong>On-Premise Deployment:</strong> Services delivered from your location</li>
+          <li><strong>Hybrid Model:</strong> Combination of cloud and on-premise</li>
+        </ul>
+
+        <h3>8.2 Custom Security Controls</h3>
+        <p>We can implement:</p>
+        <ul>
+          <li>Client-specified encryption standards</li>
+          <li>Custom access control policies</li>
+          <li>Additional audit logging and monitoring</li>
+          <li>Integration with Client's SIEM/SOC</li>
+          <li>Compliance with industry-specific regulations (HIPAA, FINRA, etc.)</li>
+        </ul>
+
+        <h3>8.3 Right to Audit</h3>
+        <p>Clients have the right to:</p>
+        <ul>
+          <li>Request security documentation and policies</li>
+          <li>Conduct on-site security audits (with 30 days' notice)</li>
+          <li>Review access logs for their data</li>
+          <li>Request penetration test results</li>
+          <li>Verify compliance with contractual security obligations</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>9. Data Localization & Sovereignty</h2>
+        
+        <h3>9.1 Data Residency</h3>
+        <ul>
+          <li><strong>Primary Storage:</strong> All Client data stored in Indian data centers</li>
+          <li><strong>Backup Locations:</strong> Within India (multiple geographic regions for redundancy)</li>
+          <li><strong>Processing Location:</strong> Operations conducted from Indian facilities</li>
+          <li><strong>No International Transfer:</strong> Unless explicitly authorized by Client in writing</li>
+        </ul>
+
+        <h3>9.2 Cross-Border Transfer (When Required)</h3>
+        <p>If Client authorizes international data transfer:</p>
+        <ul>
+          <li>Standard Contractual Clauses (SCCs) executed</li>
+          <li>Adequacy decision verified (EU adequacy, etc.)</li>
+          <li>Data Processing Agreement (DPA) signed</li>
+          <li>Transfer Impact Assessment (TIA) conducted</li>
+          <li>Data localization copy maintained within India</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>10. Vendor & Subcontractor Management</h2>
+        
+        <h3>10.1 Third-Party Risk Management</h3>
+        <p>All subcontractors and vendors undergo:</p>
+        <ul>
+          <li>Due diligence and security assessment</li>
+          <li>Contractual data protection obligations (equivalent to ours)</li>
+          <li>Regular security audits and compliance reviews</li>
+          <li>Right to audit provisions</li>
+          <li>Incident notification requirements</li>
+        </ul>
+
+        <h3>10.2 Approved Subcontractors</h3>
+        <p>Vantrix Global maintains a list of pre-approved subcontractors:</p>
+        <ul>
+          <li><strong>Cloud Infrastructure:</strong> AWS India, Google Cloud India, Azure India</li>
+          <li><strong>Security Tools:</strong> [To be specified based on actual vendors]</li>
+          <li><strong>Communication:</strong> Microsoft 365, Google Workspace</li>
+        </ul>
+        <p><strong>Client Consent:</strong> Use of subcontractors requires prior written consent or pre-approval in Service Agreement.</p>
+      </div>
+
+      <div class="section">
+        <h2>11. Insurance Coverage</h2>
+        
+        <p>Vantrix Global maintains comprehensive insurance:</p>
+        <ul>
+          <li><strong>Cyber Liability Insurance:</strong> Covers data breaches, cyber attacks, ransomware</li>
+          <li><strong>Professional Indemnity:</strong> Errors & omissions in service delivery</li>
+          <li><strong>General Liability:</strong> Third-party claims</li>
+          <li><strong>Coverage Amount:</strong> [To be specified upon policy purchase]</li>
+        </ul>
+        <p><em>Insurance certificates available to Clients upon request.</em></p>
+      </div>
+
+      <div class="section">
+        <h2>12. Contact & Reporting</h2>
+        
+        <div class="contact-box">
+          <h3><i class="ph ph-shield-star"></i> Chief Information Security Officer (CISO)</h3>
+          <div class="contact-info">
+            <div>
+              <i class="ph ph-envelope"></i>
+              <div><strong>Email:</strong> <a href="mailto:info@vantrixglobal.com">info@vantrixglobal.com</a></div>
+            </div>
+            <div>
+              <i class="ph ph-map-pin"></i>
+              <div><strong>Address:</strong> Vantrix Global, Udaipur, Rajasthan 313001, India</div>
+            </div>
+            <div>
+              <i class="ph ph-phone"></i>
+              <div><strong>Emergency:</strong> 24/7 Security Incident Hotline (details provided to active Clients)</div>
+            </div>
+          </div>
+        </div>
+
+        <h3>12.1 Security Incident Reporting</h3>
+        <p>To report a security concern:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:info@vantrixglobal.com">info@vantrixglobal.com</a> (Subject: SECURITY INCIDENT)</li>
+          <li><strong>Phone:</strong> 24/7 hotline (provided to Clients)</li>
+          <li><strong>Portal:</strong> Secure incident reporting via Client portal</li>
+          <li><strong>Response Time:</strong> Acknowledgment within 2 hours, initial assessment within 4 hours</li>
+        </ul>
+
+        <h3>12.2 Security Questions</h3>
+        <p>For general security inquiries:</p>
+        <ul>
+          <li>Email: <a href="mailto:info@vantrixglobal.com">info@vantrixglobal.com</a></li>
+          <li>Subject: "Security Inquiry"</li>
+          <li>Response: Within 2 business days</li>
+        </ul>
+      </div>
+
+      <div class="warning-box">
+        <p><strong>Updates to Security Practices:</strong> Vantrix Global continuously improves security measures. Material changes to this NDA & Security policy will be communicated 60 days in advance. Enhanced security measures may be implemented immediately when necessary to protect Client data.</p>
+      </div>
+
+      <div class="highlight">
+        <p><strong>Our Promise:</strong> Your data security is our top priority. We invest continuously in people, processes, and technology to ensure your confidential information remains protected. If you have any concerns, please contact us immediately — we're here to help 24/7.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><strong>Vantrix Global</strong> — Secure, Compliant, Trusted BPO Partner</p>
+    <p>Udaipur, Rajasthan 313001, India | <a href="mailto:info@vantrixglobal.com">info@vantrixglobal.com</a></p>
+    
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="nda-security.html">NDA & Security</a>
+    </div>
+    
+    <p style="margin-top: 24px; font-size: 0.9rem;">© 2026 Vantrix Global. All rights reserved.</p>
+  </div>
+</body>
+</html>

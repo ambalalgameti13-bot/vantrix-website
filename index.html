@@ -1,0 +1,3514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vantrix Global | BPO & IT Outsourcing</title>
+  <meta name="description" content="Vantrix Global — We help innovative startups scale with BPO & IT outsourcing. Humans + AI delivering smarter, faster solutions." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       ROOT DESIGN TOKENS
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --navy:         #071526;
+      --navy-mid:     #0A2040;
+      --navy-light:   #122A52;
+      --accent-blue:  #1E5FCB;
+      --purple:       #5A52C5;
+      --blue-glow:    #3B82F6;
+      --gold:         #C9A84C;
+      --gold-light:   #E6C97A;
+      --white:        #FFFFFF;
+      --off-white:    #F4F6FB;
+      --silver:       #8899BB;
+      --text-muted:   #5E7090;
+      --border:       rgba(255,255,255,0.08);
+      --glass-bg:     rgba(255,255,255,0.05);
+      --glass-bg-lt:  rgba(255,255,255,0.80);
+
+      --shadow-sm:    0 4px 16px rgba(5,15,40,0.10);
+      --shadow-md:    0 8px 32px rgba(5,15,40,0.14);
+      --shadow-lg:    0 20px 60px rgba(5,15,40,0.20);
+      --shadow-glow:  0 0 40px rgba(90,82,197,0.25);
+
+      --r-sm:  10px;
+      --r-md:  18px;
+      --r-lg:  28px;
+      --r-xl:  40px;
+      --r-pill: 999px;
+
+      --nav-h: 76px;
+      --ease:  cubic-bezier(.25,.8,.25,1);
+      --dur:   0.45s;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CSS RESET & BASE
+    ═══════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--navy-mid);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    /* ═══════════════════════════════════════════════════
+       PAGE ROUTER — multi-page SPA
+    ═══════════════════════════════════════════════════ */
+    /* Prevent FOUC: hide all pages until JS initialises */
+    body.no-js .page { visibility: hidden; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .page.animate-in { animation: pageFadeIn .45s var(--ease) both; }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       UTILITY CLASSES
+    ═══════════════════════════════════════════════════ */
+    .container { width: 100%; max-width: 1220px; margin-inline: auto; padding-inline: 24px; }
+    .section    { padding-block: 96px; }
+    .section-sm { padding-block: 64px; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(90,82,197,.10);
+      color: var(--purple);
+      font-size: .78rem; font-weight: 600; letter-spacing: .8px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: var(--r-pill);
+      margin-bottom: 18px;
+    }
+    .tag.gold { background: rgba(201,168,76,.12); color: var(--gold); }
+    .tag.light { background: rgba(255,255,255,.12); color: var(--gold-light); }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section-title.white { color: var(--white); }
+    .section-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; }
+    .section-sub.white { color: rgba(255,255,255,.75); }
+    .section-header { margin-bottom: 60px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin-inline: auto; }
+
+    /* ═══════════════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px;
+      border-radius: var(--r-pill);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700; font-size: .98rem;
+      transition: all var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      box-shadow: 0 4px 20px rgba(201,168,76,.35);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,.5); }
+
+    .btn-outline-white {
+      border: 2px solid rgba(255,255,255,.55);
+      color: var(--white);
+    }
+    .btn-outline-white:hover { background: var(--white); color: var(--navy); }
+
+    .btn-outline-navy {
+      border: 2px solid var(--navy);
+      color: var(--navy);
+    }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-navy:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .btn-purple {
+      background: linear-gradient(135deg, var(--accent-blue), var(--purple));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(90,82,197,.35);
+    }
+    .btn-purple:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(90,82,197,.5); }
+
+    /* ═══════════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════════ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      transition: background .4s var(--ease), box-shadow .4s var(--ease);
+      background: transparent;
+    }
+    #navbar.scrolled, #navbar.light-bg {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 2px 24px rgba(5,15,60,.08);
+    }
+    #navbar.dark-mode {
+      background: rgba(7,21,38,.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1220px; margin-inline: auto; padding-inline: 24px;
+    }
+    .brand-logo { max-height: 40px; border-radius: 8px; }
+    /* Fallback SVG text logo shown when logo.png not found */
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--white); }
+    .logo-text.dark span, .logo-text.dark { color: var(--navy); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-links .nav-item {
+      position: relative;
+    }
+    .nav-links .nav-item a {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600; font-size: .93rem;
+      padding: 8px 14px;
+      border-radius: var(--r-pill);
+      color: rgba(255,255,255,.85);
+      transition: all .25s;
+    }
+    #navbar.scrolled .nav-links .nav-item a,
+    #navbar.light-bg .nav-links .nav-item a { color: var(--navy-mid); }
+    #navbar.dark-mode .nav-links .nav-item a { color: rgba(255,255,255,.85); }
+
+    .nav-links .nav-item a:hover,
+    .nav-links .nav-item a.active {
+      background: rgba(90,82,197,.12);
+      color: var(--purple);
+    }
+    #navbar.dark-mode .nav-links .nav-item a:hover,
+    #navbar.dark-mode .nav-links .nav-item a.active {
+      background: rgba(255,255,255,.1);
+      color: var(--gold-light);
+    }
+
+    .nav-cta   { margin-left: 16px; }
+    .hamburger { display: none; color: var(--white); font-size: 26px; padding: 6px; }
+    #navbar.scrolled .hamburger,
+    #navbar.light-bg .hamburger { color: var(--navy); }
+    #navbar.dark-mode .hamburger { color: var(--white); }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 800;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 20px 24px 30px;
+      transform: translateY(-120%);
+      transition: transform .4s var(--ease);
+      box-shadow: var(--shadow-md);
+      border-bottom-left-radius: var(--r-lg);
+      border-bottom-right-radius: var(--r-lg);
+    }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a {
+      display: block;
+      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem;
+      color: var(--navy); padding: 13px 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .mobile-nav a:last-child { border: none; }
+    .mobile-nav a.active { color: var(--purple); }
+    .mobile-nav .mob-cta { margin-top: 18px; display: block; }
+
+    /* ═══════════════════════════════════════════════════
+       PAGE 1: HOME
+    ═══════════════════════════════════════════════════ */
+    /* --- HERO --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(150deg, var(--navy) 0%, #0E2956 50%, #1A1060 100%);
+      padding-top: var(--nav-h);
+      overflow: hidden;
+    }
+    /* Animated glow orbs */
+    .hero::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(53,100,255,.20) 0%, transparent 70%);
+      border-radius: 50%; filter: blur(20px);
+      animation: orbFloat 10s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -15%; left: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(90,82,197,.18) 0%, transparent 70%);
+      border-radius: 50%; filter: blur(30px);
+      animation: orbFloat 12s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes orbFloat {
+      0%   { transform: translate(0,0) scale(1); }
+      100% { transform: translate(40px,-30px) scale(1.1); }
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding-block: 80px 100px;
+    }
+    .hero-text {}
+    .hero-headline {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 900; line-height: 1.08;
+      color: var(--white);
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
+    }
+    .hero-headline .highlight {
+      background: linear-gradient(90deg, var(--gold-light), #fff 80%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.18rem; color: rgba(255,255,255,.72);
+      max-width: 480px; margin-bottom: 40px; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-badge-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r-pill);
+      padding: 7px 14px; font-size: .82rem; color: rgba(255,255,255,.7);
+    }
+    .hero-badge i { color: var(--gold-light); }
+
+    /* SaaS Dashboard Mockup */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .dashboard-card {
+      width: 100%; max-width: 500px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06);
+      animation: dashFloat 7s ease-in-out infinite;
+    }
+    @keyframes dashFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-16px); }
+    }
+    .db-top-bar {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 22px;
+    }
+    .db-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .db-title {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      color: var(--white); font-size: .95rem; margin-left: 8px;
+    }
+    .db-stats {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+      margin-bottom: 22px;
+    }
+    .db-stat {
+      background: rgba(255,255,255,.05); border-radius: var(--r-sm);
+      padding: 14px 10px; text-align: center; border: 1px solid rgba(255,255,255,.07);
+    }
+    .db-stat-val {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: 1.5rem; color: var(--gold-light); line-height: 1;
+    }
+    .db-stat-lbl { font-size: .72rem; color: rgba(255,255,255,.5); margin-top: 5px; }
+    .db-chart {
+      background: rgba(255,255,255,.04); border-radius: var(--r-sm);
+      height: 120px; border: 1px solid rgba(255,255,255,.06);
+      position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 16px; gap: 8px;
+    }
+    .db-bar {
+      flex: 1; border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, var(--purple), var(--accent-blue));
+      position: relative; transition: height .5s var(--ease);
+    }
+    .db-bar:nth-child(2n) { background: linear-gradient(180deg, var(--gold), rgba(201,168,76,.4)); }
+    .db-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .db-row {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.04); border-radius: var(--r-sm);
+      padding: 10px 14px;
+    }
+    .db-icon { width: 28px; height: 28px; border-radius: 8px; background: rgba(90,82,197,.3); display:flex; align-items:center; justify-content:center; font-size:13px; }
+    .db-line { flex:1; }
+    .db-lbl { font-size:.78rem; color:rgba(255,255,255,.6); }
+    .db-val { font-size:.88rem; font-weight:600; color:var(--white); }
+    .db-chip { background:rgba(90,200,150,.15); color:#5ECB8F; padding:3px 8px; border-radius:var(--r-pill); font-size:.72rem; font-weight:600; }
+
+    /* Wave at bottom of hero */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; z-index: 3;
+    }
+    .hero-wave svg { display: block; width: 100%; }
+
+    /* ═══════════════════════════════════════════════════
+       SERVICE DETAIL MODAL
+    ═══════════════════════════════════════════════════ */
+    .svc-modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(7,21,38,.7);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s var(--ease);
+      padding: 16px;
+    }
+    .svc-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .svc-modal {
+      background: var(--white); border-radius: var(--r-lg);
+      padding: 40px 36px;
+      max-width: 520px; width: 100%;
+      box-shadow: 0 32px 80px rgba(5,15,60,.35);
+      transform: translateY(24px) scale(.97);
+      transition: transform .4s var(--ease);
+      position: relative;
+    }
+    .svc-modal-overlay.open .svc-modal { transform: translateY(0) scale(1); }
+    .svc-modal-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--off-white); border: 1px solid rgba(0,0,0,.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--text-muted); cursor: pointer;
+      transition: all .25s;
+    }
+    .svc-modal-close:hover { background: var(--purple); color: var(--white); }
+    .svc-modal-icon {
+      width: 68px; height: 68px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: var(--white); margin-bottom: 20px;
+    }
+    .svc-modal h3 {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.55rem;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .svc-modal .modal-desc {
+      font-size: .95rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.7;
+    }
+    .svc-modal-points { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .svc-modal-point {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--off-white); border-radius: var(--r-sm);
+      padding: 14px 16px; border: 1px solid rgba(90,82,197,.08);
+    }
+    .svc-modal-point-num {
+      width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .82rem;
+      color: var(--white); flex-shrink: 0;
+    }
+    .svc-modal-point p { font-size: .92rem; color: var(--navy-mid); line-height: 1.6; margin: 0; }
+
+    /* Home page services teaser strip */
+    .home-strip {
+      background: var(--white); padding-block: 70px;
+    }
+    .strip-title {
+      font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800;
+      color: var(--navy); text-align: center; margin-bottom: 10px;
+    }
+    .strip-subtitle {
+      text-align: center; color: var(--text-muted); font-size: .95rem;
+      margin-bottom: 44px; max-width: 520px; margin-inline: auto;
+    }
+    .strip-logos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+    @media(max-width:900px){ .strip-logos { grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:560px){ .strip-logos { grid-template-columns: repeat(2,1fr); } }
+
+    .strip-chip {
+      padding: 18px 14px 16px;
+      border-radius: var(--r-md);
+      background: var(--off-white);
+      border: 1.5px solid rgba(90,82,197,.10);
+      font-size: .88rem; font-weight: 700; color: var(--navy-mid);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; text-align: center;
+      cursor: pointer;
+      transition: all .35s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .strip-chip::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--purple), var(--accent-blue));
+      opacity: 0; transition: opacity .35s var(--ease);
+    }
+    .strip-chip:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; color: var(--white); }
+    .strip-chip:hover::before { opacity: 1; }
+    .strip-chip-icon {
+      position: relative; z-index: 1;
+      width: 58px; height: 58px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      color: var(--white);
+      transition: all .35s var(--ease);
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+    }
+    /* Unique vibrant gradient per service */
+    .strip-chip[data-svc="cs"]    .strip-chip-icon { background: linear-gradient(135deg,#5A52C5,#3B82F6); }
+    .strip-chip[data-svc="tech"]  .strip-chip-icon { background: linear-gradient(135deg,#1E5FCB,#0EA5E9); }
+    .strip-chip[data-svc="data"]  .strip-chip-icon { background: linear-gradient(135deg,#0891B2,#6366F1); }
+    .strip-chip[data-svc="bo"]    .strip-chip-icon { background: linear-gradient(135deg,#122A52,#1E5FCB); }
+    .strip-chip[data-svc="fin"]   .strip-chip-icon { background: linear-gradient(135deg,#B45309,#C9A84C); }
+    .strip-chip[data-svc="hr"]    .strip-chip-icon { background: linear-gradient(135deg,#7C3AED,#A78BFA); }
+    .strip-chip[data-svc="tele"]  .strip-chip-icon { background: linear-gradient(135deg,#1D4ED8,#5A52C5); }
+    .strip-chip[data-svc="order"] .strip-chip-icon { background: linear-gradient(135deg,#065F46,#059669); }
+    .strip-chip[data-svc="supply"].strip-chip-icon { background: linear-gradient(135deg,#075985,#0EA5E9); }
+    .strip-chip[data-svc="chat"]  .strip-chip-icon { background: linear-gradient(135deg,#4338CA,#818CF8); }
+
+    /* On hover — brighter icon glow */
+    .strip-chip:hover .strip-chip-icon {
+      background: rgba(255,255,255,.22) !important;
+      box-shadow: 0 6px 24px rgba(255,255,255,.25);
+    }
+    .strip-chip-label { position: relative; z-index: 1; line-height: 1.3; font-size: .9rem; }
+    .strip-chip-hint {
+      position: relative; z-index: 1;
+      font-size: .73rem; font-weight: 600;
+      color: var(--silver);
+      display: flex; align-items: center; gap: 4px;
+      transition: color .35s;
+      letter-spacing: .3px;
+    }
+    .strip-chip:hover .strip-chip-hint { color: rgba(255,255,255,.75); }
+    .strip-chip-hint i { font-size: 13px; }
+
+    /* home-why (why choose us teaser on home) */
+    .home-why { background: linear-gradient(180deg, var(--off-white) 0%, #eef0f8 100%); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 36px 30px 32px;
+      box-shadow: 0 2px 20px rgba(5,15,60,.07);
+      border: 1px solid rgba(90,82,197,.07);
+      transition: all .45s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    /* Gradient top accent bar */
+    .why-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      opacity: 0; transition: opacity .45s var(--ease);
+    }
+    /* Decorative watermark number */
+    .why-card::after {
+      content: attr(data-num);
+      position: absolute; top: 16px; right: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 4.5rem; font-weight: 900; line-height: 1;
+      color: rgba(90,82,197,.06);
+      transition: color .45s var(--ease);
+      pointer-events: none;
+    }
+    .why-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 56px rgba(5,15,60,.14);
+      border-color: rgba(90,82,197,.15);
+    }
+    .why-card:hover::before { opacity: 1; }
+    .why-card:hover::after  { color: rgba(90,82,197,.11); }
+
+    /* Per-card accent gradients */
+    .why-card[data-num="01"]::before { background: linear-gradient(90deg,#5A52C5,#3B82F6); }
+    .why-card[data-num="02"]::before { background: linear-gradient(90deg,#0891B2,#06B6D4); }
+    .why-card[data-num="03"]::before { background: linear-gradient(90deg,#B45309,#C9A84C); }
+    .why-card[data-num="04"]::before { background: linear-gradient(90deg,#7C3AED,#A78BFA); }
+    .why-card[data-num="05"]::before { background: linear-gradient(90deg,#065F46,#059669); }
+    .why-card[data-num="06"]::before { background: linear-gradient(90deg,#1D4ED8,#5A52C5); }
+
+    /* Icon wrapper */
+    .why-icon {
+      width: 66px; height: 66px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; color: var(--white);
+      margin-bottom: 22px;
+      transition: all .45s var(--ease);
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    }
+    /* Per-card icon gradients */
+    .why-card[data-num="01"] .why-icon { background: linear-gradient(135deg,#5A52C5,#3B82F6); }
+    .why-card[data-num="02"] .why-icon { background: linear-gradient(135deg,#0891B2,#06B6D4); }
+    .why-card[data-num="03"] .why-icon { background: linear-gradient(135deg,#B45309,#C9A84C); }
+    .why-card[data-num="04"] .why-icon { background: linear-gradient(135deg,#7C3AED,#A78BFA); }
+    .why-card[data-num="05"] .why-icon { background: linear-gradient(135deg,#065F46,#059669); }
+    .why-card[data-num="06"] .why-icon { background: linear-gradient(135deg,#1D4ED8,#5A52C5); }
+
+    .why-card:hover .why-icon {
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .why-card h4 {
+      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.15rem;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .why-card p { font-size: .93rem; color: var(--text-muted); }
+
+    /* Home CTA banner */
+    .home-cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1A1060 100%);
+      border-radius: var(--r-xl); padding: 64px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 30px; margin: 80px 0; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .home-cta-banner::before {
+      content: ''; position: absolute; right: -100px; top: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(90,82,197,.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .home-cta-banner h2 {
+      font-family: 'Outfit', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white); font-weight: 800; max-width: 500px;
+      position: relative; z-index: 1;
+    }
+    .home-cta-banner .btn-group { display: flex; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* ─────────────────── ABOUT PAGE CSS ─────────────────── */
+    .about-page { background: var(--off-white); }
+    .about-hero {
+      background: linear-gradient(140deg, var(--navy) 0%, #0B1E40 50%, #1A1060 100%);
+      padding: 140px 0 100px; text-align: center; position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: ''; position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(90,82,197,.28) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    /* Floating grid decoration */
+    .about-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .about-hero .container { position: relative; z-index: 2; }
+    .about-hero h1 {
+      font-family: 'Outfit', sans-serif; font-size: clamp(2.4rem,5.5vw,3.8rem);
+      font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.1;
+      letter-spacing: -1px;
+    }
+    .about-hero h1 .gold {
+      background: linear-gradient(90deg, var(--gold-light), #fff 80%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .about-hero p { font-size: 1.15rem; color: rgba(255,255,255,.72); max-width: 580px; margin-inline: auto; }
+    .about-hero-badges {
+      display: flex; justify-content: center; gap: 14px;
+      flex-wrap: wrap; margin-top: 36px;
+    }
+    .about-hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--r-pill); padding: 8px 18px;
+      font-size: .85rem; color: rgba(255,255,255,.8); font-weight: 500;
+    }
+    .about-hero-badge i { color: var(--gold-light); font-size: 17px; }
+
+    .about-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
+      align-items: center; padding-block: 96px;
+    }
+    .about-img-wrap { position: relative; }
+    /* Premium illustrated image frame */
+    .about-img-box {
+      width: 100%; aspect-ratio: 4/3;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 28px 72px rgba(5,15,60,.22), 0 0 0 1px rgba(90,82,197,.1);
+      position: relative;
+    }
+    /* Second floating badge */
+    .about-float-card2 {
+      position: absolute; top: -20px; left: -28px;
+      background: var(--white); border-radius: var(--r-md);
+      padding: 16px 20px; box-shadow: var(--shadow-md);
+      border: 1px solid rgba(0,0,0,.04);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .about-float2-icon {
+      width: 42px; height: 42px; border-radius: var(--r-sm);
+      background: linear-gradient(135deg,#065F46,#059669);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--white);
+    }
+    .about-float2-icon + div strong { font-family:'Outfit',sans-serif; font-weight:700; color:var(--navy); font-size:.95rem; display:block; }
+    .about-float2-icon + div span { font-size:.78rem; color:var(--text-muted); }
+
+    .about-float-card {
+      position: absolute; bottom: -24px; right: -24px;
+      background: var(--white); border-radius: var(--r-md);
+      padding: 18px 22px; box-shadow: var(--shadow-md);
+      border: 1px solid rgba(0,0,0,.04);
+      display: flex; align-items: center; gap: 14px;
+      min-width: 200px;
+    }
+    .about-float-icon {
+      width: 46px; height: 46px; border-radius: var(--r-sm);
+      background: linear-gradient(135deg, #5A52C5, #3B82F6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--white);
+    }
+    .about-float-card h5 { font-family:'Outfit',sans-serif; font-weight:800; color:var(--navy); font-size:1rem; margin-bottom:2px; }
+    .about-float-card p { font-size:.8rem; color:var(--text-muted); margin:0; }
+
+    .about-text .tag { margin-bottom: 14px; }
+    .about-text h2.section-title { margin-bottom: 16px; }
+    .about-text .lead { font-size:1.05rem; color:var(--text-muted); margin-bottom:28px; line-height:1.85; }
+    .about-checks { display:flex; flex-direction:column; gap:14px; margin-bottom: 36px; }
+    .about-check { display:flex; align-items:center; gap:14px; }
+    .check-dot {
+      width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, #5A52C5, #3B82F6);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white); font-size:13px;
+      box-shadow: 0 4px 12px rgba(90,82,197,.3);
+    }
+    .about-check span { font-size:.95rem; color:var(--navy-mid); font-weight:500; line-height:1.5; }
+
+    /* Core values strip */
+    .about-values { background: var(--white); padding-block: 80px; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+      margin-top: 56px;
+    }
+    .value-card {
+      border-radius: var(--r-lg); padding: 36px 28px;
+      position: relative; overflow: hidden;
+      border: 1.5px solid rgba(90,82,197,.1);
+      background: var(--off-white);
+      transition: all .4s var(--ease);
+    }
+    .value-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(90,82,197,.2); }
+    .value-card-icon {
+      width: 60px; height: 60px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: var(--white);
+      margin-bottom: 20px; box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    }
+    .value-card h4 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:var(--navy); margin-bottom:10px; }
+    .value-card p { font-size:.92rem; color:var(--text-muted); line-height:1.7; }
+
+    /* Team section */
+    .about-team { background: var(--off-white); padding-block: 96px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .team-card {
+      background: var(--white); border-radius: var(--r-lg);
+      overflow: hidden; box-shadow: 0 4px 24px rgba(5,15,60,.08);
+      transition: all .45s var(--ease); border: 1px solid rgba(90,82,197,.07);
+    }
+    .team-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(5,15,60,.15); border-color: rgba(90,82,197,.2); }
+    .team-avatar {
+      width: 100%; height: 220px;
+      display: flex; align-items: flex-end; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .team-info { padding: 24px 26px 28px; }
+    .team-name { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:var(--navy); margin-bottom:4px; }
+    .team-role { font-size:.85rem; color:var(--purple); font-weight:600; margin-bottom:12px; letter-spacing:.2px; }
+    .team-bio { font-size:.88rem; color:var(--text-muted); line-height:1.65; }
+    .team-social { display:flex; gap:8px; margin-top:16px; }
+    .team-social a {
+      width:32px; height:32px; border-radius:var(--r-sm);
+      background:var(--off-white); border:1px solid rgba(0,0,0,.06);
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; color:var(--text-muted); transition:all .3s;
+    }
+    .team-social a:hover { background:var(--purple); color:var(--white); border-color:var(--purple); }
+
+    /* Stats bar */
+    .stats-bar {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 60px 0;
+    }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+    }
+    .stat-block {
+      text-align: center; padding: 24px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .stat-block:last-child { border: none; }
+    .stat-num-wrap {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem; font-weight: 900;
+      color: var(--gold-light); line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .stat-suffix { font-size: 2rem; }
+    .stat-lbl { font-size:.9rem; color:rgba(255,255,255,.6); }
+
+    /* Timeline / Story section */
+    .about-story { padding-block: 96px; background: var(--white); }
+    .story-timeline { display: flex; flex-direction: column; gap: 0; max-width: 700px; margin-inline: auto; }
+    .timeline-item { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot {
+      width: 48px; height: 48px; min-width: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--accent-blue));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 18px; box-shadow: var(--shadow-glow);
+    }
+    .tl-line {
+      width: 2px; flex: 1; background: linear-gradient(180deg, var(--purple), transparent);
+      margin-top: 8px;
+    }
+    .timeline-item:last-child .tl-line { display: none; }
+    .tl-content { padding-top: 10px; }
+    .tl-year { font-size:.8rem; font-weight:700; color:var(--purple); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+    .tl-content h4 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.15rem; color:var(--navy); margin-bottom:8px; }
+    .tl-content p { font-size:.93rem; color:var(--text-muted); }
+
+    /* Team section */
+    .about-team { background: var(--off-white); padding-block: 96px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .team-card {
+      background: var(--white); border-radius: var(--r-md);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: all .4s var(--ease); border: 1px solid rgba(0,0,0,.04);
+    }
+    .team-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .team-avatar {
+      width: 100%; height: 200px;
+      background: linear-gradient(135deg, #dde5f4, #c3cfe2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; color: #94a3b8;
+    }
+    .team-info { padding: 22px 24px; }
+    .team-name { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.1rem; color:var(--navy); margin-bottom:4px; }
+    .team-role { font-size:.85rem; color:var(--purple); font-weight:500; margin-bottom:10px; }
+    .team-bio { font-size:.88rem; color:var(--text-muted); }
+
+    /* ═══════════════════ SERVICES PAGE ═══════════════════ */
+    .services-page { background: var(--off-white); }
+    .page-hero {
+      background: linear-gradient(140deg, var(--navy) 0%, #0B1D40 50%, #160D50 100%);
+      padding: 150px 0 90px; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(90,82,197,.22) 0%, transparent 70%);
+    }
+    /* Dot grid */
+    .page-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 30px 30px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .page-hero .container { position: relative; z-index: 2; }
+    .page-hero h1 {
+      font-family:'Outfit',sans-serif; font-size: clamp(2.4rem,5.5vw,3.8rem);
+      font-weight:900; color:var(--white); margin-bottom:18px;
+      letter-spacing: -1px; line-height: 1.1;
+    }
+    .page-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--gold-light), #fff 80%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-hero p { font-size:1.1rem; color:rgba(255,255,255,.72); max-width:560px; margin-inline:auto; line-height:1.7; }
+    .page-hero-stats {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 44px; flex-wrap: wrap;
+    }
+    .page-hero-stat {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; border-right: 1px solid rgba(255,255,255,.1);
+      padding-right: 40px;
+    }
+    .page-hero-stat:last-child { border: none; padding: 0; }
+    .page-hero-stat strong {
+      font-family:'Outfit',sans-serif; font-size: 2rem; font-weight: 900;
+      background: linear-gradient(90deg, var(--gold-light), #ffe9a0);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-hero-stat span { font-size:.78rem; color:rgba(255,255,255,.55); font-weight:500; }
+    .page-wave { position:relative; width:100%; line-height:0; background:var(--navy); }
+    .page-wave svg { display:block; width:100%; }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px,1fr));
+      gap: 28px;
+    }
+    .svc-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 36px 30px 30px;
+      border: 1px solid rgba(90,82,197,.07);
+      transition: all .45s var(--ease);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(5,15,60,.06);
+    }
+    /* Top gradient accent bar */
+    .svc-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      opacity: 0; transition: opacity .45s;
+    }
+    /* Watermark number */
+    .svc-card::after {
+      content: attr(data-idx);
+      position: absolute; bottom: 16px; right: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 5rem; font-weight: 900; line-height: 1;
+      opacity: .04; pointer-events: none;
+      color: var(--navy);
+      transition: opacity .45s;
+    }
+    .svc-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 64px rgba(5,15,60,.15);
+      border-color: rgba(90,82,197,.18);
+    }
+    .svc-card:hover::before { opacity: 1; }
+    .svc-card:hover::after { opacity: .07; }
+
+    /* Per-card accent bars */
+    .svc-card[data-idx="01"]::before { background: linear-gradient(90deg,#5A52C5,#3B82F6); }
+    .svc-card[data-idx="02"]::before { background: linear-gradient(90deg,#1E5FCB,#0EA5E9); }
+    .svc-card[data-idx="03"]::before { background: linear-gradient(90deg,#0891B2,#6366F1); }
+    .svc-card[data-idx="04"]::before { background: linear-gradient(90deg,#122A52,#1E5FCB); }
+    .svc-card[data-idx="05"]::before { background: linear-gradient(90deg,#B45309,#C9A84C); }
+    .svc-card[data-idx="06"]::before { background: linear-gradient(90deg,#7C3AED,#A78BFA); }
+    .svc-card[data-idx="07"]::before { background: linear-gradient(90deg,#1D4ED8,#5A52C5); }
+    .svc-card[data-idx="08"]::before { background: linear-gradient(90deg,#065F46,#059669); }
+    .svc-card[data-idx="09"]::before { background: linear-gradient(90deg,#075985,#0EA5E9); }
+    .svc-card[data-idx="10"]::before { background: linear-gradient(90deg,#4338CA,#818CF8); }
+
+    /* Per-card icon gradients */
+    .svc-icon {
+      width: 64px; height: 64px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; color: var(--white); margin-bottom: 22px;
+      transition: transform .4s var(--ease), box-shadow .4s;
+    }
+    .svc-card[data-idx="01"] .svc-icon { background: linear-gradient(135deg,#5A52C5,#3B82F6); box-shadow: 0 6px 20px rgba(90,82,197,.35); }
+    .svc-card[data-idx="02"] .svc-icon { background: linear-gradient(135deg,#1E5FCB,#0EA5E9); box-shadow: 0 6px 20px rgba(14,165,233,.3); }
+    .svc-card[data-idx="03"] .svc-icon { background: linear-gradient(135deg,#0891B2,#6366F1); box-shadow: 0 6px 20px rgba(99,102,241,.3); }
+    .svc-card[data-idx="04"] .svc-icon { background: linear-gradient(135deg,#122A52,#1E5FCB); box-shadow: 0 6px 20px rgba(30,95,203,.3); }
+    .svc-card[data-idx="05"] .svc-icon { background: linear-gradient(135deg,#B45309,#C9A84C); box-shadow: 0 6px 20px rgba(201,168,76,.3); }
+    .svc-card[data-idx="06"] .svc-icon { background: linear-gradient(135deg,#7C3AED,#A78BFA); box-shadow: 0 6px 20px rgba(124,58,237,.3); }
+    .svc-card[data-idx="07"] .svc-icon { background: linear-gradient(135deg,#1D4ED8,#5A52C5); box-shadow: 0 6px 20px rgba(90,82,197,.3); }
+    .svc-card[data-idx="08"] .svc-icon { background: linear-gradient(135deg,#065F46,#059669); box-shadow: 0 6px 20px rgba(5,150,105,.3); }
+    .svc-card[data-idx="09"] .svc-icon { background: linear-gradient(135deg,#075985,#0EA5E9); box-shadow: 0 6px 20px rgba(14,165,233,.3); }
+    .svc-card[data-idx="10"] .svc-icon { background: linear-gradient(135deg,#4338CA,#818CF8); box-shadow: 0 6px 20px rgba(129,140,248,.3); }
+    .svc-card:hover .svc-icon { transform: scale(1.1) rotate(-5deg); box-shadow: 0 12px 32px rgba(0,0,0,.25); }
+
+    .svc-card h3 {
+      font-family:'Outfit',sans-serif; font-weight:800; font-size:1.2rem;
+      color:var(--navy); margin-bottom:10px;
+    }
+    .svc-card > p { font-size:.93rem; color:var(--text-muted); flex:1; line-height:1.7; }
+    .svc-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:16px; margin-bottom:6px; }
+    .svc-tag {
+      font-size:.72rem; font-weight:600; padding:4px 10px;
+      border-radius:var(--r-pill); background:rgba(90,82,197,.07);
+      color:var(--purple); letter-spacing:.3px;
+    }
+    .svc-link {
+      display:inline-flex; align-items:center; gap:6px; margin-top:16px;
+      font-weight:700; font-size:.9rem; color:var(--purple);
+      transition:gap .3s;
+    }
+    .svc-link:hover { gap:10px; }
+
+    /* Process steps */
+    .process-section { background: var(--off-white); padding-block: 100px; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 24px; position: relative;
+      margin-top: 80px; /* space for floating circles */
+    }
+    /* Connecting line between circles */
+    .process-steps::before {
+      content: ''; position: absolute;
+      top: -44px; left: calc(12.5% + 12px); right: calc(12.5% + 12px); height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--accent-blue));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative; z-index: 1;
+      background: var(--white); border-radius: var(--r-lg);
+      padding: 56px 24px 32px;
+      box-shadow: 0 4px 24px rgba(5,15,60,.08);
+      border: 1px solid rgba(90,82,197,.07);
+      transition: all .4s var(--ease);
+    }
+    .process-step:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .step-num {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--accent-blue));
+      color: var(--white); display:flex; align-items:center; justify-content:center;
+      font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:900;
+      position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+      box-shadow: 0 8px 28px rgba(90,82,197,.4);
+      border: 4px solid var(--off-white);
+    }
+    .step-icon {
+      font-size: 28px; margin-bottom: 14px; color: var(--purple);
+    }
+    .process-step h4 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--navy); margin-bottom:10px; }
+    .process-step p { font-size:.88rem; color:var(--text-muted); line-height:1.65; }
+
+    /* ═══════════════════════════════════════════════════
+       PAGE 4: AI SOLUTIONS
+    ═══════════════════════════════════════════════════ */
+    .ai-page { background: var(--navy); }
+    .ai-hero {
+      background: linear-gradient(150deg, var(--navy) 0%, #0B1E40 40%, #120D50 100%);
+      padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden;
+    }
+    .ai-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(90,82,197,.3) 0%, transparent 70%);
+    }
+    .ai-hero .container { position: relative; z-index:1; }
+    .ai-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 24px;
+    }
+    .ai-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 36px 28px; text-align: center;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all .4s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .ai-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(90,82,197,.15) 0%, transparent 70%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .ai-card:hover { transform: translateY(-8px); border-color: rgba(90,82,197,.5); box-shadow: var(--shadow-glow); }
+    .ai-card:hover::before { opacity: 1; }
+    .ai-icon-wrap {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(90,82,197,.2); border: 1px solid rgba(90,82,197,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: var(--blue-glow);
+      margin: 0 auto 20px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .ai-card:nth-child(2) .ai-icon-wrap { animation-delay: .5s; }
+    .ai-card:nth-child(3) .ai-icon-wrap { animation-delay: 1s; }
+    .ai-card:nth-child(4) .ai-icon-wrap { animation-delay: 1.5s; }
+    .ai-card:nth-child(5) .ai-icon-wrap { animation-delay: 2s; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(59,130,246,.0); }
+    }
+    .ai-card h4 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.2rem; color:var(--white); margin-bottom:12px; }
+    .ai-card p { font-size:.92rem; color:rgba(255,255,255,.6); line-height:1.7; }
+    .ai-card .ai-point {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 16px; text-align: left;
+    }
+    .ai-card .ai-point i { color: var(--gold-light); font-size: 15px; flex-shrink: 0; }
+    .ai-card .ai-point span { font-size:.85rem; color:rgba(255,255,255,.7); }
+
+    /* AI tech strip */
+    .ai-tech-strip {
+      background: var(--navy-mid); padding-block: 60px;
+    }
+    .ai-tech-inner { display:flex; align-items:center; gap: 40px; flex-wrap:wrap; justify-content:center; }
+    .ai-tech-chip {
+      display:flex; align-items:center; gap:10px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-pill); padding: 12px 22px;
+      color: rgba(255,255,255,.8); font-weight:600; font-size:.9rem;
+    }
+    .ai-tech-chip i { font-size:20px; color:var(--blue-glow); }
+
+    /* AI how-it-works */
+    .ai-how { background: var(--navy-light); padding-block: 96px; }
+    .ai-how-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .ai-how-steps { display: flex; flex-direction: column; gap: 28px; }
+    .ai-step {
+      display: flex; gap: 20px; padding: 22px;
+      background: rgba(255,255,255,.04); border-radius: var(--r-md);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: all .3s;
+    }
+    .ai-step:hover { border-color: rgba(90,82,197,.5); background: rgba(90,82,197,.08); }
+    .ai-step-num {
+      width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--accent-blue));
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Outfit',sans-serif; font-weight:700; color:var(--white); font-size:.9rem;
+    }
+    .ai-step h5 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--white); margin-bottom:6px; }
+    .ai-step p { font-size:.88rem; color:rgba(255,255,255,.6); }
+
+    .ai-visual-box {
+      background: rgba(255,255,255,.04); border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,.08); padding: 32px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PAGE 5: BLOG
+    ═══════════════════════════════════════════════════ */
+    .blog-page { background: var(--off-white); }
+    .blog-grid-lg {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+    }
+    .blog-card {
+      background: var(--white); border-radius: var(--r-md);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: all .4s var(--ease); border: 1px solid rgba(0,0,0,.04);
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .blog-thumb {
+      width: 100%; height: 210px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px; color: rgba(255,255,255,.4);
+      position: relative; overflow: hidden;
+    }
+    .blog-thumb-1 { background: linear-gradient(135deg, #1a1660, #3344aa); }
+    .blog-thumb-2 { background: linear-gradient(135deg, #0a2a52, #1e6a8a); }
+    .blog-thumb-3 { background: linear-gradient(135deg, #15114a, #5a46b5); }
+    .blog-cat {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--r-pill); padding: 4px 14px;
+      font-size:.75rem; font-weight:600; color:rgba(255,255,255,.9);
+    }
+    .blog-body { padding: 26px 24px; flex:1; display:flex; flex-direction:column; }
+    .blog-meta {
+      display:flex; align-items:center; gap:10px;
+      font-size:.78rem; color:var(--text-muted); margin-bottom:12px;
+    }
+    .blog-meta span { display:flex; align-items:center; gap:4px; }
+    .blog-card h4 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.15rem; color:var(--navy); margin-bottom:10px; line-height:1.4; }
+    .blog-excerpt { font-size:.9rem; color:var(--text-muted); flex:1; margin-bottom:20px; }
+    .blog-read-more {
+      display: inline-flex; align-items:center; gap:6px;
+      color:var(--purple); font-weight:700; font-size:.9rem; transition: gap .3s;
+    }
+    .blog-card:hover .blog-read-more { gap: 10px; }
+
+    /* Featured post */
+    .blog-featured {
+      background: var(--white); border-radius: var(--r-lg);
+      overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 40px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(0,0,0,.04);
+    }
+    .blog-featured-thumb {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      min-height: 320px; display: flex; align-items: center; justify-content: center;
+      font-size: 80px; color: rgba(255,255,255,.25); position: relative;
+    }
+    .blog-featured-body { padding: 48px 40px; display:flex; flex-direction:column; justify-content:center; }
+    .blog-featured-body .tag { margin-bottom:16px; }
+    .blog-featured-body h3 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.8rem; color:var(--navy); margin-bottom:16px; line-height:1.3; }
+    .blog-featured-body p { color:var(--text-muted); margin-bottom:28px; }
+
+    /* ═══════════════════════════════════════════════════
+       PAGE 6: CONTACT
+    ═══════════════════════════════════════════════════ */
+    .contact-page { background: var(--off-white); }
+    .contact-wrap {
+      display: grid; grid-template-columns: 2fr 3fr; gap: 40px;
+    }
+    .contact-info-panel {
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: var(--r-lg); padding: 48px 36px;
+      position: relative; overflow: hidden;
+    }
+    .contact-info-panel::after {
+      content: ''; position: absolute; bottom:-80px; right:-80px;
+      width: 260px; height: 260px; border-radius:50%;
+      background: radial-gradient(circle, rgba(90,82,197,.35) 0%, transparent 70%);
+    }
+    .contact-info-panel h3 {
+      font-family:'Outfit',sans-serif; font-weight:800; font-size:1.8rem;
+      color:var(--white); margin-bottom:12px;
+    }
+    .contact-info-panel p { color:rgba(255,255,255,.7); margin-bottom:40px; }
+    .contact-detail-list { display:flex; flex-direction:column; gap:24px; position:relative; z-index:1; }
+    .contact-detail {
+      display:flex; align-items:flex-start; gap:16px;
+    }
+    .contact-detail-icon {
+      width: 44px; height: 44px; min-width: 44px; border-radius: var(--r-sm);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items:center; justify-content:center;
+      font-size: 20px; color:var(--gold-light);
+    }
+    .contact-detail-content label { font-size:.78rem; color:rgba(255,255,255,.5); font-weight:600; letter-spacing:.5px; text-transform:uppercase; }
+    .contact-detail-content p { color:var(--white); font-weight:500; margin-top:3px; }
+    .contact-social { margin-top: 40px; position: relative; z-index:1; }
+    .contact-social h5 { color:rgba(255,255,255,.5); font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+    .social-row { display:flex; gap:10px; }
+    .social-btn {
+      width:40px; height:40px; border-radius:var(--r-sm);
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.7); font-size:18px;
+      transition: all .3s;
+    }
+    .social-btn:hover { background:var(--purple); border-color:var(--purple); color:var(--white); transform:translateY(-2px); }
+
+    .contact-form-panel {
+      background: var(--white); border-radius: var(--r-lg);
+      padding: 48px 44px; box-shadow: var(--shadow-md);
+      border: 1px solid rgba(0,0,0,.04);
+    }
+    .contact-form-panel h3 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.6rem; color:var(--navy); margin-bottom:6px; }
+    .contact-form-panel .lead { font-size:.95rem; color:var(--text-muted); margin-bottom:32px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .form-group { margin-bottom: 18px; display:flex; flex-direction:column; gap:6px; }
+    .form-label { font-size:.85rem; font-weight:600; color:var(--navy-mid); }
+    .form-control {
+      width:100%; padding:13px 16px;
+      border: 1.5px solid #e2e8f0; border-radius: var(--r-sm);
+      font-family:'Inter',sans-serif; font-size:.95rem; color:var(--navy);
+      background: var(--off-white); outline:none;
+      transition: all .3s;
+    }
+    .form-control:focus { border-color:var(--purple); background:var(--white); box-shadow:0 0 0 4px rgba(90,82,197,.1); }
+    textarea.form-control { min-height:120px; resize:vertical; }
+    .form-control.error { border-color: #945E00; box-shadow: 0 0 0 4px rgba(148,94,0,.1); }
+    .form-error { font-size:.8rem; color:#945E00; display:none; }
+    .form-control.error + .form-error { display:block; }
+    .form-success {
+      margin-top:16px; padding:16px 20px;
+      background: #EFF9F4; border:1px solid #6FCF97; border-radius:var(--r-sm);
+      color: #1A7A4A; font-weight:500; font-size:.95rem;
+      display:none; align-items:center; gap:10px;
+    }
+    .form-success.show { display:flex; }
+
+    /* ═══════════════════════════════════════════════════
+       SHARED: SECTION TRANSITIONS / WAVES
+    ═══════════════════════════════════════════════════ */
+    .wave-light { background: var(--off-white); }
+    .wave-white { background: var(--white); }
+    .wave-navy  { background: var(--navy); }
+
+    /* ═══════════════════════════════════════════════════
+       SHARED: FOOTER
+    ═══════════════════════════════════════════════════ */
+    .footer {
+      background: var(--navy);
+      padding-top: 80px; padding-bottom: 0;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 40px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-brand p { font-size:.9rem; color:rgba(255,255,255,.45); margin-top:16px; max-width:280px; margin-bottom:24px; }
+    .footer-brand .brand-logo { margin-bottom: 0; }
+    .footer-logo-text { font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:900; color:var(--gold-light); }
+    .footer-col h5 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--white); margin-bottom:20px; }
+    .footer-col li { margin-bottom:10px; }
+    .footer-col li a { font-size:.9rem; color:rgba(255,255,255,.45); transition:color .25s; }
+    .footer-col li a:hover { color:var(--white); }
+    .footer-bottom {
+      display:flex; align-items:center; justify-content:space-between;
+      padding-block: 24px; font-size:.85rem; color:rgba(255,255,255,.3);
+      flex-wrap:wrap; gap:12px;
+    }
+    .footer-bottom a { color:rgba(255,255,255,.3); }
+    .footer-bottom a:hover { color:var(--white); }
+
+    /* ═══════════════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════════════ */
+    .reveal {
+      opacity:0; transform:translateY(28px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-left  { opacity:0; transform:translateX(-28px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal-left.visible { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(28px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal-right.visible { opacity:1; transform:translateX(0); }
+    .delay-1 { transition-delay:.1s; }
+    .delay-2 { transition-delay:.2s; }
+    .delay-3 { transition-delay:.3s; }
+    .delay-4 { transition-delay:.4s; }
+    .delay-5 { transition-delay:.5s; }
+
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════ */
+    @media(max-width:1024px){
+      .hero-inner { grid-template-columns:1fr; gap:40px; }
+      .hero-visual { display:none; }
+      .about-split { grid-template-columns:1fr; }
+      .about-img-wrap { max-width:480px; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+      .stat-block { border-bottom: 1px solid rgba(255,255,255,.08); border-right:none; }
+      .stats-row .stat-block:nth-child(even){ border-right: none }
+      .stats-row .stat-block:nth-child(odd){ border-right: 1px solid rgba(255,255,255,.08); }
+      .blog-featured { grid-template-columns:1fr; }
+      .blog-featured-thumb { min-height:220px; }
+      .ai-how-grid { grid-template-columns:1fr; }
+      .contact-wrap { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .nav-links { display:none; }
+      .hamburger { display:block; }
+      .why-grid { grid-template-columns:1fr; }
+      .team-grid { grid-template-columns:1fr 1fr; }
+      .blog-grid-lg { grid-template-columns:1fr; }
+      .process-steps { grid-template-columns:1fr 1fr; gap:24px; }
+      .process-steps::before { display:none; }
+      .services-grid { grid-template-columns:1fr; }
+      .ai-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .home-cta-banner { padding:40px 28px; flex-direction:column; text-align:center; border-radius:var(--r-lg); }
+      .footer-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:480px){
+      .hero-btns { flex-direction:column; }
+      .team-grid { grid-template-columns:1fr; }
+      .about-float-card { position:static; margin-top:16px; }
+    }
+  </style>
+</head>
+<body class="no-js">
+
+  <!-- ═══════════════════
+       STICKY NAVBAR
+  ═══════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#" data-page="home" class="nav-logo">
+        <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+          onerror="this.style.display='none'; document.getElementById('logo-text-nav').style.display='block';">
+        <span class="logo-text" id="logo-text-nav" style="display:none;">Vantrix<span>Global</span></span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" id="desktopNav">
+        <li class="nav-item"><a href="#" data-page="home"     class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="#" data-page="about"    class="nav-link">About Us</a></li>
+        <li class="nav-item"><a href="#" data-page="services" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="#" data-page="ai"       class="nav-link">AI Solutions</a></li>
+        <li class="nav-item"><a href="#" data-page="blog"     class="nav-link">Insights</a></li>
+        <li class="nav-item"><a href="#" data-page="contact"  class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- CTA + Hamburger -->
+      <div style="display:flex;align-items:center;gap:10px;">
+        <a href="#" data-page="contact" class="btn btn-gold nav-cta">Book a Call</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+          <i class="ph ph-list" id="ham-icon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" data-page="home"     class="mob-link active">Home</a>
+    <a href="#" data-page="about"    class="mob-link">About Us</a>
+    <a href="#" data-page="services" class="mob-link">Services</a>
+    <a href="#" data-page="ai"       class="mob-link">AI Solutions</a>
+    <a href="#" data-page="blog"     class="mob-link">Insights</a>
+    <a href="#" data-page="contact"  class="mob-link">Contact</a>
+    <a href="#" data-page="contact"  class="btn btn-gold mob-cta" style="display:inline-flex;margin-top:14px;">Book a Call</a>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PAGE: HOME
+  ═══════════════════════════════ -->
+  <div id="page-home" class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <!-- Text Side -->
+          <div class="hero-text">
+            <span class="tag light"><i class="ph ph-globe"></i> Trusted by 100+ Global Companies</span>
+            <h1 class="hero-headline">
+              We help innovative<br>
+              startups <span class="highlight">scale</span> with<br>
+              BPO &amp; IT outsourcing
+            </h1>
+            <p class="hero-sub">
+              Humans + AI delivering smarter, faster, and highly secure
+              tailored outsourcing solutions designed for the modern enterprise.
+            </p>
+            <div class="hero-btns">
+              <a href="#" data-page="services" class="btn btn-gold">Get Started <i class="ph ph-arrow-right"></i></a>
+              <a href="#" data-page="contact"  class="btn btn-outline-white">Book a Call</a>
+            </div>
+            <div class="hero-badge-row">
+              <span class="hero-badge"><i class="ph ph-shield-check"></i> NDA Secured</span>
+              <span class="hero-badge"><i class="ph ph-clock"></i> 24/7 Support</span>
+              <span class="hero-badge"><i class="ph ph-chart-line-up"></i> 40% Cost Saved</span>
+            </div>
+          </div>
+
+          <!-- SaaS Dashboard Visual -->
+          <div class="hero-visual">
+            <div class="dashboard-card">
+              <div class="db-top-bar">
+                <div class="db-dot" style="background:#3B82F6;"></div>
+                <div class="db-dot" style="background:#C9A84C;"></div>
+                <div class="db-dot" style="background:#5A52C5;"></div>
+                <span class="db-title">Vantrix Operations Hub</span>
+              </div>
+              <div class="db-stats">
+                <div class="db-stat">
+                  <div class="db-stat-val" id="dash-val-1">—</div>
+                  <div class="db-stat-lbl">Tickets Resolved</div>
+                </div>
+                <div class="db-stat">
+                  <div class="db-stat-val" id="dash-val-2">—</div>
+                  <div class="db-stat-lbl">Accuracy Rate</div>
+                </div>
+                <div class="db-stat">
+                  <div class="db-stat-val" id="dash-val-3">—</div>
+                  <div class="db-stat-lbl">Avg Response</div>
+                </div>
+              </div>
+              <div class="db-chart">
+                <div class="db-bar" style="height:45%;"></div>
+                <div class="db-bar" style="height:70%;"></div>
+                <div class="db-bar" style="height:55%;"></div>
+                <div class="db-bar" style="height:90%;"></div>
+                <div class="db-bar" style="height:65%;"></div>
+                <div class="db-bar" style="height:80%;"></div>
+                <div class="db-bar" style="height:95%;"></div>
+              </div>
+              <div class="db-list">
+                <div class="db-row">
+                  <div class="db-icon"><i class="ph ph-robot" style="color:#3B82F6;"></i></div>
+                  <div class="db-line">
+                    <div class="db-lbl">AI Chat Resolved</div>
+                    <div class="db-val">2,847 tickets</div>
+                  </div>
+                  <div class="db-chip">+12%</div>
+                </div>
+                <div class="db-row">
+                  <div class="db-icon" style="background:rgba(201,168,76,.2);"><i class="ph ph-trend-up" style="color:#C9A84C;"></i></div>
+                  <div class="db-line">
+                    <div class="db-lbl">Cost Reduction</div>
+                    <div class="db-val">38% this quarter</div>
+                  </div>
+                  <div class="db-chip">↑ Wow</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Bottom -->
+      <div class="hero-wave">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+          <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,10 1440,40 L1440,70 L0,70 Z" fill="#F4F6FB"/>
+        </svg>
+      </div>
+    </section>
+
+
+
+    <!-- SERVICES TEASER STRIP -->
+    <div class="home-strip">
+      <div class="container">
+        <p class="strip-title">Complete Outsourcing Expertise</p>
+        <p class="strip-subtitle">Click any service below to explore what we deliver — backed by 8+ years of proven industry excellence.</p>
+        <div class="strip-logos" id="serviceStrip">
+
+          <div class="strip-chip" data-svc="cs">
+            <div class="strip-chip-icon"><i class="ph ph-headset"></i></div>
+            <span class="strip-chip-label">Customer Support</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="tech">
+            <div class="strip-chip-icon"><i class="ph ph-desktop-tower"></i></div>
+            <span class="strip-chip-label">Technical Support</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="data">
+            <div class="strip-chip-icon"><i class="ph ph-database"></i></div>
+            <span class="strip-chip-label">Data Entry</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="bo">
+            <div class="strip-chip-icon"><i class="ph ph-buildings"></i></div>
+            <span class="strip-chip-label">Back Office</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="fin">
+            <div class="strip-chip-icon"><i class="ph ph-currency-dollar"></i></div>
+            <span class="strip-chip-label">Finance &amp; Accounting</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="hr">
+            <div class="strip-chip-icon"><i class="ph ph-user-gear"></i></div>
+            <span class="strip-chip-label">HR Services</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="tele">
+            <div class="strip-chip-icon"><i class="ph ph-phone-outgoing"></i></div>
+            <span class="strip-chip-label">Telemarketing</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="order">
+            <div class="strip-chip-icon"><i class="ph ph-package"></i></div>
+            <span class="strip-chip-label">Order Processing</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="supply">
+            <div class="strip-chip-icon"><i class="ph ph-truck"></i></div>
+            <span class="strip-chip-label">Supply Chain</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+          <div class="strip-chip" data-svc="chat">
+            <div class="strip-chip-icon"><i class="ph ph-chats-circle"></i></div>
+            <span class="strip-chip-label">Email &amp; Chat</span>
+            <span class="strip-chip-hint"><i class="ph ph-info"></i> View Details</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY CHOOSE US TEASER -->
+    <section class="section home-why">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">Why Choose Vantrix Global</span>
+          <h2 class="section-title">Built for scale, driven by intelligence</h2>
+          <p class="section-sub">We combine the precision of AI with the empathy of experienced professionals to deliver unmatched business outcomes.</p>
+        </div>
+        <div class="why-grid">
+
+          <div class="why-card reveal delay-1" data-num="01">
+            <div class="why-icon"><i class="ph ph-brain"></i></div>
+            <h4>AI-Powered Solutions</h4>
+            <p>Proprietary tech stack integrating machine learning to automate repetitive workflows and surface predictive insights.</p>
+          </div>
+
+          <div class="why-card reveal delay-2" data-num="02">
+            <div class="why-icon"><i class="ph ph-chart-line-down"></i></div>
+            <h4>Up to 40% Cost Efficiency</h4>
+            <p>Proven operational models that slash overheads significantly without ever compromising on quality or turnaround time.</p>
+          </div>
+
+          <div class="why-card reveal delay-3" data-num="03">
+            <div class="why-icon"><i class="ph ph-users-three"></i></div>
+            <h4>Dedicated Expert Teams</h4>
+            <p>Highly trained professionals who immerse themselves as a seamless extension of your internal operations team.</p>
+          </div>
+
+          <div class="why-card reveal delay-1" data-num="04">
+            <div class="why-icon"><i class="ph ph-sliders-horizontal"></i></div>
+            <h4>Custom SLA Solutions</h4>
+            <p>Flexible service-level agreements tailored precisely around your operational needs and business objectives.</p>
+          </div>
+
+          <div class="why-card reveal delay-2" data-num="05">
+            <div class="why-icon"><i class="ph ph-shield-check"></i></div>
+            <h4>NDA-Backed Data Security</h4>
+            <p>Enterprise-grade encryption, strict compliance protocols, and full NDA coverage for every engagement.</p>
+          </div>
+
+          <div class="why-card reveal delay-3" data-num="06">
+            <div class="why-icon"><i class="ph ph-seal-check"></i></div>
+            <h4>Guaranteed On-Time Delivery</h4>
+            <p>Rigorous project management frameworks ensuring zero-delay, consistent, and reliable delivery every cycle.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME CTA BANNER -->
+    <section class="section-sm">
+      <div class="container reveal">
+        <div class="home-cta-banner">
+          <h2>Ready to scale your business with smart outsourcing?</h2>
+          <div class="btn-group">
+            <a href="#" data-page="contact" class="btn btn-gold" style="font-size:1.05rem;padding:16px 34px;">Talk to Experts</a>
+            <a href="#" data-page="contact" class="btn btn-outline-white" style="font-size:1.05rem;padding:16px 34px;">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER on home page -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>Empowering startups and enterprises globally through intelligent BPO & IT outsourcing — combining the best of human talent and AI.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-instagram-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="#" data-page="home">Home</a></li>
+              <li><a href="#" data-page="about">About Us</a></li>
+              <li><a href="#" data-page="services">Services</a></li>
+              <li><a href="#" data-page="ai">AI Solutions</a></li>
+              <li><a href="#" data-page="blog">Insights</a></li>
+              <li><a href="#" data-page="contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#" data-page="services">Customer Support</a></li>
+              <li><a href="#" data-page="services">Technical Support</a></li>
+              <li><a href="#" data-page="services">Back Office</a></li>
+              <li><a href="#" data-page="services">Finance & Accounting</a></li>
+              <li><a href="#" data-page="services">Data Entry</a></li>
+              <li><a href="#" data-page="ai">AI Automation</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Legal</h5>
+            <ul>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="terms-of-service.html">Terms of Service</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="nda-security.html">NDA & Security</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+          <span>Crafted with <i class="ph ph-heart" style="color:var(--gold);"></i> for global enterprises</span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-home -->
+
+
+  <!-- PAGE: ABOUT -->
+  <div id="page-about" class="page">
+
+    <!-- ── HERO ─────────────────────────────────── -->
+    <div class="about-hero">
+      <div class="container">
+        <span class="tag light"><i class="ph ph-star"></i> Our Story</span>
+        <h1>The <span class="gold">Human + AI</span> Engine<br>Behind Global BPO</h1>
+        <p>8+ years of corporate excellence. 100+ clients served worldwide. One singular mission — to help enterprises scale smarter, faster.</p>
+        <div class="about-hero-badges">
+          <span class="about-hero-badge"><i class="ph ph-medal"></i> ISO 9001 Certified</span>
+          <span class="about-hero-badge"><i class="ph ph-shield-check"></i> NDA-Protected</span>
+          <span class="about-hero-badge"><i class="ph ph-globe"></i> 20+ Countries Served</span>
+          <span class="about-hero-badge"><i class="ph ph-clock"></i> 24/7 Operations</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WHO WE ARE SPLIT ──────────────────────── -->
+    <section class="about-page section" style="padding-block:0;">
+      <div class="container">
+        <div class="about-split">
+
+          <!-- Left: SVG illustrated image -->
+          <div class="about-img-wrap reveal-left">
+
+            <!-- Top-left floating badge -->
+            <div class="about-float-card2">
+              <div class="about-float2-icon"><i class="ph ph-trend-up"></i></div>
+              <div>
+                <strong>40% Cost Savings</strong>
+                <span>avg. per client engagement</span>
+              </div>
+            </div>
+
+            <!-- Main illustrated image -->
+            <div class="about-img-box">
+              <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+                <defs>
+                  <linearGradient id="ab-bg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#071526"/>
+                    <stop offset="100%" stop-color="#122A52"/>
+                  </linearGradient>
+                  <linearGradient id="ab-accent" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#5A52C5"/>
+                    <stop offset="100%" stop-color="#3B82F6"/>
+                  </linearGradient>
+                  <linearGradient id="ab-gold" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#C9A84C"/>
+                    <stop offset="100%" stop-color="#E6C97A"/>
+                  </linearGradient>
+                  <linearGradient id="ab-green" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#065F46"/>
+                    <stop offset="100%" stop-color="#059669"/>
+                  </linearGradient>
+                  <pattern id="ab-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+                    <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="0.8"/>
+                  </pattern>
+                </defs>
+                <!-- Background -->
+                <rect width="600" height="450" fill="url(#ab-bg)"/>
+                <rect width="600" height="450" fill="url(#ab-grid)"/>
+                <!-- Glow orb left -->
+                <circle cx="100" cy="200" r="150" fill="rgba(90,82,197,.12)"/>
+                <!-- Glow orb right -->
+                <circle cx="520" cy="280" r="120" fill="rgba(59,130,246,.1)"/>
+
+                <!-- ─── Buildings / city skyline ─── -->
+                <rect x="60" y="260" width="60" height="160" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(90,82,197,.3)" stroke-width="1"/>
+                <rect x="70" y="275" width="12" height="10" rx="2" fill="rgba(90,82,197,.4)"/>
+                <rect x="90" y="275" width="12" height="10" rx="2" fill="rgba(90,82,197,.4)"/>
+                <rect x="70" y="295" width="12" height="10" rx="2" fill="rgba(201,168,76,.4)"/>
+                <rect x="90" y="295" width="12" height="10" rx="2" fill="rgba(201,168,76,.4)"/>
+                <rect x="70" y="315" width="12" height="10" rx="2" fill="rgba(90,82,197,.3)"/>
+                <rect x="90" y="315" width="12" height="10" rx="2" fill="rgba(90,82,197,.3)"/>
+
+                <rect x="140" y="220" width="80" height="200" rx="6" fill="rgba(255,255,255,.07)" stroke="rgba(90,82,197,.35)" stroke-width="1"/>
+                <rect x="152" y="235" width="14" height="12" rx="2" fill="rgba(90,82,197,.5)"/>
+                <rect x="174" y="235" width="14" height="12" rx="2" fill="rgba(90,82,197,.5)"/>
+                <rect x="196" y="235" width="14" height="12" rx="2" fill="rgba(201,168,76,.5)"/>
+                <rect x="152" y="258" width="14" height="12" rx="2" fill="rgba(201,168,76,.4)"/>
+                <rect x="174" y="258" width="14" height="12" rx="2" fill="rgba(90,82,197,.4)"/>
+                <rect x="196" y="258" width="14" height="12" rx="2" fill="rgba(90,82,197,.4)"/>
+                <rect x="152" y="281" width="14" height="12" rx="2" fill="rgba(90,82,197,.3)"/>
+                <rect x="174" y="281" width="14" height="12" rx="2" fill="rgba(201,168,76,.3)"/>
+
+                <!-- ─── Central hero building ─── -->
+                <rect x="250" y="140" width="100" height="280" rx="8" fill="url(#ab-accent)" opacity=".85"/>
+                <rect x="263" y="158" width="16" height="14" rx="3" fill="rgba(255,255,255,.5)"/>
+                <rect x="285" y="158" width="16" height="14" rx="3" fill="rgba(255,255,255,.5)"/>
+                <rect x="307" y="158" width="16" height="14" rx="3" fill="rgba(255,255,255,.9)"/>
+                <rect x="263" y="182" width="16" height="14" rx="3" fill="rgba(255,255,255,.4)"/>
+                <rect x="285" y="182" width="16" height="14" rx="3" fill="rgba(255,255,255,.7)"/>
+                <rect x="307" y="182" width="16" height="14" rx="3" fill="rgba(255,255,255,.4)"/>
+                <rect x="263" y="206" width="16" height="14" rx="3" fill="rgba(255,255,255,.6)"/>
+                <rect x="285" y="206" width="16" height="14" rx="3" fill="rgba(255,255,255,.4)"/>
+                <rect x="307" y="206" width="16" height="14" rx="3" fill="rgba(255,255,255,.6)"/>
+                <!-- Gold top accent -->
+                <rect x="250" y="140" width="100" height="12" rx="8" fill="url(#ab-gold)"/>
+                <!-- Antenna -->
+                <rect x="296" y="110" width="4" height="34" rx="2" fill="rgba(201,168,76,.8)"/>
+                <circle cx="298" cy="108" r="5" fill="url(#ab-gold)"/>
+
+                <!-- ─── Right buildings ─── -->
+                <rect x="375" y="195" width="70" height="225" rx="6" fill="rgba(255,255,255,.07)" stroke="rgba(59,130,246,.3)" stroke-width="1"/>
+                <rect x="386" y="210" width="12" height="11" rx="2" fill="rgba(59,130,246,.6)"/>
+                <rect x="404" y="210" width="12" height="11" rx="2" fill="rgba(201,168,76,.5)"/>
+                <rect x="422" y="210" width="12" height="11" rx="2" fill="rgba(59,130,246,.6)"/>
+                <rect x="386" y="231" width="12" height="11" rx="2" fill="rgba(201,168,76,.4)"/>
+                <rect x="404" y="231" width="12" height="11" rx="2" fill="rgba(59,130,246,.5)"/>
+                <rect x="386" y="252" width="12" height="11" rx="2" fill="rgba(59,130,246,.4)"/>
+
+                <rect x="460" y="240" width="80" height="180" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(90,82,197,.2)" stroke-width="1"/>
+                <rect x="472" y="254" width="13" height="11" rx="2" fill="rgba(90,82,197,.5)"/>
+                <rect x="492" y="254" width="13" height="11" rx="2" fill="rgba(90,82,197,.5)"/>
+                <rect x="512" y="254" width="13" height="11" rx="2" fill="rgba(201,168,76,.4)"/>
+
+                <!-- ─── Ground / road ─── -->
+                <rect x="0" y="418" width="600" height="32" fill="rgba(5,15,40,.6)"/>
+                <rect x="0" y="416" width="600" height="3" fill="rgba(201,168,76,.3)"/>
+                <!-- Road markings -->
+                <rect x="80" y="428" width="30" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+                <rect x="160" y="428" width="30" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+                <rect x="240" y="428" width="30" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+                <rect x="320" y="428" width="30" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+                <rect x="400" y="428" width="30" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+
+                <!-- ─── Floating UI panel ─── -->
+                <rect x="390" y="50" width="160" height="100" rx="10" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                <rect x="403" y="64" width="60" height="8" rx="4" fill="rgba(255,255,255,.3)"/>
+                <rect x="403" y="80" width="40" height="6" rx="3" fill="rgba(201,168,76,.6)"/>
+                <text x="403" y="112" font-size="18" font-weight="900" fill="#E6C97A" font-family="sans-serif">98%</text>
+                <text x="426" y="112" font-size="9" fill="rgba(255,255,255,.5)" font-family="sans-serif">CSAT score</text>
+                <!-- Mini bar chart -->
+                <rect x="440" y="95" width="8" height="22" rx="2" fill="rgba(90,82,197,.6)"/>
+                <rect x="452" y="85" width="8" height="32" rx="2" fill="rgba(90,82,197,.8)"/>
+                <rect x="464" y="90" width="8" height="27" rx="2" fill="url(#ab-gold)" opacity=".8"/>
+                <rect x="476" y="80" width="8" height="37" rx="2" fill="url(#ab-gold)"/>
+                <rect x="488" y="75" width="8" height="42" rx="2" fill="url(#ab-green)"/>
+
+                <!-- Stars / floating dots -->
+                <circle cx="40" cy="80" r="2" fill="rgba(201,168,76,.6)"/>
+                <circle cx="560" cy="100" r="2" fill="rgba(90,82,197,.8)"/>
+                <circle cx="580" cy="180" r="3" fill="rgba(59,130,246,.5)"/>
+                <circle cx="20" cy="340" r="2" fill="rgba(201,168,76,.4)"/>
+              </svg>
+            </div>
+
+            <!-- Bottom-right floating badge -->
+            <div class="about-float-card">
+              <div class="about-float-icon"><i class="ph ph-shield-check"></i></div>
+              <div>
+                <h5>ISO 9001 Certified</h5>
+                <p>Quality-certified operations</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: text content -->
+          <div class="about-text reveal-right">
+            <span class="tag">Who We Are</span>
+            <h2 class="section-title">Scalable teams for<br>ambitious companies</h2>
+            <p class="lead">At Vantrix Global, we blend deep corporate expertise with cutting-edge AI technology. Our mission is to optimise your operations, reduce overheads, and empower your core team to focus on what matters most — growth.</p>
+            <div class="about-checks">
+              <div class="about-check"><div class="check-dot"><i class="ph ph-check-bold"></i></div><span>8+ Years of proven industry expertise across KPO/BPO verticals</span></div>
+              <div class="about-check"><div class="check-dot"><i class="ph ph-check-bold"></i></div><span>Skilled, multilingual workforce of 500+ professionals worldwide</span></div>
+              <div class="about-check"><div class="check-dot"><i class="ph ph-check-bold"></i></div><span>Tech-driven workflows powered by AI and process automation</span></div>
+              <div class="about-check"><div class="check-dot"><i class="ph ph-check-bold"></i></div><span>NDA-backed confidentiality and enterprise data security</span></div>
+              <div class="about-check"><div class="check-dot"><i class="ph ph-check-bold"></i></div><span>24/7 global support across all time zones, every day of the year</span></div>
+            </div>
+            <a href="#" data-page="contact" class="btn btn-purple">Talk to Our Team <i class="ph ph-arrow-right"></i></a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS BAR ─────────────────────────────── -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-block reveal">
+            <div class="stat-num-wrap"><span class="counter" data-target="8">0</span><span class="stat-suffix">+</span></div>
+            <div class="stat-lbl">Years of Experience</div>
+          </div>
+          <div class="stat-block reveal delay-1">
+            <div class="stat-num-wrap"><span class="counter" data-target="100">0</span><span class="stat-suffix">+</span></div>
+            <div class="stat-lbl">Global Clients</div>
+          </div>
+          <div class="stat-block reveal delay-2">
+            <div class="stat-num-wrap"><span class="counter" data-target="500">0</span><span class="stat-suffix">+</span></div>
+            <div class="stat-lbl">Professionals</div>
+          </div>
+          <div class="stat-block reveal delay-3">
+            <div class="stat-num-wrap"><span class="counter" data-target="24">0</span><span class="stat-suffix">/7</span></div>
+            <div class="stat-lbl">Continuous Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CORE VALUES ───────────────────────────── -->
+    <section class="about-values">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">What Drives Us</span>
+          <h2 class="section-title">Our core values</h2>
+          <p class="section-sub">The principles that shape every decision, every delivery, and every client relationship at Vantrix Global.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal delay-1">
+            <div class="value-card-icon" style="background:linear-gradient(135deg,#5A52C5,#3B82F6);"><i class="ph ph-rocket-launch"></i></div>
+            <h4>Innovation First</h4>
+            <p>We continuously invest in emerging technologies — AI, NLP, and RPA — to deliver solutions that are always ahead of the curve.</p>
+          </div>
+          <div class="value-card reveal delay-2">
+            <div class="value-card-icon" style="background:linear-gradient(135deg,#065F46,#059669);"><i class="ph ph-handshake"></i></div>
+            <h4>Partnership Over Transaction</h4>
+            <p>We embed ourselves as a true extension of your team — not just a vendor. Your growth is our growth, your success is our success.</p>
+          </div>
+          <div class="value-card reveal delay-3">
+            <div class="value-card-icon" style="background:linear-gradient(135deg,#B45309,#C9A84C);"><i class="ph ph-chart-bar"></i></div>
+            <h4>Results, Not Reports</h4>
+            <p>We are accountable to outcomes. Every SLA, every engagement, every team — measured against real business impact, not activity metrics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TIMELINE ──────────────────────────────── -->
+    <div class="about-story">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">Our Journey</span>
+          <h2 class="section-title">A decade of excellence</h2>
+        </div>
+        <div class="story-timeline">
+          <div class="timeline-item reveal">
+            <div class="tl-left"><div class="tl-dot"><i class="ph ph-flag"></i></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2016 — Founded</div>
+              <h4>The Spark</h4>
+              <p>Vantrix Global was founded with a vision to bring world-class BPO services to startups who needed enterprise capabilities without enterprise budgets.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal delay-1">
+            <div class="tl-left"><div class="tl-dot"><i class="ph ph-chart-line-up"></i></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2018 — Growth</div>
+              <h4>First 50 Clients</h4>
+              <p>Rapid expansion across India, UAE, and the US. We built dedicated teams for Finance, Tech Support, and Customer Success outsourcing.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal delay-2">
+            <div class="tl-left"><div class="tl-dot"><i class="ph ph-robot"></i></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2021 — Innovation</div>
+              <h4>AI Integration</h4>
+              <p>Launched our proprietary AI assistant platform — integrating NLP-based chat, RPA workflows, and predictive analytics into BPO operations.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal delay-3">
+            <div class="tl-left"><div class="tl-dot"><i class="ph ph-globe"></i></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2026 — Today</div>
+              <h4>Global Scale</h4>
+              <p>100+ global enterprise clients, 500+ professionals, and a suite of AI-powered services helping companies dramatically reduce operational overheads.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TEAM ──────────────────────────────────── -->
+    <div class="about-team">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">Our Leadership</span>
+          <h2 class="section-title">The minds behind Vantrix</h2>
+          <p class="section-sub">A seasoned team with decades of combined expertise in BPO, technology, and global enterprise operations.</p>
+        </div>
+        <div class="team-grid">
+
+          <div class="team-card reveal delay-1">
+            <div class="team-avatar" style="background:linear-gradient(150deg,#071526 0%,#1a1660 100%);">
+              <!-- SVG avatar illustration: CEO -->
+              <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:absolute;inset:0;">
+                <defs><linearGradient id="av1-skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FBBF8A"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs>
+                <!-- Background glow -->
+                <circle cx="140" cy="160" r="120" fill="rgba(90,82,197,.15)"/>
+                <!-- Body / suit -->
+                <ellipse cx="140" cy="280" rx="80" ry="100" fill="#1E3A5F"/>
+                <!-- Shirt collar white -->
+                <polygon points="125,170 140,195 155,170 148,165 140,182 132,165" fill="white" opacity=".9"/>
+                <!-- Tie -->
+                <polygon points="138,195 142,195 144,230 140,235 136,230" fill="url(#ab-gold)" opacity=".9"/>
+                <!-- Head / face -->
+                <circle cx="140" cy="115" r="45" fill="url(#av1-skin)"/>
+                <!-- Hair -->
+                <path d="M100,105 Q95,80 110,72 Q125,62 140,65 Q155,62 170,72 Q185,80 180,105 Q170,88 140,85 Q110,88 100,105Z" fill="#1a0a00"/>
+                <!-- Eyes -->
+                <ellipse cx="128" cy="115" rx="5" ry="5.5" fill="#1a1a2e"/>
+                <ellipse cx="152" cy="115" rx="5" ry="5.5" fill="#1a1a2e"/>
+                <!-- Eyebrows -->
+                <path d="M122,107 Q128,104 134,106" stroke="#1a0a00" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M146,106 Q152,104 158,107" stroke="#1a0a00" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Smile -->
+                <path d="M132,128 Q140,136 148,128" stroke="#c0763a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Nose -->
+                <path d="M138,118 Q136,124 140,125 Q144,124 142,118" stroke="#c0763a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Arjun Mehta</div>
+              <div class="team-role">CEO &amp; Co-Founder</div>
+              <div class="team-bio">15+ years leading BPO operations across APAC and MENA. Former VP at a Fortune 500 outsourcing firm.</div>
+              <div class="team-social">
+                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#"><i class="ph ph-twitter-logo"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-card reveal delay-2">
+            <div class="team-avatar" style="background:linear-gradient(150deg,#071526 0%,#0a3352 100%);">
+              <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:absolute;inset:0;">
+                <defs><linearGradient id="av2-skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F6C9A0"/><stop offset="100%" stop-color="#E8A87C"/></linearGradient></defs>
+                <circle cx="140" cy="160" r="120" fill="rgba(59,130,246,.1)"/>
+                <!-- Body -->
+                <ellipse cx="140" cy="280" rx="80" ry="100" fill="#5A52C5"/>
+                <!-- Collar -->
+                <polygon points="125,170 140,195 155,170 148,165 140,182 132,165" fill="white" opacity=".9"/>
+                <!-- Head -->
+                <circle cx="140" cy="115" r="44" fill="url(#av2-skin)"/>
+                <!-- Hair (feminine) -->
+                <path d="M97,108 Q96,74 120,66 Q132,60 140,62 Q148,60 160,66 Q184,74 183,108 Q175,85 140,82 Q105,85 97,108Z" fill="#3d1a08"/>
+                <path d="M97,108 Q90,130 95,160 Q100,175 106,178 Q100,150 100,115Z" fill="#3d1a08"/>
+                <path d="M183,108 Q190,130 185,160 Q180,175 174,178 Q180,150 180,115Z" fill="#3d1a08"/>
+                <!-- Eyes -->
+                <ellipse cx="128" cy="113" rx="5" ry="5" fill="#1a1a2e"/>
+                <ellipse cx="152" cy="113" rx="5" ry="5" fill="#1a1a2e"/>
+                <!-- Eyebrows (arched) -->
+                <path d="M121,105 Q128,101 135,104" stroke="#3d1a08" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M145,104 Q152,101 159,105" stroke="#3d1a08" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Smile -->
+                <path d="M131,126 Q140,134 149,126" stroke="#c0763a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M138,119 Q136,124 140,125 Q144,124 142,119" stroke="#c0763a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Priya Sharma</div>
+              <div class="team-role">Chief Operations Officer</div>
+              <div class="team-bio">Expert in process design and SLA management with a track record of 200+ successful enterprise BPO transitions.</div>
+              <div class="team-social">
+                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#"><i class="ph ph-twitter-logo"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-card reveal delay-3">
+            <div class="team-avatar" style="background:linear-gradient(150deg,#0d1117 0%,#1a1060 100%);">
+              <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;position:absolute;inset:0;">
+                <defs><linearGradient id="av3-skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FBBF8A"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
+                <circle cx="140" cy="160" r="120" fill="rgba(201,168,76,.1)"/>
+                <!-- Body -->
+                <ellipse cx="140" cy="280" rx="80" ry="100" fill="#0a2040"/>
+                <!-- Collar -->
+                <polygon points="125,170 140,195 155,170 148,165 140,182 132,165" fill="white" opacity=".9"/>
+                <!-- Head -->
+                <circle cx="140" cy="115" r="44" fill="url(#av3-skin)"/>
+                <!-- Hair (short) -->
+                <path d="M98,110 Q98,78 115,68 Q128,60 140,62 Q152,60 165,68 Q182,78 182,110 Q172,90 140,86 Q108,90 98,110Z" fill="#1a0500"/>
+                <!-- Glasses -->
+                <rect x="118" y="108" width="22" height="14" rx="6" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <rect x="144" y="108" width="22" height="14" rx="6" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <line x1="140" y1="115" x2="144" y2="115" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <line x1="118" y1="115" x2="112" y2="113" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <line x1="166" y1="115" x2="172" y2="113" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <!-- Eyes -->
+                <ellipse cx="129" cy="115" rx="4" ry="4" fill="#1a1a2e"/>
+                <ellipse cx="155" cy="115" rx="4" ry="4" fill="#1a1a2e"/>
+                <!-- Smile -->
+                <path d="M132,128 Q140,135 148,128" stroke="#c0763a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Nose -->
+                <path d="M138,119 Q136,124 140,125 Q144,124 142,119" stroke="#c0763a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Rohan Verma</div>
+              <div class="team-role">Chief Technology Officer</div>
+              <div class="team-bio">AI researcher and full-stack architect. Built the core proprietary AI platform powering Vantrix's automation suite.</div>
+              <div class="team-social">
+                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#"><i class="ph ph-github-logo"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CTA ───────────────────────────────────── -->
+    <section class="section-sm" style="background:var(--off-white);">
+      <div class="container reveal">
+        <div class="home-cta-banner">
+          <h2>Join 100+ companies scaling smarter with Vantrix</h2>
+          <div class="btn-group">
+            <a href="#" data-page="contact" class="btn btn-gold" style="font-size:1rem;padding:14px 30px;">Get Started</a>
+            <a href="#" data-page="services" class="btn btn-outline-white" style="font-size:1rem;padding:14px 30px;">Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>Empowering startups and enterprises globally through intelligent BPO &amp; IT outsourcing.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-instagram-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col"><h5>Quick Links</h5><ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="about">About Us</a></li>
+            <li><a href="#" data-page="services">Services</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Services</h5><ul>
+            <li><a href="#" data-page="services">Customer Support</a></li>
+            <li><a href="#" data-page="services">Technical Support</a></li>
+            <li><a href="#" data-page="ai">AI Automation</a></li>
+            <li><a href="#" data-page="services">Finance &amp; Accounting</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Legal</h5><ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">NDA &amp; Security</a></li>
+          </ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+          <span><a href="#" data-page="home">Back to Home</a></span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-about -->
+
+
+  <!-- PAGE: SERVICES -->
+  <div id="page-services" class="page">
+
+    <!-- ── HERO ───────────────────────────────────── -->
+    <div class="page-hero">
+      <div class="container">
+        <span class="tag light"><i class="ph ph-briefcase"></i> Our Services</span>
+        <h1>Complete Outsourcing Expertise<br>Across <em>10+ Specialisations</em></h1>
+        <p>Every service line engineered around your SLA, time zone, and growth goals — delivered by trained professionals and powered by AI.</p>
+        <div class="page-hero-stats">
+          <div class="page-hero-stat"><strong>10+</strong><span>Service Lines</span></div>
+          <div class="page-hero-stat"><strong>99.8%</strong><span>Accuracy Rate</span></div>
+          <div class="page-hero-stat"><strong>24/7</strong><span>Operations</span></div>
+          <div class="page-hero-stat"><strong>40%</strong><span>Cost Savings</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F4F6FB"/>
+      </svg>
+    </div>
+
+    <!-- ── SERVICES GRID ────────────────────────── -->
+    <section class="section services-page">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">What We Offer</span>
+          <h2 class="section-title">10 Core Service Lines</h2>
+          <p class="section-sub">Click any service to explore details. Every solution is built around your business, not a template.</p>
+        </div>
+        <div class="services-grid">
+
+          <div class="svc-card reveal delay-1" data-idx="01">
+            <div class="svc-icon"><i class="ph ph-headset"></i></div>
+            <h3>Customer Support Services</h3>
+            <p>Omnichannel support across voice, chat, email, and social — expertly managed to maximise satisfaction and first-contact resolution.</p>
+            <div class="svc-tags"><span class="svc-tag">Voice</span><span class="svc-tag">Live Chat</span><span class="svc-tag">Email</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-2" data-idx="02">
+            <div class="svc-icon"><i class="ph ph-desktop-tower"></i></div>
+            <h3>Technical Support</h3>
+            <p>L1, L2, and L3 IT troubleshooting and helpdesk management tailored to your product, infrastructure, and end-user base.</p>
+            <div class="svc-tags"><span class="svc-tag">L1/L2/L3</span><span class="svc-tag">IT Helpdesk</span><span class="svc-tag">SLA</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-3" data-idx="03">
+            <div class="svc-icon"><i class="ph ph-database"></i></div>
+            <h3>Data Entry &amp; Processing</h3>
+            <p>High-accuracy, high-volume data handling — from OCR conversion and cleansing to structured database management.</p>
+            <div class="svc-tags"><span class="svc-tag">OCR</span><span class="svc-tag">99.8% Accuracy</span><span class="svc-tag">GDPR</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-1" data-idx="04">
+            <div class="svc-icon"><i class="ph ph-buildings"></i></div>
+            <h3>Back Office Operations</h3>
+            <p>Reliable administrative support managing complex daily workflows so your core team stays focused on growth.</p>
+            <div class="svc-tags"><span class="svc-tag">Admin</span><span class="svc-tag">ERP/CRM</span><span class="svc-tag">Scalable</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-2" data-idx="05">
+            <div class="svc-icon"><i class="ph ph-currency-dollar"></i></div>
+            <h3>Finance &amp; Accounting</h3>
+            <p>Precision bookkeeping, accounts payable/receivable, payroll processing, and full financial reporting services.</p>
+            <div class="svc-tags"><span class="svc-tag">Payroll</span><span class="svc-tag">AP/AR</span><span class="svc-tag">Reporting</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-3" data-idx="06">
+            <div class="svc-icon"><i class="ph ph-user-gear"></i></div>
+            <h3>HR Services</h3>
+            <p>Streamlined talent acquisition, onboarding, employee records management, and full-cycle HR administration at scale.</p>
+            <div class="svc-tags"><span class="svc-tag">Recruitment</span><span class="svc-tag">Onboarding</span><span class="svc-tag">Records</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-1" data-idx="07">
+            <div class="svc-icon"><i class="ph ph-phone-outgoing"></i></div>
+            <h3>Telemarketing &amp; Sales</h3>
+            <p>Outbound lead generation, appointment setting, and inside sales campaigns that drive pipeline and revenue growth.</p>
+            <div class="svc-tags"><span class="svc-tag">Outbound</span><span class="svc-tag">Lead Gen</span><span class="svc-tag">CRM</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-2" data-idx="08">
+            <div class="svc-icon"><i class="ph ph-package"></i></div>
+            <h3>Order Processing</h3>
+            <p>Fast, error-free management of the complete order lifecycle — from placement and fulfilment to returns and escalations.</p>
+            <div class="svc-tags"><span class="svc-tag">E-commerce</span><span class="svc-tag">Returns</span><span class="svc-tag">SAP</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-3" data-idx="09">
+            <div class="svc-icon"><i class="ph ph-truck"></i></div>
+            <h3>Supply Chain Support</h3>
+            <p>Vendor communication, logistics coordination, inventory tracking, and procurement support at enterprise scale.</p>
+            <div class="svc-tags"><span class="svc-tag">Procurement</span><span class="svc-tag">Logistics</span><span class="svc-tag">Inventory</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+          <div class="svc-card reveal delay-1" data-idx="10">
+            <div class="svc-icon"><i class="ph ph-chats-circle"></i></div>
+            <h3>Email &amp; Chat Support</h3>
+            <p>Dedicated text-based support teams delivering fast, professional, and on-brand responses across all digital channels.</p>
+            <div class="svc-tags"><span class="svc-tag">&lt;2hr Response</span><span class="svc-tag">Brand Voice</span><span class="svc-tag">AI-Assist</span></div>
+            <span class="svc-link">View Details <i class="ph ph-arrow-right"></i></span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TRUST STRIP ──────────────────────────── -->
+    <div style="background:linear-gradient(135deg,var(--navy) 0%,#0B1D40 100%);padding:56px 0;">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+          <div style="text-align:center;padding:8px;border-right:1px solid rgba(255,255,255,.08);">
+            <i class="ph ph-seal-check" style="font-size:36px;color:var(--gold-light);display:block;margin-bottom:10px;"></i>
+            <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);">ISO 9001 Certified</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:4px;">Quality-assured operations</div>
+          </div>
+          <div style="text-align:center;padding:8px;border-right:1px solid rgba(255,255,255,.08);">
+            <i class="ph ph-shield-check" style="font-size:36px;color:var(--gold-light);display:block;margin-bottom:10px;"></i>
+            <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);">NDA-Protected</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:4px;">Full confidentiality guaranteed</div>
+          </div>
+          <div style="text-align:center;padding:8px;border-right:1px solid rgba(255,255,255,.08);">
+            <i class="ph ph-clock" style="font-size:36px;color:var(--gold-light);display:block;margin-bottom:10px;"></i>
+            <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);">24/7 Operations</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:4px;">Always-on, every time zone</div>
+          </div>
+          <div style="text-align:center;padding:8px;">
+            <i class="ph ph-lightning" style="font-size:36px;color:var(--gold-light);display:block;margin-bottom:10px;"></i>
+            <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);">14-Day Go-Live</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:4px;">From contract to operational</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4-STEP PROCESS ──────────────────────── -->
+    <div class="process-section">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag">How It Works</span>
+          <h2 class="section-title">From first call to fully operational<br>in just 4 steps</h2>
+          <p class="section-sub">We handle all the complexity — you get a high-performance outsourced team with zero friction.</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step reveal delay-1">
+            <div class="step-num">01</div>
+            <div class="step-icon"><i class="ph ph-chat-teardrop-text"></i></div>
+            <h4>Discovery Call</h4>
+            <p>We learn about your business, workflows, volumes, and exact operational requirements in a focused 60-minute session.</p>
+          </div>
+          <div class="process-step reveal delay-2">
+            <div class="step-num">02</div>
+            <div class="step-icon"><i class="ph ph-file-text"></i></div>
+            <h4>Custom Proposal</h4>
+            <p>A bespoke team structure, SLA definition, quality benchmarks, and a transparent pricing model — tailored to you.</p>
+          </div>
+          <div class="process-step reveal delay-3">
+            <div class="step-num">03</div>
+            <div class="step-icon"><i class="ph ph-user-gear"></i></div>
+            <h4>Team Setup &amp; Training</h4>
+            <p>Dedicated team assembled and trained on your product, brand voice, SOPs, and quality standards before day one.</p>
+          </div>
+          <div class="process-step reveal delay-4">
+            <div class="step-num">04</div>
+            <div class="step-icon"><i class="ph ph-rocket-launch"></i></div>
+            <h4>Go Live</h4>
+            <p>Seamless launch with real-time dashboards, weekly reviews, and a dedicated account manager from day one.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA + Footer -->
+    <section class="section-sm" style="background:var(--off-white);">
+      <div class="container reveal">
+        <div class="home-cta-banner">
+          <h2>Ready to outsource with confidence?</h2>
+          <div class="btn-group">
+            <a href="#" data-page="contact" class="btn btn-gold">Get a Custom Quote</a>
+            <a href="#" data-page="ai" class="btn btn-outline-white">Explore AI Solutions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>Empowering enterprises globally through intelligent BPO & IT outsourcing.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col"><h5>Quick Links</h5><ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="about">About Us</a></li>
+            <li><a href="#" data-page="services">Services</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>All Services</h5><ul>
+            <li><a href="#">Customer Support</a></li>
+            <li><a href="#">Technical Support</a></li>
+            <li><a href="#">Finance & Accounting</a></li>
+            <li><a href="#">HR Services</a></li>
+            <li><a href="#">Supply Chain</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Legal</h5><ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">NDA & Security</a></li>
+          </ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-services -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: AI SOLUTIONS
+  ═══════════════════════════════ -->
+  <div id="page-ai" class="page">
+
+    <div class="ai-hero">
+      <div class="container" style="position:relative;z-index:1;">
+        <span class="tag light" style="background:rgba(59,130,246,.15);color:var(--blue-glow);">Next-Gen Innovation</span>
+        <h1 style="font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:var(--white);margin-bottom:16px;">AI-Powered BPO Services</h1>
+        <p style="color:rgba(255,255,255,.72);font-size:1.1rem;max-width:560px;margin-inline:auto;">We integrate state-of-the-art artificial intelligence to automate, predict, and augment every layer of your outsourced operations.</p>
+      </div>
+    </div>
+
+    <!-- AI Tech Strip -->
+    <div class="ai-tech-strip">
+      <div class="container">
+        <div class="ai-tech-inner">
+          <div class="ai-tech-chip"><i class="ph ph-robot"></i> GPT-Powered Chat</div>
+          <div class="ai-tech-chip"><i class="ph ph-lightning"></i> RPA Automation</div>
+          <div class="ai-tech-chip"><i class="ph ph-chart-bar"></i> Predictive Analytics</div>
+          <div class="ai-tech-chip"><i class="ph ph-brain"></i> NLP Processing</div>
+          <div class="ai-tech-chip"><i class="ph ph-shield-check"></i> AI Quality Control</div>
+          <div class="ai-tech-chip"><i class="ph ph-translate"></i> Multi-Language AI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Cards -->
+    <section class="ai-page section">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag" style="background:rgba(59,130,246,.15);color:var(--blue-glow);">5 AI-Powered Pillars</span>
+          <h2 class="section-title white">Intelligence built into every workflow</h2>
+          <p class="section-sub white">Each AI service is engineered to reduce manual effort, eliminate errors, and deliver insights that matter.</p>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card reveal delay-1">
+            <div class="ai-icon-wrap"><i class="ph ph-robot"></i></div>
+            <h4>AI Chat Support</h4>
+            <p>Enterprise-grade conversational AI handling complex queries with context-aware, human-like precision 24/7.</p>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>GPT-4 powered with custom training data</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Handles 80% of queries with zero escalation</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Seamless human handoff with full context</span></div>
+          </div>
+          <div class="ai-card reveal delay-2">
+            <div class="ai-icon-wrap"><i class="ph ph-lightning"></i></div>
+            <h4>Process Automation</h4>
+            <p>RPA bots that replicate complex human workflows end-to-end — without errors, without fatigue, at any scale.</p>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Automates 60-80% of routine tasks</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Integrates with SAP, Salesforce, Zendesk & more</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Full audit trail and compliance logs</span></div>
+          </div>
+          <div class="ai-card reveal delay-3">
+            <div class="ai-icon-wrap"><i class="ph ph-chart-line-up"></i></div>
+            <h4>Data Analytics</h4>
+            <p>Predictive intelligence platforms turning raw operational data into actionable business decisions in real time.</p>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Live operations dashboards & KPI tracking</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Customer churn prediction models</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Custom reporting per client vertical</span></div>
+          </div>
+          <div class="ai-card reveal delay-1">
+            <div class="ai-icon-wrap"><i class="ph ph-chat-centered-text"></i></div>
+            <h4>Smart Customer Interaction</h4>
+            <p>Sentiment analysis and emotional intelligence layer ensuring every customer interaction is optimised for satisfaction.</p>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Real-time tone &amp; sentiment scoring</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Agent coaching powered by live AI feedback</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>CSAT predictor with 92% accuracy</span></div>
+          </div>
+          <div class="ai-card reveal delay-2">
+            <div class="ai-icon-wrap"><i class="ph ph-shield-check"></i></div>
+            <h4>Error Reduction</h4>
+            <p>Automated QA and compliance checking system achieving 99.8% accuracy across all data and financial workflows.</p>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Automated 100% QA sampling (vs 5% manual)</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>Compliance alerts with instant flagging</span></div>
+            <div class="ai-point"><i class="ph ph-check-circle"></i><span>99.8% accuracy SLA guaranteed</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <div class="ai-how">
+      <div class="container">
+        <div class="ai-how-grid">
+          <div>
+            <div class="section-header reveal">
+              <span class="tag" style="background:rgba(59,130,246,.15);color:var(--blue-glow);">Implementation</span>
+              <h2 class="section-title white">How we deploy AI into your operations</h2>
+              <p class="section-sub white">A structured, low-disruption integration process that gets AI working in your workflows within weeks, not months.</p>
+            </div>
+            <div class="ai-how-steps">
+              <div class="ai-step reveal delay-1">
+                <div class="ai-step-num">01</div>
+                <div>
+                  <h5>Workflow Mapping</h5>
+                  <p>We document and analyse your existing operational workflows to identify the highest-impact automation opportunities.</p>
+                </div>
+              </div>
+              <div class="ai-step reveal delay-2">
+                <div class="ai-step-num">02</div>
+                <div>
+                  <h5>AI Model Training</h5>
+                  <p>Custom-train our AI platform on your data, tone of voice, SOPs, and industry-specific vocabulary.</p>
+                </div>
+              </div>
+              <div class="ai-step reveal delay-3">
+                <div class="ai-step-num">03</div>
+                <div>
+                  <h5>Pilot & Validation</h5>
+                  <p>Run a controlled pilot with live traffic to validate accuracy, measure KPIs, and fine-tune the models.</p>
+                </div>
+              </div>
+              <div class="ai-step reveal delay-4">
+                <div class="ai-step-num">04</div>
+                <div>
+                  <h5>Full Deployment</h5>
+                  <p>Scale to full operations with real-time monitoring, continuous learning loops, and regular optimisation reviews.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-visual-box reveal-right">
+            <!-- Animated metrics visual -->
+            <div style="text-align:center;margin-bottom:28px;">
+              <div style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">AI Performance Metrics</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:3rem;font-weight:900;color:var(--gold-light);">99.8%</div>
+              <div style="color:rgba(255,255,255,.6);">Accuracy Rate</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px 20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:rgba(255,255,255,.7);font-size:.9rem;">Query Resolution Speed</span><span style="color:var(--gold-light);font-weight:700;">80% faster</span></div>
+                <div style="background:rgba(255,255,255,.08);border-radius:99px;height:6px;"><div style="width:80%;height:100%;background:linear-gradient(90deg,var(--purple),var(--blue-glow));border-radius:99px;"></div></div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px 20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:rgba(255,255,255,.7);font-size:.9rem;">Cost Reduction</span><span style="color:var(--gold-light);font-weight:700;">40% saved</span></div>
+                <div style="background:rgba(255,255,255,.08);border-radius:99px;height:6px;"><div style="width:40%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:99px;"></div></div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px 20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:rgba(255,255,255,.7);font-size:.9rem;">CSAT Score</span><span style="color:var(--gold-light);font-weight:700;">94 / 100</span></div>
+                <div style="background:rgba(255,255,255,.08);border-radius:99px;height:6px;"><div style="width:94%;height:100%;background:linear-gradient(90deg,#5ECB8F,#2EA8F0);border-radius:99px;"></div></div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px 20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:rgba(255,255,255,.7);font-size:.9rem;">Tasks Automated</span><span style="color:var(--gold-light);font-weight:700;">78% of total</span></div>
+                <div style="background:rgba(255,255,255,.08);border-radius:99px;height:6px;"><div style="width:78%;height:100%;background:linear-gradient(90deg,var(--accent-blue),var(--purple));border-radius:99px;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-sm" style="background:var(--navy);">
+      <div class="container reveal">
+        <div class="home-cta-banner" style="background:linear-gradient(135deg,#0E2956 0%,#1A1060 100%);">
+          <h2>Ready to power your operations with AI?</h2>
+          <div class="btn-group">
+            <a href="#" data-page="contact" class="btn btn-gold">Request an AI Demo</a>
+            <a href="#" data-page="services" class="btn btn-outline-white">View All Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" style="border-top:1px solid rgba(255,255,255,.04);">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>AI-first outsourcing for the modern enterprise.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col"><h5>Quick Links</h5><ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="services">Services</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>AI Services</h5><ul>
+            <li><a href="#">AI Chat Support</a></li>
+            <li><a href="#">Process Automation</a></li>
+            <li><a href="#">Data Analytics</a></li>
+            <li><a href="#">Error Reduction</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Legal</h5><ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-ai -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: BLOG
+  ═══════════════════════════════ -->
+  <div id="page-blog" class="page">
+    <div class="page-hero">
+      <div class="container">
+        <span class="tag light"><i class="ph ph-article"></i> Insights & Resources</span>
+        <h1>Insights & Knowledge Hub</h1>
+        <p>Strategies, trends, and case studies mapping the future of intelligent enterprise outsourcing.</p>
+      </div>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F4F6FB"/>
+      </svg>
+    </div>
+
+    <section class="section blog-page">
+      <div class="container">
+        <!-- Featured Post -->
+        <div class="section-header reveal" style="margin-bottom:32px;">
+          <span class="tag">Featured Article</span>
+          <h2 class="section-title">Editor's Pick</h2>
+        </div>
+        <div class="blog-featured reveal">
+          <div class="blog-featured-thumb"><i class="ph ph-robot"></i><span class="blog-cat">AI & Technology</span></div>
+          <div class="blog-featured-body">
+            <span class="tag">Featured</span>
+            <h3>How AI is Reshaping Customer Support in 2026 — And What It Means for Your Business</h3>
+            <p>An inside look at how large-language models, real-time sentiment AI, and autonomous RPA bots are dramatically transforming modern contact centres and business process outsourcing globally.</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:.85rem;color:var(--text-muted);">
+              <span style="display:flex;align-items:center;gap:5px;"><i class="ph ph-calendar-blank"></i> April 5, 2026</span>
+              <span style="display:flex;align-items:center;gap:5px;"><i class="ph ph-clock"></i> 8 min read</span>
+            </div>
+            <a href="#" class="btn btn-purple">Read Full Article <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="section-header reveal" style="margin-top:64px;margin-bottom:32px;">
+          <span class="tag">Latest Posts</span>
+          <h2 class="section-title">Recent Articles</h2>
+        </div>
+        <div class="blog-grid-lg">
+          <div class="blog-card reveal delay-1">
+            <!-- Rich SVG thumbnail: Strategy/growth theme -->
+            <div class="blog-thumb blog-thumb-1" style="position:relative;overflow:hidden;">
+              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="gb1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#1a1660"/>
+                    <stop offset="100%" stop-color="#3344aa"/>
+                  </linearGradient>
+                  <linearGradient id="gb1l" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#E6C97A"/>
+                    <stop offset="100%" stop-color="rgba(230,201,122,0)"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" fill="url(#gb1)"/>
+                <polyline points="30,170 80,140 130,145 180,110 230,90 290,60 370,30" fill="none" stroke="#E6C97A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polygon points="30,170 80,140 130,145 180,110 230,90 290,60 370,30 370,210 30,210" fill="url(#gb1l)" opacity=".25"/>
+                <circle cx="80" cy="140" r="5" fill="#E6C97A"/>
+                <circle cx="180" cy="110" r="5" fill="#E6C97A"/>
+                <circle cx="290" cy="60" r="5" fill="#E6C97A"/>
+                <circle cx="370" cy="30" r="7" fill="#E6C97A" opacity=".9"/>
+                <rect x="40" y="185" width="22" height="10" rx="3" fill="rgba(90,82,197,.6)"/>
+                <rect x="70" y="180" width="22" height="15" rx="3" fill="rgba(90,82,197,.6)"/>
+                <rect x="100" y="175" width="22" height="20" rx="3" fill="rgba(90,82,197,.8)"/>
+                <text x="20" y="25" font-size="11" fill="rgba(255,255,255,.55)" font-family="sans-serif" font-weight="700">BPO COST ANALYSIS</text>
+              </svg>
+              <span class="blog-cat">Strategy</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="ph ph-calendar-blank"></i> March 28, 2026</span>
+                <span>·</span>
+                <span><i class="ph ph-clock"></i> 6 min read</span>
+              </div>
+              <h4>Scaling Your Operations: In-House vs. Outsourced — A 2026 Cost-Benefit Analysis</h4>
+              <p class="blog-excerpt">A data-driven comparison for Series A/B startups planning sustainable growth without burning through runway.</p>
+              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-card reveal delay-2">
+            <!-- Rich SVG thumbnail: Security lock/shield theme -->
+            <div class="blog-thumb blog-thumb-2" style="position:relative;overflow:hidden;">
+              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="gb2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#0a2a52"/>
+                    <stop offset="100%" stop-color="#1e6a8a"/>
+                  </linearGradient>
+                  <linearGradient id="gb2s" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#3B82F6"/>
+                    <stop offset="100%" stop-color="#5A52C5"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" fill="url(#gb2)"/>
+                <!-- Shield shape -->
+                <path d="M210,30 L260,55 L260,115 Q260,150 210,170 Q160,150 160,115 L160,55 Z" fill="url(#gb2s)" opacity=".85"/>
+                <!-- Lock body -->
+                <rect x="196" y="105" width="28" height="22" rx="5" fill="rgba(255,255,255,.9)"/>
+                <!-- Lock shackle -->
+                <path d="M200,105 L200,97 Q200,88 210,88 Q220,88 220,97 L220,105" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="3" stroke-linecap="round"/>
+                <!-- Keyhole -->
+                <circle cx="210" cy="113" r="4" fill="#0a2a52"/>
+                <rect x="208" y="113" width="4" height="7" rx="1" fill="#0a2a52"/>
+                <!-- Dots =encryption effect -->
+                <circle cx="80" cy="60" r="3" fill="rgba(59,130,246,.6)"/>
+                <circle cx="120" cy="40" r="3" fill="rgba(59,130,246,.4)"/>
+                <circle cx="340" cy="70" r="3" fill="rgba(59,130,246,.6)"/>
+                <circle cx="370" cy="45" r="3" fill="rgba(59,130,246,.4)"/>
+                <circle cx="60" cy="150" r="3" fill="rgba(90,82,197,.5)"/>
+                <circle cx="360" cy="160" r="3" fill="rgba(90,82,197,.5)"/>
+                <!-- Connecting lines suggestion -->
+                <line x1="80" y1="60" x2="160" y2="90" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="340" y1="70" x2="260" y2="90" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="20" y="200" font-size="11" fill="rgba(255,255,255,.4)" font-family="sans-serif" font-weight="700">DATA SECURITY FRAMEWORK</text>
+              </svg>
+              <span class="blog-cat">Security</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="ph ph-calendar-blank"></i> March 15, 2026</span>
+                <span>·</span>
+                <span><i class="ph ph-clock"></i> 5 min read</span>
+              </div>
+              <h4>Mastering Data Security in BPO Partnerships: What Every Enterprise Must Demand</h4>
+              <p class="blog-excerpt">Critical frameworks, contractual safeguards, and technical standards your outsourcing vendor must meet in 2026.</p>
+              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-card reveal delay-3">
+            <!-- Rich SVG thumbnail: Automation/RPA theme -->
+            <div class="blog-thumb blog-thumb-3" style="position:relative;overflow:hidden;">
+              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="gb3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#15114a"/>
+                    <stop offset="100%" stop-color="#5a46b5"/>
+                  </linearGradient>
+                  <linearGradient id="gb3b" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#C9A84C"/>
+                    <stop offset="100%" stop-color="#E6C97A"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" fill="url(#gb3)"/>
+                <!-- Gear large -->
+                <circle cx="210" cy="105" r="42" fill="none" stroke="rgba(90,82,197,.5)" stroke-width="8"/>
+                <circle cx="210" cy="105" r="22" fill="rgba(90,82,197,.3)" stroke="rgba(90,82,197,.5)" stroke-width="4"/>
+                <!-- Gear teeth suggestion -->
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(0 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(45 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(90 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(135 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(180 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(225 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(270 210 105)"/>
+                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(315 210 105)"/>
+                <!-- Lightning bolt -->
+                <polygon points="215,82 205,108 213,108 207,130 220,104 211,104" fill="url(#gb3b)"/>
+                <!-- Small gear -->
+                <circle cx="310" cy="60" r="20" fill="none" stroke="rgba(201,168,76,.4)" stroke-width="5"/>
+                <circle cx="310" cy="60" r="10" fill="rgba(201,168,76,.2)"/>
+                <!-- Progress bars -->
+                <rect x="30" y="165" width="80" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
+                <rect x="30" y="165" width="68" height="8" rx="4" fill="url(#gb3b)" opacity=".7"/>
+                <rect x="30" y="182" width="80" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
+                <rect x="30" y="182" width="50" height="8" rx="4" fill="rgba(90,82,197,.7)"/>
+                <text x="20" y="155" font-size="11" fill="rgba(255,255,255,.4)" font-family="sans-serif" font-weight="700">AUTOMATION RATE</text>
+              </svg>
+              <span class="blog-cat">Automation</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="ph ph-calendar-blank"></i> March 4, 2026</span>
+                <span>·</span>
+                <span><i class="ph ph-clock"></i> 7 min read</span>
+              </div>
+              <h4>RPA in Finance & Accounting: How Automation Eliminates Manual Errors and Cuts Costs by 40%</h4>
+              <p class="blog-excerpt">Real case studies showing how robotic process automation is revolutionising F&A outsourcing in growing enterprises.</p>
+              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm" style="background:var(--white);">
+      <div class="container reveal">
+        <div class="home-cta-banner">
+          <h2>Want to learn more about smart outsourcing?</h2>
+          <div class="btn-group">
+            <a href="#" data-page="contact" class="btn btn-gold">Talk to an Expert</a>
+            <a href="#" data-page="ai" class="btn btn-outline-white">Explore AI Solutions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>Intelligent BPO & IT outsourcing for the modern enterprise.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col"><h5>Quick Links</h5><ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="about">About Us</a></li>
+            <li><a href="#" data-page="services">Services</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Categories</h5><ul>
+            <li><a href="#">AI & Technology</a></li>
+            <li><a href="#">BPO Strategy</a></li>
+            <li><a href="#">Data Security</a></li>
+            <li><a href="#">Automation</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Legal</h5><ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-blog -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: CONTACT
+  ═══════════════════════════════ -->
+  <div id="page-contact" class="page">
+    <div class="page-hero">
+      <div class="container">
+        <span class="tag light"><i class="ph ph-envelope-simple"></i> Get In Touch</span>
+        <h1>Let's talk about<br>your project</h1>
+        <p>Our solutions architects respond within 24 hours. NDA available on request.</p>
+      </div>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F4F6FB"/>
+      </svg>
+    </div>
+
+    <section class="section contact-page">
+      <div class="container">
+        <div class="contact-wrap">
+          <!-- Info Panel -->
+          <div class="contact-info-panel reveal-left">
+            <h3>Start Your Journey with Vantrix</h3>
+            <p>Whether you need BPO support, AI automation, or a full operational overhaul — we're here to help design the perfect solution.</p>
+            <div class="contact-detail-list">
+              <div class="contact-detail">
+                <div class="contact-detail-icon"><i class="ph ph-phone"></i></div>
+                <div class="contact-detail-content">
+                  <label>Call Us</label>
+                  <p>+91 XXXXX XXXXX</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <div class="contact-detail-icon"><i class="ph ph-envelope-simple"></i></div>
+                <div class="contact-detail-content">
+                  <label>Email Us</label>
+                  <p>info@vantrixglobal.com</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <div class="contact-detail-icon"><i class="ph ph-map-pin"></i></div>
+                <div class="contact-detail-content">
+                  <label>Headquarters</label>
+                  <p>Vantrix Global , Udaipur,<br>Rajasthan — 313001</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <div class="contact-detail-icon"><i class="ph ph-clock"></i></div>
+                <div class="contact-detail-content">
+                  <label>Availability</label>
+                  <p>24/7 — All global time zones</p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-social">
+              <h5>Connect with us</h5>
+              <div class="social-row">
+                <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+                <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="social-btn"><i class="ph ph-instagram-logo"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Panel -->
+          <div class="contact-form-panel reveal-right">
+            <h3>Send Us a Message</h3>
+            <p class="lead">Fill in the details below and one of our team members will be in touch within one business day.</p>
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="cf-name">Full Name *</label>
+                  <input type="text" id="cf-name" class="form-control" placeholder="Jane Doe">
+                  <span class="form-error">Please enter your full name.</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cf-email">Email Address *</label>
+                  <input type="email" id="cf-email" class="form-control" placeholder="jane@company.com">
+                  <span class="form-error">Please enter a valid email.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="cf-phone">Phone Number</label>
+                  <input type="tel" id="cf-phone" class="form-control" placeholder="+1 (555) 000-0000">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cf-service">Service Required *</label>
+                  <select id="cf-service" class="form-control">
+                    <option value="" disabled selected>Select a service</option>
+                    <option>Customer Support Services</option>
+                    <option>Technical Support</option>
+                    <option>Data Entry & Processing</option>
+                    <option>Back Office Operations</option>
+                    <option>Finance & Accounting</option>
+                    <option>HR Services</option>
+                    <option>Telemarketing & Sales</option>
+                    <option>Order Processing</option>
+                    <option>Supply Chain Support</option>
+                    <option>Email & Chat Support</option>
+                    <option>AI Solutions</option>
+                    <option>Other / Custom</option>
+                  </select>
+                  <span class="form-error">Please select a service.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cf-msg">Project Details *</label>
+                <textarea id="cf-msg" class="form-control" placeholder="Tell us about your requirements, team size, and timelines..."></textarea>
+                <span class="form-error">Please describe your project.</span>
+              </div>
+              <button type="submit" id="submitBtn" class="btn btn-purple" style="width:100%;justify-content:center;padding:16px;font-size:1.05rem;">
+                Send Message <i class="ph ph-paper-plane-right"></i>
+              </button>
+              <div class="form-success" id="formSuccess">
+                <i class="ph ph-check-circle" style="font-size:22px;color:#1A7A4A;"></i>
+                Your message has been sent! We'll be in touch within 24 hours.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Trust Badges Row -->
+        <div class="reveal" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:64px;">
+          <div style="display:flex;align-items:center;gap:10px;background:var(--white);border-radius:var(--r-pill);padding:12px 22px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);">
+            <i class="ph ph-shield-check" style="color:var(--purple);font-size:20px;"></i>
+            <span style="font-weight:600;font-size:.9rem;color:var(--navy);">NDA Available on Request</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--white);border-radius:var(--r-pill);padding:12px 22px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);">
+            <i class="ph ph-clock" style="color:var(--purple);font-size:20px;"></i>
+            <span style="font-weight:600;font-size:.9rem;color:var(--navy);">&lt;24hr Response Guarantee</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--white);border-radius:var(--r-pill);padding:12px 22px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);">
+            <i class="ph ph-certificate" style="color:var(--purple);font-size:20px;"></i>
+            <span style="font-weight:600;font-size:.9rem;color:var(--navy);">ISO 9001 Certified</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--white);border-radius:var(--r-pill);padding:12px 22px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);">
+            <i class="ph ph-lock-key" style="color:var(--purple);font-size:20px;"></i>
+            <span style="font-weight:600;font-size:.9rem;color:var(--navy);">GDPR & CCPA Compliant</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="footer-logo-text" style="display:none;">VantrixGlobal</span>
+            <p>Intelligent BPO & IT outsourcing for the modern enterprise.</p>
+            <div class="social-row">
+              <a href="#" class="social-btn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-facebook-logo"></i></a>
+              <a href="#" class="social-btn"><i class="ph ph-instagram-logo"></i></a>
+            </div>
+          </div>
+          <div class="footer-col"><h5>Quick Links</h5><ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="about">About Us</a></li>
+            <li><a href="#" data-page="services">Services</a></li>
+            <li><a href="#" data-page="ai">AI Solutions</a></li>
+            <li><a href="#" data-page="blog">Insights</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Services</h5><ul>
+            <li><a href="#" data-page="services">Customer Support</a></li>
+            <li><a href="#" data-page="services">Technical Support</a></li>
+            <li><a href="#" data-page="services">Finance & Accounting</a></li>
+            <li><a href="#" data-page="ai">AI Automation</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Legal</h5><ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+            <li><a href="nda-security.html">NDA & Security</a></li>
+          </ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Vantrix Global. All rights reserved.</span>
+          <span>info@vantrixglobal.com</span>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /page-contact -->
+
+
+  <!-- ═══════════════════════════════════════════════════
+       JAVASCRIPT — SPA Router + All Interactions
+  ═══════════════════════════════════════════════════ -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ─── CONFIG ─────────────────────────────────── */
+    const PAGES = ['home', 'about', 'services', 'ai', 'blog', 'contact'];
+    // Navbar style per page: 'dark' = white logo on dark bg, 'light' = dark logo on white bg
+    const NAV_STYLE = {
+      home: 'dark', about: 'dark', services: 'dark',
+      ai: 'dark', blog: 'dark', contact: 'dark'
+    };
+
+    /* ─── STATE ──────────────────────────────────── */
+    let currentPage = '';   // empty so first navigateTo() always runs fully
+    let mobileOpen   = false;
+    const visitedPages = new Set();
+
+    /* ─── ELEMENTS ───────────────────────────────── */
+    const navbar    = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const hamIcon   = document.getElementById('ham-icon');
+    const mobileNav = document.getElementById('mobileNav');
+
+    /* ─── SPA ROUTER ─────────────────────────────── */
+    function navigateTo(pageId) {
+      if (!PAGES.includes(pageId)) pageId = 'home';
+      if (pageId === currentPage && document.getElementById('page-' + pageId).classList.contains('active')) return;
+
+      const isRevisit = visitedPages.has(pageId);
+
+      // Hide all pages
+      PAGES.forEach(p => {
+        const el = document.getElementById('page-' + p);
+        if (el) el.classList.remove('active', 'animate-in');
+      });
+
+      // Show target
+      const target = document.getElementById('page-' + pageId);
+      if (target) {
+        target.classList.add('active');
+        // Only animate-in on first visit to avoid slowness on revisits
+        if (!isRevisit) {
+          // Force reflow so animation restarts cleanly
+          void target.offsetWidth;
+          target.classList.add('animate-in');
+        }
+        // Scroll to top instantly
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      visitedPages.add(pageId);
+      currentPage = pageId;
+
+      // Update active nav links
+      document.querySelectorAll('[data-page]').forEach(el => {
+        el.classList.toggle('active', el.dataset.page === pageId);
+      });
+      document.querySelectorAll('.mob-link').forEach(el => {
+        el.classList.toggle('active', el.dataset.page === pageId);
+      });
+
+      // Navbar style
+      applyNavStyle();
+
+      // Close mobile menu
+      closeMobileMenu();
+
+      // Re-run reveal observers for the new page
+      observeReveals(isRevisit);
+
+      // Dashboard counter (hero only) — only animate on first visit
+      if (pageId === 'home' && !isRevisit) animateDashboard();
+
+      // Counter animation (about page) — only on first visit
+      if (pageId === 'about' && !isRevisit) observeCounters();
+
+      // Push to browser history
+      const url = '#' + pageId;
+      window.history.pushState({ page: pageId }, '', url);
+    }
+
+    /* ─── NAV STYLE LOGIC ────────────────────────── */
+    function applyNavStyle() {
+      const scrolled = window.scrollY > 60;
+      const style = NAV_STYLE[currentPage] || 'dark';
+
+      navbar.classList.remove('dark-mode', 'light-bg', 'scrolled');
+
+      if (scrolled) {
+        // On scroll: always frosted white
+        navbar.classList.add('scrolled');
+      } else {
+        // At top: match page theme
+        if (style === 'dark') navbar.classList.add('dark-mode');
+        else navbar.classList.add('light-bg');
+      }
+    }
+
+    window.addEventListener('scroll', applyNavStyle, { passive: true });
+
+    /* ─── HAMBURGER TOGGLE ───────────────────────── */
+    hamburger.addEventListener('click', () => {
+      mobileOpen = !mobileOpen;
+      mobileNav.classList.toggle('open', mobileOpen);
+      hamIcon.className = mobileOpen ? 'ph ph-x' : 'ph ph-list';
+    });
+
+    function closeMobileMenu() {
+      mobileOpen = false;
+      mobileNav.classList.remove('open');
+      hamIcon.className = 'ph ph-list';
+    }
+
+    /* ─── LINK DELEGATION ────────────────────────── */
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('[data-page]');
+      if (link) {
+        e.preventDefault();
+        navigateTo(link.dataset.page);
+      }
+    });
+
+    /* ─── BROWSER BACK/FORWARD ───────────────────── */
+    window.addEventListener('popstate', function (e) {
+      if (e.state && e.state.page) navigateTo(e.state.page);
+      else navigateTo('home');
+    });
+
+    /* ─── SCROLL REVEAL ──────────────────────────── */
+    let revealObserver;
+    function observeReveals(isRevisit) {
+      if (revealObserver) revealObserver.disconnect();
+
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+
+      const currentPageEl = document.getElementById('page-' + currentPage);
+      if (!currentPageEl) return;
+
+      currentPageEl.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        // On revisit: only reset elements that are off-screen
+        // On first visit: reset all so they animate in
+        if (!isRevisit) {
+          el.classList.remove('visible');
+        } else {
+          // If already visible (above fold), keep visible to avoid flash
+          const rect = el.getBoundingClientRect();
+          if (rect.top >= window.innerHeight) {
+            el.classList.remove('visible');
+          }
+        }
+        revealObserver.observe(el);
+      });
+
+      // Trigger elements already in viewport immediately (no delay on revisit)
+      const delay = isRevisit ? 0 : 50;
+      setTimeout(() => {
+        currentPageEl.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 20) el.classList.add('visible');
+        });
+      }, delay);
+    }
+
+    /* ─── NUMBER COUNTERS ────────────────────────── */
+    function observeCounters() {
+      const counterEls = document.querySelectorAll('#page-about .counter');
+      const cObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.counted) {
+            entry.target.dataset.counted = '1';
+            animateCounter(entry.target);
+            cObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counterEls.forEach(el => {
+        el.textContent = '0';
+        cObs.observe(el);
+      });
+    }
+
+    function animateCounter(el) {
+      const target    = parseInt(el.dataset.target, 10);
+      const duration  = 2000;
+      const frameRate = 30;
+      const steps     = duration / frameRate;
+      const increment = target / steps;
+      let current = 0;
+
+      const tick = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(tick);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, frameRate);
+    }
+
+    /* ─── HERO DASHBOARD COUNTERS ────────────────── */
+    function animateDashboard() {
+      // Reset to 0 first so animation always starts fresh
+      const e1 = document.getElementById('dash-val-1');
+      const e2 = document.getElementById('dash-val-2');
+      const e3 = document.getElementById('dash-val-3');
+      if (e1) e1.textContent = '0';
+      if (e2) e2.textContent = '0%';
+      if (e3) e3.textContent = '0s';
+
+      setTimeout(() => {
+        countTo('dash-val-1', 2847, 2200, v => Math.round(v).toLocaleString());
+        countTo('dash-val-2', 99,   1800, v => v.toFixed(1) + '%');
+        countTo('dash-val-3', 4.2,  1600, v => v.toFixed(1) + 's');
+      }, 400);
+    }
+
+    function countTo(id, target, duration, formatter) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const steps = duration / 30;
+      const increment = target / steps;
+      let current = 0;
+      const tick = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = formatter(target);
+          clearInterval(tick);
+        } else {
+          el.textContent = formatter(current);
+        }
+      }, 30);
+    }
+
+    /* ─── CONTACT FORM ───────────────────────────── */
+    document.addEventListener('submit', function (e) {
+      if (e.target.id !== 'contactForm') return;
+      e.preventDefault();
+
+      const form    = e.target;
+      const name    = document.getElementById('cf-name');
+      const email   = document.getElementById('cf-email');
+      const service = document.getElementById('cf-service');
+      const msg     = document.getElementById('cf-msg');
+      const success = document.getElementById('formSuccess');
+      const btn     = document.getElementById('submitBtn');
+
+      let valid = true;
+
+      // Validate helper
+      function validate(el, condition) {
+        el.classList.toggle('error', !condition);
+        if (!condition) valid = false;
+      }
+
+      validate(name,    name.value.trim().length > 1);
+      validate(email,   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()));
+      validate(service, service.value !== '');
+      validate(msg,     msg.value.trim().length > 10);
+
+      if (!valid) return;
+
+      // Simulate async send
+      btn.disabled = true;
+      btn.innerHTML = '<i class="ph ph-spinner" style="animation:spin 1s linear infinite;display:inline-block;"></i> Sending…';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = 'Send Message <i class="ph ph-paper-plane-right"></i>';
+        form.reset();
+        [name, email, service, msg].forEach(el => el.classList.remove('error'));
+        success.classList.add('show');
+        setTimeout(() => success.classList.remove('show'), 6000);
+      }, 1800);
+    });
+
+    /* ─── SERVICE DETAIL MODAL ───────────────────── */
+    const SVC_DATA = {
+      cs: {
+        title: 'Customer Support Services',
+        icon:  'ph-headset',
+        grad:  'linear-gradient(135deg,#5A52C5,#1E5FCB)',
+        desc:  'Omnichannel, round-the-clock customer support designed to delight your customers and maximise retention across every touchpoint.',
+        points: [
+          'Multichannel coverage across voice, email, live chat, and social media — handled by dedicated, trained agents.',
+          'First-Contact Resolution (FCR) optimised workflows reducing repeat tickets by up to 45% within 60 days.',
+          'Real-time CSAT monitoring with AI-flagged escalation paths ensuring zero unresolved critical cases.'
+        ]
+      },
+      tech: {
+        title: 'Technical Support',
+        icon:  'ph-desktop-tower',
+        grad:  'linear-gradient(135deg,#1E5FCB,#0A2040)',
+        desc:  'Expert L1, L2, and L3 IT helpdesk services built around your product, infrastructure, and SLA requirements.',
+        points: [
+          'Tiered L1/L2/L3 support structure ensuring the right expertise meets every ticket complexity level.',
+          'Deep product training with your internal tech team before go-live — agents know your stack inside-out.',
+          '99.5% uptime SLA compliance with detailed monthly performance reports and root cause analysis.'
+        ]
+      },
+      data: {
+        title: 'Data Entry & Processing',
+        icon:  'ph-database',
+        grad:  'linear-gradient(135deg,#3B4FA0,#5A52C5)',
+        desc:  'High-accuracy, high-volume data handling — from OCR conversion and cleansing to structured database population.',
+        points: [
+          '99.8% data accuracy guarantee with dual-layer QA verification on every batch processed.',
+          'Handles structured and unstructured data including PDFs, scanned documents, forms, and spreadsheets.',
+          'Secure encrypted data pipelines with full audit trails and GDPR-compliant data handling protocols.'
+        ]
+      },
+      bo: {
+        title: 'Back Office Operations',
+        icon:  'ph-buildings',
+        grad:  'linear-gradient(135deg,#122A52,#1E5FCB)',
+        desc:  'Reliable administrative support managing your complex daily workflows so your core team focuses on growth.',
+        points: [
+          'Handles document management, scheduling, records filing, and internal coordination at scale.',
+          'Seamless integration with your existing ERP, CRM, or project management tools (SAP, Salesforce, etc.).',
+          'Dedicated back-office team that scales up or down flexibly based on seasonal business demand.'
+        ]
+      },
+      fin: {
+        title: 'Finance & Accounting',
+        icon:  'ph-currency-dollar',
+        grad:  'linear-gradient(135deg,#C9A84C,#8A6A1E)',
+        desc:  'Precision bookkeeping, accounts management, payroll, and full financial reporting services with guaranteed accuracy.',
+        points: [
+          'Full-cycle accounts payable and receivable management with automatic reconciliation and variance alerts.',
+          'Payroll processing across multiple geographies with compliance to local tax and statutory obligations.',
+          'Month-end close and financial reporting packages delivered within agreed SLA timelines every cycle.'
+        ]
+      },
+      hr: {
+        title: 'HR Services',
+        icon:  'ph-user-gear',
+        grad:  'linear-gradient(135deg,#5A52C5,#9B59B6)',
+        desc:  'Streamlined talent acquisition, onboarding, and full-cycle HR administration for growing organisations.',
+        points: [
+          'End-to-end recruitment support including JD creation, candidate sourcing, screening, and interview coordination.',
+          'Digital onboarding workflows ensuring new hires are productive within their first week.',
+          'HR records management, leave tracking, performance cycle support, and employee engagement surveys.'
+        ]
+      },
+      tele: {
+        title: 'Telemarketing & Sales',
+        icon:  'ph-phone-outgoing',
+        grad:  'linear-gradient(135deg,#1E5FCB,#5A52C5)',
+        desc:  'Outbound lead generation, appointment setting, and inside sales campaigns that build pipeline and drive revenue.',
+        points: [
+          'Trained outbound callers using proven scripts and objection-handling frameworks for high connect rates.',
+          'CRM-integrated lead tracking providing real-time pipeline visibility with conversion analytics dashboards.',
+          'Performance-based dialling targets with guaranteed minimum lead volume benchmarks per campaign.'
+        ]
+      },
+      order: {
+        title: 'Order Processing',
+        icon:  'ph-package',
+        grad:  'linear-gradient(135deg,#1A6A4A,#1E5FCB)',
+        desc:  'Fast, error-free management of the complete order lifecycle from placement and fulfilment to returns.',
+        points: [
+          'End-to-end order entry, confirmation, dispatch coordination, and tracking update management.',
+          'Returns and refund processing handled within agreed SLA with full customer communication at each stage.',
+          'Multi-platform support for Shopify, Magento, WooCommerce, SAP, and custom ERP systems.'
+        ]
+      },
+      supply: {
+        title: 'Supply Chain Support',
+        icon:  'ph-truck',
+        grad:  'linear-gradient(135deg,#0A4A6A,#1E5FCB)',
+        desc:  'Vendor communication, logistics coordination, inventory tracking, and procurement support at enterprise scale.',
+        points: [
+          'Purchase order management and vendor communication ensuring on-time supplier deliveries.',
+          'Inventory level monitoring with automated stock alert thresholds and demand forecasting support.',
+          'Freight and logistics coordination across multiple carriers with real-time shipment tracking updates.'
+        ]
+      },
+      chat: {
+        title: 'Email & Chat Support',
+        icon:  'ph-chats-circle',
+        grad:  'linear-gradient(135deg,#5A52C5,#3B82F6)',
+        desc:  'Dedicated text-based support teams delivering fast, professional, and on-brand responses across all channels.',
+        points: [
+          'Average first email response time under 2 hours with full resolution within SLA across all ticket types.',
+          'Tone-matched, brand-consistent communication crafted by agents trained on your brand style guidelines.',
+          'AI-assisted suggested replies reducing agent handle time by 35% while maintaining response quality.'
+        ]
+      }
+    };
+
+    /* ─── OPEN MODAL (lazy element fetch — modal HTML is after this script) ─── */
+    function openSvcModal(key) {
+      const d = SVC_DATA[key];
+      if (!d) return;
+
+      /* Lazy-fetch each element at call-time */
+      const overlay = document.getElementById('svcModalOverlay');
+      const icon    = document.getElementById('svcModalIcon');
+      const title   = document.getElementById('svcModalTitle');
+      const desc    = document.getElementById('svcModalDesc');
+      const points  = document.getElementById('svcModalPoints');
+
+      if (!overlay || !icon) return; /* safety guard */
+
+      /* Populate icon */
+      icon.style.background = d.grad;
+      icon.style.boxShadow  = '0 8px 24px rgba(0,0,0,.25)';
+      icon.innerHTML = `<i class="ph ${d.icon}" style="font-size:32px;color:#fff;"></i>`;
+
+      /* Populate text */
+      title.textContent = d.title;
+      desc.textContent  = d.desc;
+
+      /* Populate 3 numbered points */
+      points.innerHTML = d.points.map((pt, i) => `
+        <div class="svc-modal-point">
+          <div class="svc-modal-point-num" style="background:${d.grad}">${i + 1}</div>
+          <p>${pt}</p>
+        </div>`).join('');
+
+      /* Reveal overlay */
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    /* ─── CLOSE MODAL ────────────────────────────── */
+    function closeSvcModal() {
+      const overlay = document.getElementById('svcModalOverlay');
+      if (overlay) overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* ─── CHIP CLICK: open modal ─────────────────── */
+    document.getElementById('serviceStrip').addEventListener('click', function(e) {
+      const chip = e.target.closest('[data-svc]');
+      if (chip) openSvcModal(chip.dataset.svc);
+    });
+
+    /* ─── CLOSE TRIGGERS (document delegation) ───── */
+    /* Using delegation because modal elements are parsed AFTER this script runs */
+    document.addEventListener('click', function(e) {
+      const overlay = document.getElementById('svcModalOverlay');
+      if (!overlay || !overlay.classList.contains('open')) return;
+
+      /* Clicked the backdrop OR the × button */
+      if (e.target === overlay || e.target.closest('#svcModalClose')) {
+        e.preventDefault();
+        closeSvcModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeSvcModal();
+    });
+
+    /* ─── CSS SPINNER ────────────────────────────── */
+    const spinStyle = document.createElement('style');
+    spinStyle.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+    document.head.appendChild(spinStyle);
+
+    /* ─── INITIAL LOAD ───────────────────────────── */
+    function init() {
+      // Remove no-js class so pages become visible
+      document.body.classList.remove('no-js');
+
+      // Check hash on load
+      const hash = window.location.hash.replace('#', '');
+      const initPage = PAGES.includes(hash) ? hash : 'home';
+
+      // Set up initial state
+      window.history.replaceState({ page: initPage }, '', '#' + initPage);
+      navigateTo(initPage);
+    }
+
+    // Wait for full DOM before initialising (prevents blank page on direct open)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+  })();
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICE DETAIL MODAL — body-level so
+       position:fixed works in ALL browsers
+       (parent transform animation would break it)
+  ═══════════════════════════════════════════ -->
+  <div class="svc-modal-overlay" id="svcModalOverlay">
+    <div class="svc-modal" id="svcModal">
+      <button class="svc-modal-close" id="svcModalClose" aria-label="Close"><i class="ph ph-x"></i></button>
+      <div class="svc-modal-icon" id="svcModalIcon"></div>
+      <h3 id="svcModalTitle"></h3>
+      <p class="modal-desc" id="svcModalDesc"></p>
+      <div class="svc-modal-points" id="svcModalPoints"></div>
+      <a href="#" data-page="contact" class="btn btn-purple" style="width:100%;justify-content:center;margin-top:4px;">
+        Book a Consultation <i class="ph ph-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
