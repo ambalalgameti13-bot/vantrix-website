@@ -1119,62 +1119,222 @@
     /* ═══════════════════════════════════════════════════
        PAGE 5: BLOG
     ═══════════════════════════════════════════════════ */
-    .blog-page { background: var(--off-white); }
+    /* ═══════════════════════════════════════════════════
+       BLOG — PREMIUM MAGAZINE STYLE
+    ═══════════════════════════════════════════════════ */
+    .blog-page { background: #F7F8FC; }
+
+    /* Magazine masthead bar */
+    .blog-masthead {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 0 28px;
+      border-bottom: 3px solid var(--navy);
+      margin-bottom: 48px;
+    }
+    .blog-masthead-left { display:flex; flex-direction:column; gap:4px; }
+    .blog-edition {
+      font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--text-muted); font-weight:600;
+    }
+    .blog-masthead-title {
+      font-family:'Outfit',sans-serif; font-size:2rem; font-weight:900;
+      color:var(--navy); letter-spacing:-.04em; line-height:1;
+    }
+    .blog-masthead-rule {
+      flex:1; height:1px; background:rgba(7,21,38,.08);
+      margin: 0 24px;
+    }
+    .blog-masthead-date {
+      font-size:.78rem; color:var(--text-muted); font-weight:500;
+      white-space:nowrap;
+    }
+
+    /* Featured — full-bleed editorial hero */
+    .blog-featured-mag {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 0; border-radius: var(--r-lg);
+      overflow: hidden; margin-bottom: 56px;
+      box-shadow: 0 24px 64px rgba(7,21,38,.13);
+      border: 1px solid rgba(7,21,38,.06);
+    }
+    .blog-feat-visual {
+      position: relative; min-height: 400px;
+      overflow: hidden;
+    }
+    .blog-feat-visual img {
+      width:100%; height:100%; object-fit:cover;
+      display:block; transition: transform 1.2s cubic-bezier(.25,.8,.25,1);
+    }
+    .blog-feat-visual:hover img { transform: scale(1.04); }
+    .blog-feat-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(160deg, rgba(7,21,38,.28) 0%, rgba(7,21,38,.55) 100%);
+    }
+    .blog-feat-kicker {
+      position:absolute; top:24px; left:24px;
+      background: var(--gold); color:var(--navy);
+      font-size:.68rem; font-weight:800; letter-spacing:.14em;
+      text-transform:uppercase; padding:5px 14px;
+      border-radius:var(--r-pill);
+    }
+    .blog-feat-body {
+      background: var(--white);
+      padding: 52px 44px;
+      display: flex; flex-direction:column; justify-content:center;
+      position:relative;
+    }
+    .blog-feat-body::before {
+      content:''; position:absolute; top:0; left:0;
+      width:4px; height:100%;
+      background: linear-gradient(180deg, var(--gold) 0%, var(--purple) 100%);
+    }
+    .blog-feat-eyebrow {
+      font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--purple); font-weight:700; margin-bottom:16px;
+    }
+    .blog-feat-body h3 {
+      font-family:'Outfit',sans-serif; font-weight:900;
+      font-size:1.7rem; color:var(--navy); line-height:1.25;
+      margin-bottom:18px; letter-spacing:-.025em;
+    }
+    .blog-feat-body p {
+      font-size:.95rem; color:#4A5568; line-height:1.75;
+      margin-bottom:28px; flex:1;
+    }
+    .blog-feat-meta {
+      display:flex; align-items:center; gap:18px;
+      font-size:.78rem; color:var(--text-muted);
+      padding-top:20px; border-top:1px solid rgba(0,0,0,.07);
+      margin-bottom:24px;
+    }
+    .blog-feat-meta span { display:flex; align-items:center; gap:5px; }
+    .blog-feat-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--navy); color:var(--white);
+      font-weight:700; font-size:.88rem;
+      padding: 13px 26px; border-radius: var(--r-pill);
+      text-decoration:none; width:fit-content;
+      transition: all .3s var(--ease);
+    }
+    .blog-feat-cta:hover {
+      background: var(--purple); transform:translateX(4px);
+    }
+    .blog-feat-cta i { transition: transform .3s; }
+    .blog-feat-cta:hover i { transform:translateX(4px); }
+
+    /* Section label — magazine-style */
+    .mag-section-label {
+      display:flex; align-items:center; gap:14px; margin-bottom:28px;
+    }
+    .mag-section-label-text {
+      font-size:.68rem; font-weight:800; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--navy); white-space:nowrap;
+    }
+    .mag-section-label-line {
+      flex:1; height:1px; background:rgba(7,21,38,.12);
+    }
+
+    /* Card grid */
     .blog-grid-lg {
       display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
     }
     .blog-card {
       background: var(--white); border-radius: var(--r-md);
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      transition: all .4s var(--ease); border: 1px solid rgba(0,0,0,.04);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(7,21,38,.06), 0 1px 3px rgba(7,21,38,.04);
+      transition: all .4s var(--ease);
+      border: 1px solid rgba(7,21,38,.055);
       display: flex; flex-direction: column;
+      cursor:pointer;
     }
-    .blog-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(7,21,38,.12), 0 4px 12px rgba(7,21,38,.06);
+    }
+
+    /* Thumb — real image with overlay */
     .blog-thumb {
-      width: 100%; height: 210px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 56px; color: rgba(255,255,255,.4);
+      width: 100%; height: 220px;
       position: relative; overflow: hidden;
+      background: var(--navy-mid);
     }
-    .blog-thumb-1 { background: linear-gradient(135deg, #1a1660, #3344aa); }
-    .blog-thumb-2 { background: linear-gradient(135deg, #0a2a52, #1e6a8a); }
-    .blog-thumb-3 { background: linear-gradient(135deg, #15114a, #5a46b5); }
+    .blog-thumb img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition: transform .8s cubic-bezier(.25,.8,.25,1);
+    }
+    .blog-card:hover .blog-thumb img { transform: scale(1.07); }
+    .blog-thumb-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(7,21,38,.55) 0%, rgba(7,21,38,.05) 60%);
+    }
+    .blog-thumb-fallback {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      font-size: 48px; color:rgba(255,255,255,.3);
+    }
+    .blog-thumb-1 { background: linear-gradient(135deg, #0f1f5c, #2a47b5); }
+    .blog-thumb-2 { background: linear-gradient(135deg, #072140, #0f5a7a); }
+    .blog-thumb-3 { background: linear-gradient(135deg, #100d42, #4a3ba0); }
+
+    /* Category pill — on image */
     .blog-cat {
       position: absolute; top: 16px; left: 16px;
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-      border-radius: var(--r-pill); padding: 4px 14px;
-      font-size:.75rem; font-weight:600; color:rgba(255,255,255,.9);
+      background: var(--white);
+      border-radius: var(--r-pill); padding: 4px 13px;
+      font-size:.68rem; font-weight:800;
+      color:var(--navy); letter-spacing:.06em; text-transform:uppercase;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
     }
-    .blog-body { padding: 26px 24px; flex:1; display:flex; flex-direction:column; }
+
+    /* Read time — on image bottom right */
+    .blog-read-badge {
+      position:absolute; bottom:14px; right:16px;
+      background:rgba(0,0,0,.48); backdrop-filter:blur(4px);
+      border-radius:var(--r-pill); padding:3px 11px;
+      font-size:.7rem; color:rgba(255,255,255,.9); font-weight:500;
+      display:flex; align-items:center; gap:4px;
+    }
+
+    /* Card body */
+    .blog-body {
+      padding: 26px 26px 24px; flex:1; display:flex; flex-direction:column;
+      position:relative;
+    }
     .blog-meta {
       display:flex; align-items:center; gap:10px;
-      font-size:.78rem; color:var(--text-muted); margin-bottom:12px;
+      font-size:.74rem; color:var(--text-muted); margin-bottom:13px;
     }
     .blog-meta span { display:flex; align-items:center; gap:4px; }
-    .blog-card h4 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.15rem; color:var(--navy); margin-bottom:10px; line-height:1.4; }
-    .blog-excerpt { font-size:.9rem; color:var(--text-muted); flex:1; margin-bottom:20px; }
+    .blog-card h4 {
+      font-family:'Outfit',sans-serif; font-weight:800; font-size:1.08rem;
+      color:var(--navy); margin-bottom:10px; line-height:1.42;
+      letter-spacing:-.01em;
+    }
+    .blog-excerpt {
+      font-size:.875rem; color:#5E7090; flex:1; margin-bottom:20px;
+      line-height:1.65;
+    }
+    .blog-card-footer {
+      display:flex; align-items:center; justify-content:space-between;
+      padding-top:16px; border-top:1px solid rgba(7,21,38,.06);
+    }
+    .blog-author-chip {
+      display:flex; align-items:center; gap:7px;
+    }
+    .blog-author-avatar {
+      width:26px; height:26px; border-radius:50%;
+      background: linear-gradient(135deg,var(--purple),var(--accent-blue));
+      display:flex; align-items:center; justify-content:center;
+      font-size:.65rem; color:white; font-weight:700;
+    }
+    .blog-author-name { font-size:.75rem; color:var(--text-muted); font-weight:500; }
     .blog-read-more {
-      display: inline-flex; align-items:center; gap:6px;
-      color:var(--purple); font-weight:700; font-size:.9rem; transition: gap .3s;
+      display: inline-flex; align-items:center; gap:5px;
+      color:var(--purple); font-weight:700; font-size:.82rem;
+      text-decoration:none; transition: gap .25s, color .2s;
     }
-    .blog-card:hover .blog-read-more { gap: 10px; }
-
-    /* Featured post */
-    .blog-featured {
-      background: var(--white); border-radius: var(--r-lg);
-      overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 40px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      border: 1px solid rgba(0,0,0,.04);
-    }
-    .blog-featured-thumb {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-      min-height: 320px; display: flex; align-items: center; justify-content: center;
-      font-size: 80px; color: rgba(255,255,255,.25); position: relative;
-    }
-    .blog-featured-body { padding: 48px 40px; display:flex; flex-direction:column; justify-content:center; }
-    .blog-featured-body .tag { margin-bottom:16px; }
-    .blog-featured-body h3 { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.8rem; color:var(--navy); margin-bottom:16px; line-height:1.3; }
-    .blog-featured-body p { color:var(--text-muted); margin-bottom:28px; }
+    .blog-read-more i { font-size:.9em; transition: transform .25s; }
+    .blog-card:hover .blog-read-more { gap:8px; color:var(--accent-blue); }
+    .blog-card:hover .blog-read-more i { transform:translateX(3px); }
 
     /* ═══════════════════════════════════════════════════
        PAGE 6: CONTACT
@@ -1316,8 +1476,10 @@
       .stat-block { border-bottom: 1px solid rgba(255,255,255,.08); border-right:none; }
       .stats-row .stat-block:nth-child(even){ border-right: none }
       .stats-row .stat-block:nth-child(odd){ border-right: 1px solid rgba(255,255,255,.08); }
-      .blog-featured { grid-template-columns:1fr; }
-      .blog-featured-thumb { min-height:220px; }
+      .blog-featured-mag { grid-template-columns:1fr; }
+      .blog-feat-visual { min-height:240px; }
+      .blog-feat-body { padding:32px 28px; }
+      .blog-feat-body h3 { font-size:1.35rem; }
       .ai-how-grid { grid-template-columns:1fr; }
       .contact-wrap { grid-template-columns:1fr; }
       .footer-grid { grid-template-columns:1fr 1fr; }
@@ -1342,64 +1504,6 @@
       .about-float-card { position:static; margin-top:16px; }
     }
   </style>
-
-<style>
-.blog-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.blog-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-.blog-card-image {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    overflow: hidden;
-    background: #1a1a2e;
-}
-.blog-card-image img {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.blog-card:hover .blog-card-image img { transform: scale(1.05); }
-.blog-category-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: rgba(14,41,86,0.9); backdrop-filter: blur(8px);
-    color: #f59e0b; padding: 6px 14px; border-radius: 20px;
-    font-size: 0.75em; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.5px; border: 1px solid rgba(245,158,11,0.3);
-}
-.blog-card-content {
-    padding: 20px 24px 24px;
-    display: flex; flex-direction: column; flex: 1;
-}
-.blog-card-meta {
-    display: flex; gap: 16px; margin-bottom: 12px;
-    font-size: 0.8em; color: #94a3b8; align-items: center;
-}
-.blog-date, .blog-read-time { display: flex; align-items: center; color: #94a3b8; }
-.blog-card-title { margin: 0 0 10px; font-size: 1.15em; font-weight: 700; line-height: 1.4; }
-.blog-card-title a { color: #e2e8f0; text-decoration: none; }
-.blog-card-title a:hover { color: #f59e0b; }
-.blog-card-excerpt { color: #94a3b8; font-size: 0.9em; line-height: 1.6; margin-bottom: 16px; flex: 1; }
-.blog-read-more {
-    display: inline-flex; align-items: center;
-    color: #60a5fa; text-decoration: none;
-    font-size: 0.9em; font-weight: 600;
-    margin-top: auto; padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-}
-.blog-read-more:hover { color: #f59e0b; }
-@media(max-width:640px){.blog-card-content{padding:16px 20px 20px;}}
-</style>
-
 </head>
 <body class="no-js">
 
@@ -2635,216 +2739,145 @@
   <div id="page-blog" class="page">
     <div class="page-hero">
       <div class="container">
-        <span class="tag light"><i class="ph ph-article"></i> Insights & Resources</span>
+        <span class="tag light"><i class="ph ph-newspaper"></i> Insights & Resources</span>
         <h1>Insights & Knowledge Hub</h1>
         <p>Strategies, trends, and case studies mapping the future of intelligent enterprise outsourcing.</p>
       </div>
     </div>
     <div class="page-wave">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F4F6FB"/>
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F7F8FC"/>
       </svg>
     </div>
 
     <section class="section blog-page">
       <div class="container">
-        <!-- Featured Post -->
-        <div class="section-header reveal" style="margin-bottom:32px;">
-          <span class="tag">Featured Article</span>
-          <h2 class="section-title">Editor's Pick</h2>
+
+        <!-- Magazine Masthead -->
+        <div class="blog-masthead reveal">
+          <div class="blog-masthead-left">
+            <span class="blog-edition">Vantrix Global · Insights Edition</span>
+            <span class="blog-masthead-title">THE INTELLIGENCE BRIEF</span>
+          </div>
+          <div class="blog-masthead-rule"></div>
+          <span class="blog-masthead-date" id="blog-today-date"></span>
         </div>
-        <div class="blog-featured reveal">
-          <div class="blog-featured-thumb"><i class="ph ph-robot"></i><span class="blog-cat">AI & Technology</span></div>
-          <div class="blog-featured-body">
-            <span class="tag">Featured</span>
+        <script>
+          document.getElementById('blog-today-date').textContent =
+            new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+        </script>
+
+        <!-- Featured Article — Editorial Hero -->
+        <div class="blog-featured-mag reveal">
+          <div class="blog-feat-visual">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&auto=format&fit=crop"
+                 alt="AI reshaping customer support"
+                 onerror="this.style.display='none'">
+            <div class="blog-feat-overlay"></div>
+            <span class="blog-feat-kicker">&#9733; Editor's Pick</span>
+          </div>
+          <div class="blog-feat-body">
+            <span class="blog-feat-eyebrow">AI &amp; Technology</span>
             <h3>How AI is Reshaping Customer Support in 2026 — And What It Means for Your Business</h3>
-            <p>An inside look at how large-language models, real-time sentiment AI, and autonomous RPA bots are dramatically transforming modern contact centres and business process outsourcing globally.</p>
-            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:.85rem;color:var(--text-muted);">
-              <span style="display:flex;align-items:center;gap:5px;"><i class="ph ph-calendar-blank"></i> April 5, 2026</span>
-              <span style="display:flex;align-items:center;gap:5px;"><i class="ph ph-clock"></i> 8 min read</span>
+            <p>Large-language models, real-time sentiment AI, and autonomous RPA bots are fundamentally transforming modern contact centres. Here's the inside story and what smart leaders are doing now.</p>
+            <div class="blog-feat-meta">
+              <span><i class="ph ph-calendar-blank"></i> April 5, 2026</span>
+              <span><i class="ph ph-clock"></i> 8 min read</span>
+              <span><i class="ph ph-user"></i> Vantrix Team</span>
             </div>
-            <a href="#" class="btn btn-purple">Read Full Article <i class="ph ph-arrow-right"></i></a>
+            <a href="#" class="blog-feat-cta">Read Full Article <i class="ph ph-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Blog Grid -->
-        <div class="section-header reveal" style="margin-top:64px;margin-bottom:32px;">
-          <span class="tag">Latest Posts</span>
-          <h2 class="section-title">Recent Articles</h2>
+        <!-- Recent Articles -->
+        <div class="mag-section-label reveal">
+          <span class="mag-section-label-text">Recent Articles</span>
+          <div class="mag-section-label-line"></div>
         </div>
-        <div class="blog-grid-lg">
 
-                                <article class="blog-card">
-                                    <div class="blog-card-img">
-                                        <img src="https://images.unsplash.com/photo-1608920585318-b4895fcd2e55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMzMzB8MHwxfHNlYXJjaHwyfHxGYWxjb24lMjBIZWF2eSUyMGxhdW5jaCUyMFNwYWNlWCUyMHJvY2tldCUyMGxpZnRvZmZ8ZW58MHwwfHx8MTc3NzgxNzAwM3ww&ixlib=rb-4.1.0&q=80&w=1080&w=1200&h=630&fit=crop" alt="Rocket Report: Falcon Heavy Roars Back, Soyuz-5 Finally Flies—What It Means for Space 2025" loading="lazy">
-                                        <span class="blog-category">Technology</span>
-                                    </div>
-                                    <div class="blog-card-body">
-                                        <span class="blog-date">May 03, 2026</span>
-                                        <h3>Rocket Report: Falcon Heavy Roars Back, Soyuz-5 Finally Flies—What It Means for Space 2025</h3>
-                                        <p>Falcon Heavy is back in action, Russia's Soyuz-5 finally takes flight, and Virgin Galactic moves closer to suborbital to...</p>
-                                        <a href="/blog/rocket-report-falcon-heavy-roars-back-soyuz-5-finally-flies-what-it-me.html" class="blog-link">Read More →</a>
-                                    </div>
-                                </article>
-
-                                <article class="blog-card">
-                                    <div class="blog-card-image">
-                                        <img src="https://picsum.photos/seed/195/800/400" alt="Trump Pivots to Fox News Doctor for Surgeon General After Tensions Sink First Pick" loading="lazy">
-                                        <span class="blog-category-badge">Politics</span>
-                                    </div>
-                                    <div class="blog-card-content">
-                                        <div class="blog-card-meta">
-                                            <span class="blog-date">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                                May 03, 2026
-                                            </span>
-                                        </div>
-                                        <h3 class="blog-card-title"><a href="/blog/trump-pivots-to-fox-news-doctor-for-surgeon-general-after-tensions-sin.html">Trump Pivots to Fox News Doctor for Surgeon General After Tensions Sink First Pick</a></h3>
-                                        <p class="blog-card-excerpt">President Trump abandoned his first surgeon general pick, Casey Means, after Senate resistance, then quickly nominated F...</p>
-                                        <a href="/blog/trump-pivots-to-fox-news-doctor-for-surgeon-general-after-tensions-sin.html" class="blog-read-more">Read More →</a>
-                                    </div>
-                                </article>
+        <div class="blog-grid-lg" id="dynamic-blog-grid">
+          <!-- Card 1 -->
           <div class="blog-card reveal delay-1">
-            <!-- Rich SVG thumbnail: Strategy/growth theme -->
-            <div class="blog-thumb blog-thumb-1" style="position:relative;overflow:hidden;">
-              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="gb1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#1a1660"/>
-                    <stop offset="100%" stop-color="#3344aa"/>
-                  </linearGradient>
-                  <linearGradient id="gb1l" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#E6C97A"/>
-                    <stop offset="100%" stop-color="rgba(230,201,122,0)"/>
-                  </linearGradient>
-                </defs>
-                <rect width="420" height="210" fill="url(#gb1)"/>
-                <polyline points="30,170 80,140 130,145 180,110 230,90 290,60 370,30" fill="none" stroke="#E6C97A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <polygon points="30,170 80,140 130,145 180,110 230,90 290,60 370,30 370,210 30,210" fill="url(#gb1l)" opacity=".25"/>
-                <circle cx="80" cy="140" r="5" fill="#E6C97A"/>
-                <circle cx="180" cy="110" r="5" fill="#E6C97A"/>
-                <circle cx="290" cy="60" r="5" fill="#E6C97A"/>
-                <circle cx="370" cy="30" r="7" fill="#E6C97A" opacity=".9"/>
-                <rect x="40" y="185" width="22" height="10" rx="3" fill="rgba(90,82,197,.6)"/>
-                <rect x="70" y="180" width="22" height="15" rx="3" fill="rgba(90,82,197,.6)"/>
-                <rect x="100" y="175" width="22" height="20" rx="3" fill="rgba(90,82,197,.8)"/>
-                <text x="20" y="25" font-size="11" fill="rgba(255,255,255,.55)" font-family="sans-serif" font-weight="700">BPO COST ANALYSIS</text>
-              </svg>
+            <div class="blog-thumb blog-thumb-1">
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=75&auto=format&fit=crop"
+                   alt="Scaling operations" loading="lazy"
+                   onerror="this.parentElement.querySelector('.blog-thumb-fallback').style.display='flex';this.style.display='none'">
+              <div class="blog-thumb-overlay"></div>
+              <div class="blog-thumb-fallback" style="display:none;position:absolute;inset:0;"><i class="ph ph-chart-line-up"></i></div>
               <span class="blog-cat">Strategy</span>
+              <span class="blog-read-badge"><i class="ph ph-clock"></i> 6 min</span>
             </div>
             <div class="blog-body">
               <div class="blog-meta">
                 <span><i class="ph ph-calendar-blank"></i> March 28, 2026</span>
-                <span>·</span>
-                <span><i class="ph ph-clock"></i> 6 min read</span>
               </div>
               <h4>Scaling Your Operations: In-House vs. Outsourced — A 2026 Cost-Benefit Analysis</h4>
               <p class="blog-excerpt">A data-driven comparison for Series A/B startups planning sustainable growth without burning through runway.</p>
-              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              <div class="blog-card-footer">
+                <div class="blog-author-chip">
+                  <div class="blog-author-avatar">VG</div>
+                  <span class="blog-author-name">Vantrix Global</span>
+                </div>
+                <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              </div>
             </div>
           </div>
+
+          <!-- Card 2 -->
           <div class="blog-card reveal delay-2">
-            <!-- Rich SVG thumbnail: Security lock/shield theme -->
-            <div class="blog-thumb blog-thumb-2" style="position:relative;overflow:hidden;">
-              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="gb2" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#0a2a52"/>
-                    <stop offset="100%" stop-color="#1e6a8a"/>
-                  </linearGradient>
-                  <linearGradient id="gb2s" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#3B82F6"/>
-                    <stop offset="100%" stop-color="#5A52C5"/>
-                  </linearGradient>
-                </defs>
-                <rect width="420" height="210" fill="url(#gb2)"/>
-                <!-- Shield shape -->
-                <path d="M210,30 L260,55 L260,115 Q260,150 210,170 Q160,150 160,115 L160,55 Z" fill="url(#gb2s)" opacity=".85"/>
-                <!-- Lock body -->
-                <rect x="196" y="105" width="28" height="22" rx="5" fill="rgba(255,255,255,.9)"/>
-                <!-- Lock shackle -->
-                <path d="M200,105 L200,97 Q200,88 210,88 Q220,88 220,97 L220,105" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="3" stroke-linecap="round"/>
-                <!-- Keyhole -->
-                <circle cx="210" cy="113" r="4" fill="#0a2a52"/>
-                <rect x="208" y="113" width="4" height="7" rx="1" fill="#0a2a52"/>
-                <!-- Dots =encryption effect -->
-                <circle cx="80" cy="60" r="3" fill="rgba(59,130,246,.6)"/>
-                <circle cx="120" cy="40" r="3" fill="rgba(59,130,246,.4)"/>
-                <circle cx="340" cy="70" r="3" fill="rgba(59,130,246,.6)"/>
-                <circle cx="370" cy="45" r="3" fill="rgba(59,130,246,.4)"/>
-                <circle cx="60" cy="150" r="3" fill="rgba(90,82,197,.5)"/>
-                <circle cx="360" cy="160" r="3" fill="rgba(90,82,197,.5)"/>
-                <!-- Connecting lines suggestion -->
-                <line x1="80" y1="60" x2="160" y2="90" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3,3"/>
-                <line x1="340" y1="70" x2="260" y2="90" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3,3"/>
-                <text x="20" y="200" font-size="11" fill="rgba(255,255,255,.4)" font-family="sans-serif" font-weight="700">DATA SECURITY FRAMEWORK</text>
-              </svg>
+            <div class="blog-thumb blog-thumb-2">
+              <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=75&auto=format&fit=crop"
+                   alt="Data security" loading="lazy"
+                   onerror="this.parentElement.querySelector('.blog-thumb-fallback').style.display='flex';this.style.display='none'">
+              <div class="blog-thumb-overlay"></div>
+              <div class="blog-thumb-fallback" style="display:none;position:absolute;inset:0;"><i class="ph ph-shield-check"></i></div>
               <span class="blog-cat">Security</span>
+              <span class="blog-read-badge"><i class="ph ph-clock"></i> 5 min</span>
             </div>
             <div class="blog-body">
               <div class="blog-meta">
                 <span><i class="ph ph-calendar-blank"></i> March 15, 2026</span>
-                <span>·</span>
-                <span><i class="ph ph-clock"></i> 5 min read</span>
               </div>
               <h4>Mastering Data Security in BPO Partnerships: What Every Enterprise Must Demand</h4>
               <p class="blog-excerpt">Critical frameworks, contractual safeguards, and technical standards your outsourcing vendor must meet in 2026.</p>
-              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              <div class="blog-card-footer">
+                <div class="blog-author-chip">
+                  <div class="blog-author-avatar">VG</div>
+                  <span class="blog-author-name">Vantrix Global</span>
+                </div>
+                <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              </div>
             </div>
           </div>
+
+          <!-- Card 3 -->
           <div class="blog-card reveal delay-3">
-            <!-- Rich SVG thumbnail: Automation/RPA theme -->
-            <div class="blog-thumb blog-thumb-3" style="position:relative;overflow:hidden;">
-              <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="gb3" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#15114a"/>
-                    <stop offset="100%" stop-color="#5a46b5"/>
-                  </linearGradient>
-                  <linearGradient id="gb3b" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#C9A84C"/>
-                    <stop offset="100%" stop-color="#E6C97A"/>
-                  </linearGradient>
-                </defs>
-                <rect width="420" height="210" fill="url(#gb3)"/>
-                <!-- Gear large -->
-                <circle cx="210" cy="105" r="42" fill="none" stroke="rgba(90,82,197,.5)" stroke-width="8"/>
-                <circle cx="210" cy="105" r="22" fill="rgba(90,82,197,.3)" stroke="rgba(90,82,197,.5)" stroke-width="4"/>
-                <!-- Gear teeth suggestion -->
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(0 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(45 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(90 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(135 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(180 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(225 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(270 210 105)"/>
-                <rect x="205" y="55" width="10" height="14" rx="3" fill="rgba(90,82,197,.6)" transform="rotate(315 210 105)"/>
-                <!-- Lightning bolt -->
-                <polygon points="215,82 205,108 213,108 207,130 220,104 211,104" fill="url(#gb3b)"/>
-                <!-- Small gear -->
-                <circle cx="310" cy="60" r="20" fill="none" stroke="rgba(201,168,76,.4)" stroke-width="5"/>
-                <circle cx="310" cy="60" r="10" fill="rgba(201,168,76,.2)"/>
-                <!-- Progress bars -->
-                <rect x="30" y="165" width="80" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
-                <rect x="30" y="165" width="68" height="8" rx="4" fill="url(#gb3b)" opacity=".7"/>
-                <rect x="30" y="182" width="80" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
-                <rect x="30" y="182" width="50" height="8" rx="4" fill="rgba(90,82,197,.7)"/>
-                <text x="20" y="155" font-size="11" fill="rgba(255,255,255,.4)" font-family="sans-serif" font-weight="700">AUTOMATION RATE</text>
-              </svg>
+            <div class="blog-thumb blog-thumb-3">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=75&auto=format&fit=crop"
+                   alt="RPA automation" loading="lazy"
+                   onerror="this.parentElement.querySelector('.blog-thumb-fallback').style.display='flex';this.style.display='none'">
+              <div class="blog-thumb-overlay"></div>
+              <div class="blog-thumb-fallback" style="display:none;position:absolute;inset:0;"><i class="ph ph-gear"></i></div>
               <span class="blog-cat">Automation</span>
+              <span class="blog-read-badge"><i class="ph ph-clock"></i> 7 min</span>
             </div>
             <div class="blog-body">
               <div class="blog-meta">
                 <span><i class="ph ph-calendar-blank"></i> March 4, 2026</span>
-                <span>·</span>
-                <span><i class="ph ph-clock"></i> 7 min read</span>
               </div>
-              <h4>RPA in Finance & Accounting: How Automation Eliminates Manual Errors and Cuts Costs by 40%</h4>
-              <p class="blog-excerpt">Real case studies showing how robotic process automation is revolutionising F&A outsourcing in growing enterprises.</p>
-              <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              <h4>RPA in Finance &amp; Accounting: How Automation Eliminates Manual Errors and Cuts Costs by 40%</h4>
+              <p class="blog-excerpt">Real case studies showing how robotic process automation is revolutionising F&amp;A outsourcing in growing enterprises.</p>
+              <div class="blog-card-footer">
+                <div class="blog-author-chip">
+                  <div class="blog-author-avatar">VG</div>
+                  <span class="blog-author-name">Vantrix Global</span>
+                </div>
+                <a href="#" class="blog-read-more">Read More <i class="ph ph-arrow-right"></i></a>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
