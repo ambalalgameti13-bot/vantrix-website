@@ -1342,6 +1342,64 @@
       .about-float-card { position:static; margin-top:16px; }
     }
   </style>
+
+<style>
+.blog-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.blog-card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background: #1a1a2e;
+}
+.blog-card-image img {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.blog-card:hover .blog-card-image img { transform: scale(1.05); }
+.blog-category-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(14,41,86,0.9); backdrop-filter: blur(8px);
+    color: #f59e0b; padding: 6px 14px; border-radius: 20px;
+    font-size: 0.75em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; border: 1px solid rgba(245,158,11,0.3);
+}
+.blog-card-content {
+    padding: 20px 24px 24px;
+    display: flex; flex-direction: column; flex: 1;
+}
+.blog-card-meta {
+    display: flex; gap: 16px; margin-bottom: 12px;
+    font-size: 0.8em; color: #94a3b8; align-items: center;
+}
+.blog-date, .blog-read-time { display: flex; align-items: center; color: #94a3b8; }
+.blog-card-title { margin: 0 0 10px; font-size: 1.15em; font-weight: 700; line-height: 1.4; }
+.blog-card-title a { color: #e2e8f0; text-decoration: none; }
+.blog-card-title a:hover { color: #f59e0b; }
+.blog-card-excerpt { color: #94a3b8; font-size: 0.9em; line-height: 1.6; margin-bottom: 16px; flex: 1; }
+.blog-read-more {
+    display: inline-flex; align-items: center;
+    color: #60a5fa; text-decoration: none;
+    font-size: 0.9em; font-weight: 600;
+    margin-top: auto; padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.blog-read-more:hover { color: #f59e0b; }
+@media(max-width:640px){.blog-card-content{padding:16px 20px 20px;}}
+</style>
+
 </head>
 <body class="no-js">
 
@@ -2615,6 +2673,24 @@
           <h2 class="section-title">Recent Articles</h2>
         </div>
         <div class="blog-grid-lg">
+
+                                <article class="blog-card">
+                                    <div class="blog-card-image">
+                                        <img src="https://picsum.photos/seed/195/800/400" alt="Trump Pivots to Fox News Doctor for Surgeon General After Tensions Sink First Pick" loading="lazy">
+                                        <span class="blog-category-badge">Politics</span>
+                                    </div>
+                                    <div class="blog-card-content">
+                                        <div class="blog-card-meta">
+                                            <span class="blog-date">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                                May 03, 2026
+                                            </span>
+                                        </div>
+                                        <h3 class="blog-card-title"><a href="/blog/trump-pivots-to-fox-news-doctor-for-surgeon-general-after-tensions-sin.html">Trump Pivots to Fox News Doctor for Surgeon General After Tensions Sink First Pick</a></h3>
+                                        <p class="blog-card-excerpt">President Trump abandoned his first surgeon general pick, Casey Means, after Senate resistance, then quickly nominated F...</p>
+                                        <a href="/blog/trump-pivots-to-fox-news-doctor-for-surgeon-general-after-tensions-sin.html" class="blog-read-more">Read More →</a>
+                                    </div>
+                                </article>
           <div class="blog-card reveal delay-1">
             <!-- Rich SVG thumbnail: Strategy/growth theme -->
             <div class="blog-thumb blog-thumb-1" style="position:relative;overflow:hidden;">
