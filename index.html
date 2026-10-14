@@ -1341,9 +1341,403 @@
       .team-grid { grid-template-columns:1fr; }
       .about-float-card { position:static; margin-top:16px; }
     }
+    /* ═══════════════════════════════════════════════════
+       UPGRADED ENTERPRISE FEATURES CSS
+    ═══════════════════════════════════════════════════ */
+    /* 1. Live Operations Time Bar */
+    .ops-time-bar {
+      background: rgba(7, 21, 38, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 8px 0;
+      position: relative;
+      z-index: 950;
+    }
+    .ops-time-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ops-clocks {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ops-clock-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ops-clock-val {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .ops-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(94, 203, 143, 0.15);
+      color: #5ECB8F;
+      padding: 3px 12px;
+      border-radius: var(--r-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .ops-pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #5ECB8F;
+      box-shadow: 0 0 8px #5ECB8F;
+      animation: pulseGreen 1.8s infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* 2. Interactive Cost Savings Calculator */
+    .roi-calc-section {
+      background: var(--white);
+      padding-block: 96px;
+      position: relative;
+    }
+    .roi-calc-card {
+      background: linear-gradient(145deg, #071526, #0D2240);
+      border-radius: var(--r-lg);
+      padding: 48px 40px;
+      color: var(--white);
+      box-shadow: 0 20px 60px rgba(7, 21, 38, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .roi-calc-card { grid-template-columns: 1fr; padding: 32px 24px; }
+    }
+    .calc-slider-wrap {
+      margin-block: 24px;
+    }
+    .calc-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .calc-slider-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .calc-slider-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+    .calc-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 14px rgba(201, 168, 76, 0.8);
+      cursor: pointer;
+      border: 2px solid #fff;
+    }
+    .calc-select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--r-sm);
+      color: var(--white);
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      outline: none;
+      margin-bottom: 20px;
+    }
+    .calc-select option {
+      background: #0A2040;
+      color: #fff;
+    }
+    .roi-output-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r-md);
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .roi-output-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .roi-savings-badge {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 8px;
+    }
+    .roi-savings-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .roi-percent-tag {
+      display: inline-block;
+      background: rgba(94, 203, 143, 0.2);
+      color: #5ECB8F;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 4px 14px;
+      border-radius: var(--r-pill);
+      margin-bottom: 22px;
+    }
+    .roi-breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .roi-bd-item label {
+      display: block;
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .roi-bd-item span {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    /* 3. Case Studies Section */
+    .case-studies-section {
+      background: var(--off-white);
+      padding-block: 96px;
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 900px) {
+      .case-grid { grid-template-columns: 1fr; }
+    }
+    .case-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(7, 21, 38, 0.06);
+      border: 1px solid rgba(90, 82, 197, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s var(--ease);
+    }
+    .case-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(7, 21, 38, 0.12);
+      border-color: rgba(90, 82, 197, 0.25);
+    }
+    .case-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--purple);
+      background: rgba(90, 82, 197, 0.1);
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+      align-self: flex-start;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .case-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .case-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .case-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: var(--off-white);
+      border-radius: var(--r-sm);
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .case-metric-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+    }
+    .case-metric-lbl {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* 4. Enterprise Security Architecture Grid */
+    .sec-trust-bar {
+      background: var(--navy);
+      padding-block: 70px;
+      color: #fff;
+    }
+    .sec-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .sec-trust-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .sec-trust-grid { grid-template-columns: 1fr; }
+    }
+    .sec-trust-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--r-md);
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .sec-trust-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(201, 168, 76, 0.3);
+      transform: translateY(-4px);
+    }
+    .sec-trust-icon {
+      font-size: 28px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .sec-trust-item h5 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .sec-trust-item p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.5;
+    }
+
+    /* 5. Floating WhatsApp Button */
+    .wa-float-btn {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff !important;
+      padding: 12px 20px 12px 16px;
+      border-radius: var(--r-pill);
+      box-shadow: 0 8px 30px rgba(18, 140, 126, 0.4);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all 0.35s cubic-bezier(.25, .8, .25, 1);
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+    .wa-float-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 40px rgba(18, 140, 126, 0.6);
+    }
+    .wa-icon-circle {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    @media (max-width: 600px) {
+      .wa-float-btn span { display: none; }
+      .wa-float-btn { padding: 14px; border-radius: 50%; bottom: 20px; right: 20px; }
+      .wa-icon-circle { width: auto; height: auto; background: none; font-size: 24px; }
+    }
   </style>
 </head>
 <body class="no-js">
+
+  <!-- ═══════════════════
+       LIVE OPERATIONS TIME BAR
+  ═══════════════════ -->
+  <div class="ops-time-bar">
+    <div class="container ops-time-inner">
+      <div class="ops-live-pill">
+        <span class="ops-pulse-dot"></span>
+        <span>24/7 Global Ops Active</span>
+      </div>
+      <div class="ops-clocks">
+        <div class="ops-clock-item">
+          <span>New York:</span>
+          <span class="ops-clock-val" id="clock-ny">--:-- --</span>
+        </div>
+        <div class="ops-clock-item">
+          <span>London:</span>
+          <span class="ops-clock-val" id="clock-lon">--:-- --</span>
+        </div>
+        <div class="ops-clock-item">
+          <span>Dubai:</span>
+          <span class="ops-clock-val" id="clock-dxb">--:-- --</span>
+        </div>
+        <div class="ops-clock-item">
+          <span>India HQ:</span>
+          <span class="ops-clock-val" id="clock-ist">--:-- --</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════════
        STICKY NAVBAR
@@ -1602,6 +1996,171 @@
             <p>Rigorous project management frameworks ensuring zero-delay, consistent, and reliable delivery every cycle.</p>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         INTERACTIVE ROI / COST SAVINGS CALCULATOR
+    ═══════════════════════════════════════════ -->
+    <section class="roi-calc-section" id="roi-calculator">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag gold"><i class="ph ph-calculator"></i> Cost Intelligence</span>
+          <h2 class="section-title">Calculate Your <span class="gold">Annual Cost Savings</span></h2>
+          <p class="section-sub">Estimate how much your business saves by shifting front-line workflows, back-office, or technical operations to our dedicated teams.</p>
+        </div>
+
+        <div class="roi-calc-card reveal delay-1">
+          <div class="calc-inputs">
+            <div class="calc-slider-wrap" style="margin-top:0;">
+              <label class="calc-slider-title" style="display:block;margin-bottom:8px;">Target Operational Domain</label>
+              <select class="calc-select" id="roi-domain">
+                <option value="logistics" selected>Freight & Logistics Operations / Dispatch</option>
+                <option value="customer_support">24/7 Omnichannel Customer Support</option>
+                <option value="proptech">Real Estate / Property Management Underwriting</option>
+                <option value="fintech">FinTech / Invoice AP & Accounting Reconciliation</option>
+                <option value="data_ai">AI Training Data & Back-Office Workflows</option>
+              </select>
+            </div>
+
+            <div class="calc-slider-wrap">
+              <div class="calc-slider-header">
+                <span class="calc-slider-title">Current In-House Team Size</span>
+                <span class="calc-slider-val" id="team-size-val">5 FTEs</span>
+              </div>
+              <input type="range" min="1" max="50" value="5" class="calc-slider" id="team-size-slider">
+            </div>
+
+            <div class="calc-slider-wrap">
+              <div class="calc-slider-header">
+                <span class="calc-slider-title">Average US/EU Salary Per FTE / Month</span>
+                <span class="calc-slider-val" id="salary-val">$4,500</span>
+              </div>
+              <input type="range" min="2500" max="9000" step="250" value="4500" class="calc-slider" id="salary-slider">
+            </div>
+          </div>
+
+          <div class="roi-output-box">
+            <div class="roi-savings-badge">Estimated Annual Labor Savings</div>
+            <div class="roi-savings-num" id="roi-savings-annual">$189,000</div>
+            <div class="roi-percent-tag"><i class="ph ph-trend-up"></i> ~70% Cost Reduction</div>
+            <div class="roi-breakdown-grid">
+              <div class="roi-bd-item">
+                <label>Current In-House / Year</label>
+                <span id="roi-current-annual">$270,000</span>
+              </div>
+              <div class="roi-bd-item">
+                <label>With Vantrix Dedicated / Year</label>
+                <span id="roi-vantrix-annual" style="color:var(--gold-light);">$81,000</span>
+              </div>
+            </div>
+            <a href="#" data-page="contact" class="btn btn-gold" style="width:100%;justify-content:center;">Lock In Your Dedicated Team <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PROVEN CLIENT CASE STUDIES
+    ═══════════════════════════════════════════ -->
+    <section class="case-studies-section" id="case-studies">
+      <div class="container">
+        <div class="section-header center reveal">
+          <span class="tag purple"><i class="ph ph-trophy"></i> Proven Track Record</span>
+          <h2 class="section-title">Measurable Outcomes for <span class="purple-gradient">High-Growth Companies</span></h2>
+          <p class="section-sub">Explore how our hybrid human + AI workflows optimize SLAs, eliminate backlogs, and deliver predictable ROI.</p>
+        </div>
+
+        <div class="case-grid">
+          <!-- Case 1 -->
+          <div class="case-card reveal delay-1">
+            <span class="case-tag">Freight & Logistics</span>
+            <h4 class="case-title">US Middle-Mile 3PL Carrier Network</h4>
+            <p class="case-desc">A high-growth US freight network required round-the-clock rate confirmation audits, driver check-in tracking, and EDI exception resolution across 80+ daily lanes.</p>
+            <div class="case-metrics">
+              <div>
+                <div class="case-metric-val">&lt; 4 Min</div>
+                <div class="case-metric-lbl">Track & Trace SLA</div>
+              </div>
+              <div>
+                <div class="case-metric-val">$140k+</div>
+                <div class="case-metric-lbl">Annual Labor Saved</div>
+              </div>
+            </div>
+            <a href="#" data-page="contact" class="btn btn-outline-purple" style="width:100%;justify-content:center;font-size:0.88rem;padding:10px 18px;">View Case Scope <i class="ph ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="case-card reveal delay-2">
+            <span class="case-tag">PropTech & Real Estate</span>
+            <h4 class="case-title">National Rental Underwriting Platform</h4>
+            <p class="case-desc">High-volume tenant screening platform processing thousands of verification documents, income statements, and lease audits with zero tolerance for compliance errors.</p>
+            <div class="case-metrics">
+              <div>
+                <div class="case-metric-val">99.85%</div>
+                <div class="case-metric-lbl">Document Accuracy</div>
+              </div>
+              <div>
+                <div class="case-metric-val">4.5x</div>
+                <div class="case-metric-lbl">Throughput Scaled</div>
+              </div>
+            </div>
+            <a href="#" data-page="contact" class="btn btn-outline-purple" style="width:100%;justify-content:center;font-size:0.88rem;padding:10px 18px;">View Case Scope <i class="ph ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Case 3 -->
+          <div class="case-card reveal delay-3">
+            <span class="case-tag">FinTech & Invoicing</span>
+            <h4 class="case-title">B2B AP & Working Capital SaaS</h4>
+            <p class="case-desc">Automated GL code tagging, OCR error exception handling, and two-way vendor invoice matching for high-velocity e-commerce merchants and enterprise suppliers.</p>
+            <div class="case-metrics">
+              <div>
+                <div class="case-metric-val">Same-Day</div>
+                <div class="case-metric-lbl">Invoice Matching</div>
+              </div>
+              <div>
+                <div class="case-metric-val">68%</div>
+                <div class="case-metric-lbl">OpEx Reduction</div>
+              </div>
+            </div>
+            <a href="#" data-page="contact" class="btn btn-outline-purple" style="width:100%;justify-content:center;font-size:0.88rem;padding:10px 18px;">View Case Scope <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         ENTERPRISE SECURITY & COMPLIANCE
+    ═══════════════════════════════════════════ -->
+    <section class="sec-trust-bar">
+      <div class="container">
+        <div class="section-header center reveal" style="margin-bottom:44px;">
+          <span class="tag gold"><i class="ph ph-shield-check"></i> Enterprise Security</span>
+          <h2 class="section-title" style="color:#fff;">Bank-Grade Compliance & Data Safety</h2>
+          <p class="section-sub" style="color:rgba(255,255,255,0.7);">Your intellectual property and proprietary customer records are protected by strict institutional security protocols.</p>
+        </div>
+        <div class="sec-trust-grid reveal delay-1">
+          <div class="sec-trust-item">
+            <div class="sec-trust-icon"><i class="ph ph-file-lock"></i></div>
+            <h5>Comprehensive NDA Coverage</h5>
+            <p>Every operator, team lead, and analyst signs strict, enforceable non-disclosure agreements before account onboarding.</p>
+          </div>
+          <div class="sec-trust-item">
+            <div class="sec-trust-icon"><i class="ph ph-lock-key"></i></div>
+            <h5>Role-Based Zero Trust Access</h5>
+            <p>Restricted data access via dedicated VPNs, granular permission levels, and multi-factor authentication (MFA).</p>
+          </div>
+          <div class="sec-trust-item">
+            <div class="sec-trust-icon"><i class="ph ph-desktop-tower"></i></div>
+            <h5>DLP & Watermarked Desktops</h5>
+            <p>Workstation-level Data Loss Prevention (DLP) preventing local downloads, external USB copying, or unauthorized transfers.</p>
+          </div>
+          <div class="sec-trust-item">
+            <div class="sec-trust-icon"><i class="ph ph-arrows-clockwise"></i></div>
+            <h5>Continuous 24/7 Redundancy</h5>
+            <p>Dual-ISP fiber failover, full battery/generator power backups, and a 99.9% operational uptime guarantee.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -3515,10 +4074,66 @@
     spinStyle.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
     document.head.appendChild(spinStyle);
 
+    /* ─── LIVE OPERATIONS CLOCKS ─────────────────── */
+    function updateOpsClocks() {
+      const now = new Date();
+      const opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      
+      const nyEl = document.getElementById('clock-ny');
+      const lonEl = document.getElementById('clock-lon');
+      const dxbEl = document.getElementById('clock-dxb');
+      const istEl = document.getElementById('clock-ist');
+
+      if (nyEl) nyEl.textContent = new Intl.DateTimeFormat('en-US', { ...opts, timeZone: 'America/New_York' }).format(now);
+      if (lonEl) lonEl.textContent = new Intl.DateTimeFormat('en-US', { ...opts, timeZone: 'Europe/London' }).format(now);
+      if (dxbEl) dxbEl.textContent = new Intl.DateTimeFormat('en-US', { ...opts, timeZone: 'Asia/Dubai' }).format(now);
+      if (istEl) istEl.textContent = new Intl.DateTimeFormat('en-US', { ...opts, timeZone: 'Asia/Kolkata' }).format(now);
+    }
+    setInterval(updateOpsClocks, 1000);
+    updateOpsClocks();
+
+    /* ─── ROI CALCULATOR LOGIC ───────────────────── */
+    function initRoiCalculator() {
+      const teamSlider = document.getElementById('team-size-slider');
+      const salarySlider = document.getElementById('salary-slider');
+      const teamVal = document.getElementById('team-size-val');
+      const salaryVal = document.getElementById('salary-val');
+      const savingsAnnual = document.getElementById('roi-savings-annual');
+      const currentAnnual = document.getElementById('roi-current-annual');
+      const vantrixAnnual = document.getElementById('roi-vantrix-annual');
+
+      if (!teamSlider || !salarySlider) return;
+
+      const VANTRIX_MONTHLY_RATE = 1350;
+
+      function updateROI() {
+        const teamSize = parseInt(teamSlider.value, 10);
+        const salaryPerFte = parseInt(salarySlider.value, 10);
+
+        if (teamVal) teamVal.textContent = teamSize + (teamSize === 1 ? ' FTE' : ' FTEs');
+        if (salaryVal) salaryVal.textContent = '$' + salaryPerFte.toLocaleString();
+
+        const currentInHouseAnnual = teamSize * salaryPerFte * 12;
+        const vantrixDedicatedAnnual = teamSize * VANTRIX_MONTHLY_RATE * 12;
+        const totalSavings = Math.max(0, currentInHouseAnnual - vantrixDedicatedAnnual);
+
+        if (currentAnnual) currentAnnual.textContent = '$' + currentInHouseAnnual.toLocaleString();
+        if (vantrixAnnual) vantrixAnnual.textContent = '$' + vantrixDedicatedAnnual.toLocaleString();
+        if (savingsAnnual) savingsAnnual.textContent = '$' + totalSavings.toLocaleString();
+      }
+
+      teamSlider.addEventListener('input', updateROI);
+      salarySlider.addEventListener('input', updateROI);
+      updateROI();
+    }
+
     /* ─── INITIAL LOAD ───────────────────────────── */
     function init() {
       // Remove no-js class so pages become visible
       document.body.classList.remove('no-js');
+
+      // Initialize live ROI calculation
+      initRoiCalculator();
 
       // Check path or hash on load
       const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
@@ -3558,6 +4173,18 @@
       </a>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════════════════
+       FLOATING 1-CLICK WHATSAPP QUICK CHAT
+  ═══════════════════════════════════════════ -->
+  <a href="https://wa.me/919462472131?text=Hello%20Vantrix%20Global%20Team%2C%20I%20would%20like%20to%20discuss%20outsourcing%20services." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="wa-float-btn" 
+     aria-label="Chat on WhatsApp">
+    <div class="wa-icon-circle"><i class="ph ph-whatsapp-logo"></i></div>
+    <span>Chat on WhatsApp</span>
+  </a>
 
 </body>
 </html>
