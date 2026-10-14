@@ -3077,9 +3077,9 @@
       // Counter animation (about page) — only on first visit
       if (pageId === 'about' && !isRevisit) observeCounters();
 
-      // Push to browser history
-      const url = '#' + pageId;
-      window.history.pushState({ page: pageId }, '', url);
+      // Push to browser history with clean URL (no '#')
+      const cleanUrl = pageId === 'home' ? '/' : '/' + pageId;
+      window.history.pushState({ page: pageId }, '', cleanUrl);
     }
 
     /* ─── NAV STYLE LOGIC ────────────────────────── */
@@ -3120,13 +3120,24 @@
       if (link) {
         e.preventDefault();
         navigateTo(link.dataset.page);
+        return;
+      }
+
+      // Intercept any '#' or empty links so they NEVER jump or pollute URL bar
+      const hashLink = e.target.closest('a[href="#"], a[href=""]');
+      if (hashLink) {
+        e.preventDefault();
       }
     });
 
     /* ─── BROWSER BACK/FORWARD ───────────────────── */
     window.addEventListener('popstate', function (e) {
-      if (e.state && e.state.page) navigateTo(e.state.page);
-      else navigateTo('home');
+      if (e.state && e.state.page) {
+        navigateTo(e.state.page);
+      } else {
+        const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+        navigateTo(PAGES.includes(path) ? path : 'home');
+      }
     });
 
     /* ─── SCROLL REVEAL ──────────────────────────── */
@@ -3509,12 +3520,14 @@
       // Remove no-js class so pages become visible
       document.body.classList.remove('no-js');
 
-      // Check hash on load
-      const hash = window.location.hash.replace('#', '');
-      const initPage = PAGES.includes(hash) ? hash : 'home';
+      // Check path or hash on load
+      const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const initPage = PAGES.includes(path) ? path : (PAGES.includes(hash) ? hash : 'home');
 
-      // Set up initial state
-      window.history.replaceState({ page: initPage }, '', '#' + initPage);
+      // Set up initial state with clean URL (no '#')
+      const cleanUrl = initPage === 'home' ? '/' : '/' + initPage;
+      window.history.replaceState({ page: initPage }, '', cleanUrl);
       navigateTo(initPage);
     }
 
