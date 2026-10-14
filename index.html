@@ -44,7 +44,9 @@
       --r-xl:  40px;
       --r-pill: 999px;
 
-      --nav-h: 76px;
+      --ops-h: 36px;
+      --nav-h: 74px;
+      --header-h: calc(var(--ops-h) + var(--nav-h));
       --ease:  cubic-bezier(.25,.8,.25,1);
       --dur:   0.45s;
     }
@@ -157,20 +159,33 @@
     .btn-purple:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(90,82,197,.5); }
 
     /* ═══════════════════════════════════════════════════
-       NAVBAR
+       SITE HEADER & NAVBAR
     ═══════════════════════════════════════════════════ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: transform .35s var(--ease);
+    }
+    .site-header.header-scrolled {
+      transform: translateY(calc(-1 * var(--ops-h)));
+    }
+
     #navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      position: relative;
       height: var(--nav-h);
-      display: flex; align-items: center;
+      display: flex;
+      align-items: center;
       transition: background .4s var(--ease), box-shadow .4s var(--ease);
       background: transparent;
     }
     #navbar.scrolled, #navbar.light-bg {
-      background: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.94);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      box-shadow: 0 2px 24px rgba(5,15,60,.08);
+      box-shadow: 0 4px 24px rgba(5,15,60,.09);
     }
     #navbar.dark-mode {
       background: rgba(7,21,38,.85);
@@ -230,7 +245,7 @@
 
     /* Mobile Nav */
     .mobile-nav {
-      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 800;
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 800;
       background: rgba(255,255,255,.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -261,7 +276,7 @@
       min-height: 100vh;
       display: flex; align-items: center;
       background: linear-gradient(150deg, var(--navy) 0%, #0E2956 50%, #1A1060 100%);
-      padding-top: var(--nav-h);
+      padding-top: var(--header-h);
       overflow: hidden;
     }
     /* Animated glow orbs */
@@ -1346,26 +1361,33 @@
     ═══════════════════════════════════════════════════ */
     /* 1. Live Operations Time Bar */
     .ops-time-bar {
-      background: rgba(7, 21, 38, 0.95);
+      background: rgba(4, 12, 22, 0.98);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.7);
-      padding: 8px 0;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.72);
+      height: var(--ops-h);
+      display: flex;
+      align-items: center;
       position: relative;
       z-index: 950;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-sizing: border-box;
     }
     .ops-time-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1220px;
+      margin-inline: auto;
+      padding-inline: 24px;
       gap: 12px;
     }
     .ops-clocks {
       display: flex;
       align-items: center;
       gap: 20px;
-      flex-wrap: wrap;
     }
     .ops-clock-item {
       display: inline-flex;
@@ -1401,6 +1423,15 @@
     @keyframes pulseGreen {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    @media (max-width: 860px) {
+      .ops-clock-desktop-only { display: none !important; }
+      .ops-clocks { gap: 12px; font-size: 0.72rem; }
+    }
+    @media (max-width: 500px) {
+      .ops-time-inner { padding-inline: 14px; }
+      .ops-live-pill span:not(.ops-pulse-dot) { font-size: 0.65rem; }
+      .ops-clock-val { font-size: 0.72rem; }
     }
 
     /* 2. Interactive Cost Savings Calculator */
@@ -1709,78 +1740,79 @@
 </head>
 <body class="no-js">
 
-  <!-- ═══════════════════
-       LIVE OPERATIONS TIME BAR
-  ═══════════════════ -->
-  <div class="ops-time-bar">
-    <div class="container ops-time-inner">
-      <div class="ops-live-pill">
-        <span class="ops-pulse-dot"></span>
-        <span>24/7 Global Ops Active</span>
-      </div>
-      <div class="ops-clocks">
-        <div class="ops-clock-item">
-          <span>New York:</span>
-          <span class="ops-clock-val" id="clock-ny">--:-- --</span>
+  <!-- ═══════════════════════════════════════════
+       UNIFIED ENTERPRISE SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header id="siteHeader" class="site-header">
+    <!-- LIVE OPERATIONS TIME BAR -->
+    <div class="ops-time-bar">
+      <div class="ops-time-inner">
+        <div class="ops-live-pill">
+          <span class="ops-pulse-dot"></span>
+          <span>24/7 Global Ops Active</span>
         </div>
-        <div class="ops-clock-item">
-          <span>London:</span>
-          <span class="ops-clock-val" id="clock-lon">--:-- --</span>
+        <div class="ops-clocks">
+          <div class="ops-clock-item">
+            <span>New York:</span>
+            <span class="ops-clock-val" id="clock-ny">--:-- --</span>
+          </div>
+          <div class="ops-clock-item ops-clock-desktop-only">
+            <span>London:</span>
+            <span class="ops-clock-val" id="clock-lon">--:-- --</span>
+          </div>
+          <div class="ops-clock-item ops-clock-desktop-only">
+            <span>Dubai:</span>
+            <span class="ops-clock-val" id="clock-dxb">--:-- --</span>
+          </div>
+          <div class="ops-clock-item">
+            <span>India HQ:</span>
+            <span class="ops-clock-val" id="clock-ist">--:-- --</span>
+          </div>
         </div>
-        <div class="ops-clock-item">
-          <span>Dubai:</span>
-          <span class="ops-clock-val" id="clock-dxb">--:-- --</span>
-        </div>
-        <div class="ops-clock-item">
-          <span>India HQ:</span>
-          <span class="ops-clock-val" id="clock-ist">--:-- --</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════
-       STICKY NAVBAR
-  ═══════════════════ -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <!-- Logo -->
-      <a href="#" data-page="home" class="nav-logo">
-        <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
-          onerror="this.style.display='none'; document.getElementById('logo-text-nav').style.display='block';">
-        <span class="logo-text" id="logo-text-nav" style="display:none;">Vantrix<span>Global</span></span>
-      </a>
-
-      <!-- Desktop Links -->
-      <ul class="nav-links" id="desktopNav">
-        <li class="nav-item"><a href="#" data-page="home"     class="nav-link active">Home</a></li>
-        <li class="nav-item"><a href="#" data-page="about"    class="nav-link">About Us</a></li>
-        <li class="nav-item"><a href="#" data-page="services" class="nav-link">Services</a></li>
-        <li class="nav-item"><a href="#" data-page="ai"       class="nav-link">AI Solutions</a></li>
-        <li class="nav-item"><a href="#" data-page="blog"     class="nav-link">Insights</a></li>
-        <li class="nav-item"><a href="#" data-page="contact"  class="nav-link">Contact</a></li>
-      </ul>
-
-      <!-- CTA + Hamburger -->
-      <div style="display:flex;align-items:center;gap:10px;">
-        <a href="#" data-page="contact" class="btn btn-gold nav-cta">Book a Call</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
-          <i class="ph ph-list" id="ham-icon"></i>
-        </button>
       </div>
     </div>
-  </nav>
 
-  <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#" data-page="home"     class="mob-link active">Home</a>
-    <a href="#" data-page="about"    class="mob-link">About Us</a>
-    <a href="#" data-page="services" class="mob-link">Services</a>
-    <a href="#" data-page="ai"       class="mob-link">AI Solutions</a>
-    <a href="#" data-page="blog"     class="mob-link">Insights</a>
-    <a href="#" data-page="contact"  class="mob-link">Contact</a>
-    <a href="#" data-page="contact"  class="btn btn-gold mob-cta" style="display:inline-flex;margin-top:14px;">Book a Call</a>
-  </div>
+    <!-- STICKY NAVBAR -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <!-- Logo -->
+        <a href="#" data-page="home" class="nav-logo">
+          <img src="logo.png" alt="Vantrix Global Logo" class="brand-logo"
+            onerror="this.style.display='none'; document.getElementById('logo-text-nav').style.display='block';">
+          <span class="logo-text" id="logo-text-nav" style="display:none;">Vantrix<span>Global</span></span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links" id="desktopNav">
+          <li class="nav-item"><a href="#" data-page="home"     class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#" data-page="about"    class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="#" data-page="services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="#" data-page="ai"       class="nav-link">AI Solutions</a></li>
+          <li class="nav-item"><a href="#" data-page="blog"     class="nav-link">Insights</a></li>
+          <li class="nav-item"><a href="#" data-page="contact"  class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- CTA + Hamburger -->
+        <div style="display:flex;align-items:center;gap:10px;">
+          <a href="#" data-page="contact" class="btn btn-gold nav-cta">Book a Call</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+            <i class="ph ph-list" id="ham-icon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Nav Dropdown -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#" data-page="home"     class="mob-link active">Home</a>
+      <a href="#" data-page="about"    class="mob-link">About Us</a>
+      <a href="#" data-page="services" class="mob-link">Services</a>
+      <a href="#" data-page="ai"       class="mob-link">AI Solutions</a>
+      <a href="#" data-page="blog"     class="mob-link">Insights</a>
+      <a href="#" data-page="contact"  class="mob-link">Contact</a>
+      <a href="#" data-page="contact"  class="btn btn-gold mob-cta" style="display:inline-flex;margin-top:14px;">Book a Call</a>
+    </div>
+  </header>
 
   <!-- ═══════════════════════════════
        PAGE: HOME
@@ -3637,16 +3669,20 @@
       if (pageId === 'about' && !isRevisit) observeCounters();
 
       // Push to browser history with clean URL (no '#')
-      const cleanUrl = pageId === 'home' ? '/' : '/' + pageId;
-      window.history.pushState({ page: pageId }, '', cleanUrl);
+      try {
+        const cleanUrl = pageId === 'home' ? '/' : '/' + pageId;
+        window.history.pushState({ page: pageId }, '', cleanUrl);
+      } catch (e) {}
     }
 
     /* ─── NAV STYLE LOGIC ────────────────────────── */
     function applyNavStyle() {
-      const scrolled = window.scrollY > 60;
+      const scrolled = window.scrollY > 40;
       const style = NAV_STYLE[currentPage] || 'dark';
+      const siteHeader = document.getElementById('siteHeader');
 
       navbar.classList.remove('dark-mode', 'light-bg', 'scrolled');
+      if (siteHeader) siteHeader.classList.toggle('header-scrolled', scrolled);
 
       if (scrolled) {
         // On scroll: always frosted white
@@ -4141,8 +4177,10 @@
       const initPage = PAGES.includes(path) ? path : (PAGES.includes(hash) ? hash : 'home');
 
       // Set up initial state with clean URL (no '#')
-      const cleanUrl = initPage === 'home' ? '/' : '/' + initPage;
-      window.history.replaceState({ page: initPage }, '', cleanUrl);
+      try {
+        const cleanUrl = initPage === 'home' ? '/' : '/' + initPage;
+        window.history.replaceState({ page: initPage }, '', cleanUrl);
+      } catch (e) {}
       navigateTo(initPage);
     }
 
